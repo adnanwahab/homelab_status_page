@@ -1,1 +1,0 @@
-# zoox is a list of modules - make a comprehension to map filter into a json 

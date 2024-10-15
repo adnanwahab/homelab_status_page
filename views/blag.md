@@ -9,3 +9,8 @@ https://github.com/uber-go/guide/blob/master/style.md
 
 <!-- http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf -->
 <!-- https://worrydream.com/MagicInk/predictor.lua -->
+
+
+#hardware (componennts, sensors, 3d-printing, arms, locomotion)
+1. jetson containers - setting up basics (jetson inital inistall, jupyter, segment-anythin-2, flux -> paint robot paint -> diffusion3d)
+2.
