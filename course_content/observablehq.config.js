@@ -6,7 +6,46 @@ export default {
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
+  pages: [
+    {name: "Introduction to Robotics & AI", path: "/introduction"},
+    {
+      name: "Perception",
+      pages: [
+        {name: "Dashboard", path: "/example-dashboard"},
+        {name: "Report", path: "/example-report"}
+      ]
+    },
+    {
+      name: "Prediciton and Planning",
+      pages: [
+        {name: "Dashboard", path: "/example-dashboard"},
+        {name: "Report", path: "/example-report"}
+      ]
+    },
 
+    {
+      name: "Simulation",
+      pages: [
+        {name: "Dashboard", path: "/example-dashboard"},
+        {name: "Report", path: "/example-report"}
+      ]
+    },
+
+    {
+      name: "Building Robotics UI",
+      pages: [
+        {name: "Dashboard", path: "/example-dashboard"},
+        {name: "Report", path: "/example-report"}
+      ]
+    },
+    {
+      name: "Real World Application",
+      pages: [
+        {name: "Dashboard", path: "/example-dashboard"},
+        {name: "Report", path: "/example-report"}
+      ]
+    }
+  ],
   //   pages: [
   // {name: "Getting ever more awesome", path: "/getting-awesome"},
   // {name: "Being totally awesome", path: "/being-awesome"},
