@@ -5,7 +5,7 @@ notebooks/deno-webgpu
 notebooks/2_perception
 notebooks/course-content-observable-data-app
 vendor/
-dist/
+#dist/
 notebooks/deno-webgpu/
 ./data/alan_kay
 data/alan_kay
