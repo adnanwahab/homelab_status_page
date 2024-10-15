@@ -10,7 +10,7 @@ done
 
 
 
-bun infra/scripts/course_gen_step_2.js
+#bun infra/scripts/course_gen_step_2.js
 
 #bun infra/scripts/course_gen_step_4.js
 # Find all 'examples' folders in 'course_content' and move their 'data' and 'components' folders
