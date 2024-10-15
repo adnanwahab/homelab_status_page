@@ -1,6 +1,6 @@
-import { OpenAI } from 'openai';
-import { join } from 'path';
-import { existsSync, readdirSync, readFileSync } from 'fs';
+import { OpenAI } from "openai";
+import { join } from "path";
+import fs from "fs";
 
 const openai_api_key = process.env.OPENAI_KEY;
 
@@ -8,23 +8,7 @@ const client = new OpenAI({
   apiKey: openai_api_key,
 });
 
-const json_file_path = join('data', 'odyssey', 'modules.json');
-const input_dir = join('data', 'odyssey');
-const output_dir = input_dir;
-
-async function appendToFile(chunk, index, outputDir) {
-  const outputFilePath = join(outputDir, `parallel_chunk_${index}.txt`);
-  await Bun.write(outputFilePath, chunk);
-  return chunk;
-}
-
-async function emptyFile(outputDir) {
-  const startTime = Date.now();
-  const outputFilePath = join(outputDir, 'journey-4.css.txt');
-  await Bun.write(outputFilePath, '');
-  const endTime = Date.now();
-  console.log(`Emptying the file took ${endTime - startTime} milliseconds.`);
-}
+const output_dir = "course_content/src";
 
 function parseGPT(results) {
   const comp = results;
@@ -36,43 +20,39 @@ function parseGPT(results) {
   return messageContent;
 }
 
-function splitIntoChunks(css) {
-  const cssBlocks = css.split('\n\n');
-  const linesPerChunk = 10;
-  return cssBlocks.map((_, i) => cssBlocks.slice(i, i + linesPerChunk));
-}
-
 const queries = {
-  desmos: 'gen a javascript code to visualize topic like desmos ',
-  threejs: 'gen a javascript code to visualize topic like threejs ',
-  khanacademy: 'gen a javascript code to visualize topic like khanacademy',
-  observable: 'gen a javascript code to visualize topic like observable',
-  d3js: 'gen a javascript code to visualize topic like d3js',
-  research_papers: 'links to any related research papers',
-  visualizations: 'links to any visualizaions ',
-  videos: 'links to videos',
-  tweets: 'links to tweets or any social media ',
-  docs: 'docs / websites ',
+  desmos: "gen a javascript code to visualize topic like desmos ",
+  threejs: "gen a javascript code to visualize topic like threejs ",
+  khanacademy: "gen a javascript code to visualize topic like khanacademy",
+  observable: "gen a javascript code to visualize topic like observable",
+  d3js: "gen a javascript code to visualize topic like d3js",
+  research_papers: "links to any related research papers",
+  visualizations: "links to any visualizaions ",
+  videos: "links to videos",
+  tweets: "links to tweets or any social media ",
+  docs: "docs / websites ",
 };
 
 const queryFileExt = {
-  demos: 'js',
-  threejs: 'js',
-  khanacademy: 'js',
-  observable: 'js',
-  d3js: 'js',
-  research_papers: 'md',
-  visualizations: 'md',
-  videos: 'md',
-  tweets: 'md',
-  docs: 'md',
-  websites: 'md',
+  demos: "js",
+  threejs: "js",
+  khanacademy: "js",
+  observable: "js",
+  d3js: "js",
+  research_papers: "md",
+  visualizations: "md",
+  videos: "md",
+  tweets: "md",
+  docs: "md",
+  websites: "md",
 };
 
 //  Twitter  LinkedIn  Github  YouTube  Instagram  Email  Terms
 
 async function processChunk(folderName, index) {
-  const prompt = Object.values(queries)[index] + `generate a diagram from the folder name ${folderName} `;
+  const prompt =
+    Object.values(queries)[index] +
+    `generate a diagram from the folder name ${folderName} `;
   console.log(prompt);
   const processed = "hello";
   // const chatCompletion = await client.chat.completions.create({
@@ -81,27 +61,49 @@ async function processChunk(folderName, index) {
   // });
   // const processed = parseGPT(chatCompletion);
   const outputFilePath = join(input_dir, folderName, `${index}.md`);
-  let dummy_path = "data/course_intermediate/" + folderName + "/" + index + ".md";
-  await Bun.write(outputFilePath, processed);
+  let dummy_path =
+    "data/course_intermediate/" + folderName + "/" + index + ".md";
+  //await Bun.write(outputFilePath, processed);
+  console.log(dummy_path);
 }
 
-async function processAllFilesInDirectory(directoryPath) {
-  const module_list = JSON.parse(readFileSync(join(directoryPath, 'module_list.json')));
-  console.log(JSON.stringify(module_list));
-  // const folders = readdirSync(directoryPath).filter(
-  //   (folder) => existsSync(join(directoryPath, folder)) &&
-  //     !existsSync(join(directoryPath, folder, 'index.md'))
-  // );
+async function processAllFilesInDirectory() {
+  const modules = JSON.parse(
+    fs.readFileSync(join("data/odyssey/modules.json")),
+  ).modules;
+
+  console.log(modules);
+
   const startTime = Date.now();
-  // for (const folder of folders) {
-  //   for (let index = 0; index < 10; index++) {
-  //     await processChunk(folder, index);
-  //   }
-  // }
+
   const endTime = Date.now();
-  const outputFilePath = join(directoryPath, 'output.json');
-  await Bun.write(outputFilePath, JSON.stringify(module_list));
-  console.log(`processing all files in directory took ${endTime - startTime} milliseconds`);
+  console.log(
+    `processing all files in directory took ${endTime - startTime} milliseconds`,
+  );
+
+  modules.slice(3).forEach((module) => {
+    //console.log(module);
+    const human_name = module.name.replace(/&| /g, "-");
+    console.log(human_name);
+    const currentModulePath = join(
+      "data",
+      "intermediate-representaiton",
+      human_name,
+    );
+
+    fs.mkdirSync(currentModulePath, { recursive: true });
+  });
 }
 
-await processAllFilesInDirectory(input_dir);
+await processAllFilesInDirectory();
+const folders = fs.readdirSync("data/intermediate-representaiton");
+
+folders.forEach((_) => {
+  fs.writeFileSync(
+    `course_content/src/${_}.md`,
+    `---
+title: ${_}
+---
+`,
+  );
+});

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 /*
   This example requires some changes to your config:
-  
+
   ```
   // tailwind.config.js
   module.exports = {
@@ -41,8 +41,8 @@ const navigation = {
   ],
   social: [
     {
-      name: 'Facebook',
-      href: '#',
+      name: "Docker",
+      href: "https://hub.docker.com/u/shelbernstein",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -54,8 +54,8 @@ const navigation = {
       ),
     },
     {
-      name: 'Instagram',
-      href: '#',
+      name: "Instagram",
+      href: "https://instagram.com/robo.ticsodyssey",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -67,8 +67,8 @@ const navigation = {
       ),
     },
     {
-      name: 'X',
-      href: '#',
+      name: "twitter",
+      href: "https://morrowind.com/",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
@@ -76,8 +76,8 @@ const navigation = {
       ),
     },
     {
-      name: 'GitHub',
-      href: '#',
+      name: "GitHub",
+      href: "https://github.com/adnan-wahab",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -89,8 +89,8 @@ const navigation = {
       ),
     },
     {
-      name: 'YouTube',
-      href: '#',
+      name: "YouTube",
+      href: "https://www.youtube.com/@Robotics-Odyssey",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -102,7 +102,7 @@ const navigation = {
       ),
     },
   ],
-}
+};
 
 export default function Example() {
   return (
@@ -112,11 +112,12 @@ export default function Example() {
       </h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-
           <div className="grid grid-cols-2 gap-8 xl:col-span-2 hidden">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Solutions</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">
+                  Solutions
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {/* {navigation.solutions.map((item) => (
                     <li key={item.name}>
@@ -128,7 +129,9 @@ export default function Example() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Support</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">
+                  Support
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {/* {navigation.support.map((item) => (
                     <li key={item.name}>
@@ -142,7 +145,9 @@ export default function Example() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Company</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">
+                  Company
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {/* {navigation.company.map((item) => (
                     <li key={item.name}>
@@ -154,7 +159,9 @@ export default function Example() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Legal</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">
+                  Legal
+                </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {/* {navigation.legal.map((item) => (
                     <li key={item.name}>
@@ -167,11 +174,14 @@ export default function Example() {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-10 xl:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-white">$95 1 time fee for 95 hours of Video - Nov 1 Launch</h3>
+            <h3 className="text-sm font-semibold leading-6 text-white">
+              $95 1 time fee for 95 hours of Video - Nov 1 Launch
+            </h3>
             <p className="mt-2 text-sm leading-6 text-gray-300">
-              Everything you need to know to solve all problems permanently in 5 years.
+              Everything you need to know to solve all problems permanently in 5
+              years.
             </p>
             <form className="mt-6 sm:flex sm:max-w-md">
               <label htmlFor="email-address" className="sr-only">
@@ -200,7 +210,11 @@ export default function Example() {
         <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
-              <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-500 hover:text-gray-400"
+              >
                 <span className="sr-only">{item.name}</span>
                 <item.icon aria-hidden="true" className="h-6 w-6" />
               </a>
@@ -212,9 +226,8 @@ export default function Example() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
 
 // import React from 'react';
 
@@ -326,6 +339,5 @@ export default function Example() {
 //     </footer>
 //   )
 // }
-
 
 // export default Footer;

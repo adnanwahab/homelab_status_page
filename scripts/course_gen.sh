@@ -3,9 +3,14 @@
 for filename in $submodule_file_names; do  # Indentation fixed here
     #echo "Processing $filename"  # Add a command inside the loop
 #    mkdir -p "data/odyssey/$filename"
+ echo "asdf"
 done
 
-#bun infra/scripts/course_gen_step_2.js
+
+
+
+
+bun infra/scripts/course_gen_step_2.js
 
 #bun infra/scripts/course_gen_step_4.js
 # Find all 'examples' folders in 'course_content' and move their 'data' and 'components' folders
