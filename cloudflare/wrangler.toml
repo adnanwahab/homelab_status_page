@@ -1,0 +1,33 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "red-king-6e80"
+main = "src/index.js"  # Ensure this path is correct
+compatibility_date = "2024-10-11"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers Logs
+[observability]
+enabled = true
+
+# Static assets configuration
+#[site]
+#bucket = "./dist"  # Ensure this directory contains the files you want to serve
+
+# Uncomment and configure any additional bindings as needed
+# [vars]
+# MY_VARIABLE = "production_value"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+# [[services]]
+# binding = "MY_SERVICE"
+# service = "my-service"
+
+# [[vectorize]]
+# binding = "MY_INDEX"
+# index_name = "my-index"
