@@ -35,3 +35,5 @@ Our goal is to make everyone's life 20% easier in 5 years by constructing a dyna
 ![https://worrydream.com/MagicInk/p/logo.png](https://worrydream.com/MagicInk/p/logo.png)
 ![https://worrydream.com/SeeingSpaces/SeeingSpaces.jpg](https://worrydream.com/SeeingSpaces/SeeingSpaces.jpg)
 [![alt text](https://dynamicland.org/2024/Front_shelf/2dc5b9c5984d24df5d2aeaedf06442f8.jpg)](https://dynamicland.org/2024/Front_shelf/2dc5b9c5984d24df5d2aeaedf06442f8.jpg)
+
+WorryDreams’s projects encourage collaborative experimentation, where people think together, work with tangible objects, and create dynamic systems in real-time. His vision is grounded in communal learning and exploration
