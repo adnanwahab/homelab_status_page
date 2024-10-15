@@ -16,7 +16,8 @@
     "course_gen": "bash infra/scripts/course_gen.sh",
     "ffmpeg_frames": "ffmpeg -i input_video.mp4 -vf \"fps=1\" output_frame_%04d.png",
     "tmp_build": "vite build && wrangler pages deploy dist/",
-    "course": "bash infra/scripts/course_gen.sh"
+    "course": "bash infra/scripts/course_gen.sh",
+    "obs": "cd course_content && bun run dev"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.7.4",
