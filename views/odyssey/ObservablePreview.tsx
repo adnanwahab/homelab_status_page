@@ -64,12 +64,12 @@ you = ![asdfasdf](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcharacter-st
 me = ![asdfasdf](https://static.wikia.nocookie.net/supermarioglitchy4/images/e/e8/Toads_SMR.png/revision/latest?cb=20240104115252)
 https://x.com/elonmusk/status/1834071245224308850`;
 
-marked.setOptions({
-  gfm: true,
-  breaks: true,
-});
+// marked.setOptions({
+//   gfm: true,
+//   breaks: true,
+// });
 
-marked.parse(readme);
+// marked.parse(readme);
 
 //marked()
 function ObservablePreview() {

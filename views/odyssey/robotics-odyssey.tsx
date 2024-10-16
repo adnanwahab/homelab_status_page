@@ -15,7 +15,7 @@ function RoboticsOdyssey() {
       <div className="text-gray-950 antialiased bg-slate-900">
         <div className="overflow-hidden flex justify-center items-center min-h-screen">
           <main>
-            <h1 className="text-white">
+            <h1 className="text-white glowing-rainbow-text">
               Thanks to BotParty.org + Dynamicland.org!
             </h1>
 

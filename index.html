@@ -58,6 +58,24 @@
         href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
       /> -->
     </div>
+    <style>
+@keyframes rainbow {
+  0% { color: #ff0000; }
+  14% { color: #ff7f00; }
+  28% { color: #ffff00; }
+  42% { color: #00ff00; }
+  57% { color: #0000ff; }
+  71% { color: #8b00ff; }
+  85% { color: #ff00ff; }
+  100% { color: #ff0000; }
+}
+
+.glowing-rainbow-text {
+  animation: rainbow 8s linear infinite;
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS 3D Perspective Animation</title>

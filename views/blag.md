@@ -10,6 +10,7 @@ https://github.com/uber-go/guide/blob/master/style.md
 <!-- http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf -->
 <!-- https://worrydream.com/MagicInk/predictor.lua -->
 
+<<<<<<< HEAD
 
 #hardware (componennts, sensors, 3d-printing, arms, locomotion)
 1. jetson containers - setting up basics (jetson inital inistall, jupyter, segment-anythin-2, flux -> paint robot paint -> diffusion3d)
@@ -27,3 +28,32 @@ https://gilberttanner.com/blog/jetson-nano-getting-started/ -> jetson orin
 
 # building nanosaur
 # building panther
+=======
+<!-- sponge bob , teal, george, -->
+
+<!-- reference pierre- dont take on tothers emtions but dont create (aversion) -->
+
+<!-- write a good bibliography - every citaiton  -->
+
+<!-- map - 8 billion people - make sure they are are all happy healthy and safe. and wealthy.-->
+
+<!-- this is for miranda - my one true love - 5th grade. -->
+
+
+ 1. Hardware Components (locomotion, phallanges, 3d printing.)
+ 2. Robotics Sensors
+ 3. robotics mmo ui
+ 4. math magic. 
+ ___ you and your research__
+ <!-- tldr put others first w/o (major) cost to self  -->
+ <!-- glitch tune - tamagui -->
+ <!-- be chill. -->
+
+ <!-- i dont awnt to say good or bad thing about myself -->
+ <!-- i made mistakes but i will try not to repeat them. -->
+ <!-- ego has limits, but exalatation does not. -->
+ <!-- 100% self responsiblity. -->
+
+
+ <!-- HUmor + video game mechanics can popularize (alan kay) + dynamicland.org -->
+>>>>>>> 6a2c816 (simplify)
