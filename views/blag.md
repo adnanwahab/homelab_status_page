@@ -13,4 +13,17 @@ https://github.com/uber-go/guide/blob/master/style.md
 
 #hardware (componennts, sensors, 3d-printing, arms, locomotion)
 1. jetson containers - setting up basics (jetson inital inistall, jupyter, segment-anythin-2, flux -> paint robot paint -> diffusion3d)
-2.
+2. roomba
+# hardware (wiring, debugging, i forget)
+
+
+https://gilberttanner.com/blog/jetson-nano-getting-started/ -> jetson orin
+
+
+1. zed / phone
+2. orin
+3. roomba
+4. arm - dynamixel
+
+# building nanosaur
+# building panther

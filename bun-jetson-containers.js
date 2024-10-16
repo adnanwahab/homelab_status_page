@@ -35,14 +35,16 @@ function startRTSPStream(dockerExec) {
 //startRTSPStream(containerConnection);
 
 
-//
+//start a company with 5-100 people equal shares with their own robot factory.
 
 //doker exec 34320163bee6 /bin/bash
 
 //docker exec 34320163bee6 /bin/bash
 
 const containerConnection = connectToContainer();
+// https://zenphoton.com/#AAQAAkACAAEgfwADAhsAmwF6ASn/AAABDQFRArQB7v8AAAFeAPMBXgHI/wAA
 // startRTSPStream(containerConnection);
+// UN Sustainable Development Goals
 
 // Capture an image after a short delay to ensure the stream is running
 setTimeout(() => {
