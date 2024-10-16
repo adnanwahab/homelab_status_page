@@ -168,6 +168,7 @@ function DiffusionVoxelPointCloud() {
   }, []);
   //import {output_three} from "@roboticsuniversity/voxels-diffusion-policy-3d"
   //return <></>
+  // https://github.com/zed-industries/zed
   return (
     <div className="grid grid-cols-3 gap-4">
       <div ref={output_threeRef} />

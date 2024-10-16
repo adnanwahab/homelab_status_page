@@ -55,5 +55,77 @@ https://gilberttanner.com/blog/jetson-nano-getting-started/ -> jetson orin
  <!-- 100% self responsiblity. -->
 
 
+<<<<<<< HEAD
  <!-- HUmor + video game mechanics can popularize (alan kay) + dynamicland.org -->
 >>>>>>> 6a2c816 (simplify)
+=======
+ <!-- HUmor + video game mechanics can popularize (alan kay) + dynamicland.org
+ 
+ thank kapil
+ 200 models from charlies almanack - refute all  society + while reconsutrcting a different possibly better way backed by dynamicland research - see al possiblities liek kairos without mania.
+
+ 200 biases - see at same time as models.
+
+
+ Thanks to alan kay + worry dream + dynamicland.org + 
+ thanks to kaparthy + 
+ thats to will wright.
+ thanks to valve and steam.
+ thanks to nvidia. fbai, openai, x, etc.
+
+
+
+GO, python, 
+ learn C++ , zig
+bun, deno.
+
+
+zed, realsense, pi-camera
+
+
+locoomtion
+dynamixel
+
+Humor oct 17 - nov 1 
+
+self driving - cat robot  - thank drew 
+
+mmo-teleop - 10k people - issuing requests to cgi+llama+omniverse
+
+200,000 - robotics depenedencies 
+2025 - start biotech
+2036 - govtech + neuralink.
+
+
+
+Sign all documents pau - aj + mrianda
+
+
+pleiffer told you 3 things
+1. learn cpp 
+2. question -> 3 possibilie answers
+3. quality of data = quality ai 
+4. game mehanics for annotation (annotate games fro tool assisted speed runs to ) better world.
+
+-----
+
+kai wang told me - 
+
+--- 
+jesse told me --- 
+
+
+--- 
+keheng told me -- think linear- appreciate self - learn dashboards - parlalelzize - (gdb)logging theory - 
+
+
+-- paper party --- 
+
+
+5. world building = fun games 
+
+
+dynamicland consultancy 
+2025 - email marketing
+  -->
+>>>>>>> 998f36a (hihia)
