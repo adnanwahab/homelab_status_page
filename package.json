@@ -35,11 +35,9 @@
     "vitepress": "^1.4.0"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@livekit/rtc-node": "latest",
-=======
     "3-planning-prediction": "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.tgz",
->>>>>>> ffd59b4 (simplify)
+
     "@anthropic-ai/sdk": "^0.29.0",
     "@headlessui/react": "^2.1.10",
     "@heroicons/react": "^2.1.4",

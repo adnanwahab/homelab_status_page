@@ -3,7 +3,7 @@
 // bun add ws # WebSocket library for communication
 // bun add @types/ws # TypeScript definitions for ws
 
-
+// https://rustdesk.com/web/
 import WebSocket from 'ws';
 
 class RustDeskClient {

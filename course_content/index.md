@@ -1146,7 +1146,7 @@ dateExtent = d3.extent(data, d => d.date)
 ```js echo
 x = d3.scaleBand(d3.range(24), [margin.left, width - margin.right]).round(true)
 ```
-
+w
 ```js echo
 y = d3.scaleBand(d3.timeDays(...dateExtent), [margin.top, height - margin.bottom]).round(true)
 ```

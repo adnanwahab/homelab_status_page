@@ -19,9 +19,6 @@ import voxelpainter from "https://api.observablehq.com/@roboticsuniversity/alant
 //   if (name === "pointerAndObjects") return new Inspector(document.querySelector("#observablehq-pointerAndObjects-cd3c836e"));
 // });
 import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/three-js-canvas@327.js?v=4";
-
-
-
 // import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
 
 

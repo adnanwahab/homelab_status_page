@@ -129,3 +129,7 @@ dynamicland consultancy
 2025 - email marketing
   -->
 >>>>>>> 998f36a (hihia)
+
+2022 - wizards gave idea for robot universtiy  + every robots ' field' = datum of dynamic land - 
+july 11 - karparthy annoucned LLM school - i love llm
+oct 16 - 25% launch of robot.odyssey(mario+import to any school.)
