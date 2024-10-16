@@ -1,0 +1,4 @@
+---
+  title: Power Management
+---
+   

@@ -1,4 +1,3 @@
-
 export default {
   // The app’s title; used in the sidebar and webpage titles.
   title: "Robotics-Odyssey",
@@ -7,44 +6,75 @@ export default {
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
   pages: [
-    {name: "Introduction to Robotics & AI", path: "/introduction"},
     {
-      name: "Perception",
+      name: "Machine Perception",
       pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
+        {name: "Object Detection", path: "object-detection"},
+        {name: "Camera Calibration", path: "camera-calibration"},
+        {name: "Vision Transformers", path: "vision-transformers"}
       ]
     },
     {
-      name: "Prediciton and Planning",
+      name: "Planning & Prediction",
       pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
+        {name: "Attention Mechanisms", path: "attention-mechanisms"},
+        {name: "Motion Trajectory Prediction", path: "motion-prediction"},
+        {name: "LLMs vs Classical Planning", path: "llms-vs-classical"}
       ]
     },
-
     {
       name: "Simulation",
       pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
+        {name: "Unreal Engine and Isaac ROS", path: "unreal-isaac"},
+        {name: "Sim2Real Generalization", path: "sim2real"},
+        {name: "Manipulation Policy Evaluation", path: "policy-evaluation"}
       ]
     },
-
+    {
+      name: "User Interfaces and Command Systems",
+      pages: [
+        {name: "Tele-guidance and Remote Control", path: "tele-guidance"},
+        {name: "Command and Control Interface", path: "command-control"},
+        {name: "Interactive Debugging", path: "interactive-debugging"}
+      ]
+    },
+    {
+      name: "Real World Applications",
+      pages: [
+        {name: "Cat Food", path: "cat-food"},
+        {name: "Agriculture and Logistics", path: "agri-logistics"},
+        {name: "House Building and Gardening", path: "house-garden"},
+        {name: "Aqua Robotics", path: "aqua-robotics"}
+      ]
+    },
+    {
+      name: "Foundations of Hardware Design & Repair & Maintenance",
+      pages: [
+        {name: "Assembly", path: "assembly-disassembly"},
+        {name: "Kinematics and Dynamics", path: "kinematics-dynamics"},
+        {name: "Essential Robotics Tools", path: "robotics-tools"},
+        {name: "Fault Diagnosis", path: "fault-diagnosis"},
+        {name: "Motor and Sensor Repair", path: "motor-sensor-repair"},
+        {name: "Preventative Maintenance", path: "preventative-maintenance"}
+      ]
+    },
+    {
+      name: "Electrical Engineering Essentials",
+      pages: [
+        {name: "Power Management", path: "power-management"},
+        {name: "Embedded Systems", path: "embedded-systems"},
+        {name: "Communication Protocols", path: "communication-protocols"}
+      ]
+    },
+  
     {
       name: "Building Robotics UI",
       pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
+        {name: "Tele-guidance and Remote Control", path: "tele-guidance"},
+        // {name: "Command and Control Interface", path: "command-control"},
+        // {name: "Interactive Debugging", path: "interactive-debugging"}
       ]
     },
-    {
-      name: "Real World Application",
-      pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
-      ]
-    }
   ],
   //   pages: [
   // {name: "Getting ever more awesome", path: "/getting-awesome"},
@@ -76,9 +106,13 @@ export default {
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
   // output: "dist", // path to the output root for build
-  search: true, // activate search
+  //search: true, // activate search
   linkify: true, // convert URLs in Markdown to links
-  globalStyleSheets: [],
+  globalStyleSheets: [
+
+    // "https://unpkg.com/open-props/normalize.min.css",
+    "https://raw.githubusercontent.com/adnanwahab/homelab_status_page/refs/heads/main/public/css/output.css"
+  ],
   // typographer: false, // smart quotes and other typographic improvements
   // cleanUrls: true, // drop .html from URLs
 };
@@ -152,3 +186,4 @@ export default {
 // };
 
 // See https://observablehq.com/framework/config for documentation.
+

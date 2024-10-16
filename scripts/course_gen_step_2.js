@@ -98,12 +98,104 @@ async function processAllFilesInDirectory() {
 await processAllFilesInDirectory();
 const folders = fs.readdirSync("data/intermediate-representaiton");
 
-folders.forEach((_) => {
-  fs.writeFileSync(
-    `course_content/src/${_}.md`,
-    `---
-title: ${_}
+// folders.forEach((_) => {
+//   fs.writeFileSync(
+//     `course_content/src/${_}.md`,
+//     `---
+// title: ${_}
+// ---
+// `,
+//   );
+// });
+
+import observableConfig from "../../course_content/observablehq.config.js";
+
+//console.log("Observable Config:", observableConfig);
+
+const _ = [
+  {
+    name: "Machine Perception",
+    pages: [
+      { name: "Object Detection", path: "object-detection" },
+      { name: "Camera Calibration", path: "camera-calibration" },
+      { name: "Vision Transformers", path: "vision-transformers" },
+    ],
+  },
+  {
+    name: "Planning & Prediction",
+    pages: [
+      { name: "Attention Mechanisms", path: "attention-mechanisms" },
+      { name: "Motion Trajectory Prediction", path: "motion-prediction" },
+      { name: "LLMs vs Classical Planning", path: "llms-vs-classical" },
+    ],
+  },
+  {
+    name: "Simulation",
+    pages: [
+      { name: "Unreal Engine and Isaac ROS", path: "unreal-isaac" },
+      { name: "Sim2Real Generalization", path: "sim2real" },
+      { name: "Manipulation Policy Evaluation", path: "policy-evaluation" },
+    ],
+  },
+  {
+    name: "User Interfaces and Command Systems",
+    pages: [
+      { name: "Tele-guidance and Remote Control", path: "tele-guidance" },
+      { name: "Command and Control Interface", path: "command-control" },
+      { name: "Interactive Debugging", path: "interactive-debugging" },
+    ],
+  },
+  {
+    name: "Real World Applications",
+    pages: [
+      { name: "Cat Food", path: "cat-food" },
+      { name: "Agriculture and Logistics", path: "agri-logistics" },
+      { name: "House Building and Gardening", path: "house-garden" },
+      { name: "Aqua Robotics", path: "aqua-robotics" },
+    ],
+  },
+  {
+    name: "Foundations of Hardware Design & Repair & Maintenance",
+    pages: [
+      { name: "Assembly", path: "assembly-disassembly" },
+      { name: "Kinematics and Dynamics", path: "kinematics-dynamics" },
+      { name: "Essential Robotics Tools", path: "robotics-tools" },
+      { name: "Fault Diagnosis", path: "fault-diagnosis" },
+      { name: "Motor and Sensor Repair", path: "motor-sensor-repair" },
+      { name: "Preventative Maintenance", path: "preventative-maintenance" },
+    ],
+  },
+  {
+    name: "Electrical Engineering Essentials",
+    pages: [
+      { name: "Power Management", path: "power-management" },
+      { name: "Embedded Systems", path: "embedded-systems" },
+      { name: "Communication Protocols", path: "communication-protocols" },
+    ],
+  },
+];
+
+// {
+//   name: "Building Robotics UI",
+//   pages: [
+//     { name: "Tele-guidance and Remote Control", path: "tele-guidance" }
+//     // {name: "Command and Control Interface", path: "command-control"},
+//     // {name: "Interactive Debugging", path: "interactive-debugging"}
+//   ]
+// }
+//
+const frontMatter = (path) => `---
+  title: ${path}
 ---
-`,
-  );
+   `;
+
+_.forEach((_) => {
+  _.pages.forEach((_) => {
+    const page = _;
+
+    fs.writeFileSync(
+      `course_content/src/${page.path}.md`,
+      frontMatter(page.name),
+    );
+  });
 });
