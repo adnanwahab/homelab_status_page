@@ -63,7 +63,7 @@ I am Toad Stool - human LLM - [your wish is my reality](https://dnd5e.wikidot.co
 you = ![asdfasdf](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcharacter-stats-and-profiles.fandom.com%2Fwiki%2FMario_%2528Canon%2C_TTYD%2529%2FPiccolo823&psig=AOvVaw1p-i-lHiB3Wg8lQg_dkkUY&ust=1729051906183000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOivybfCj4kDFQAAAAAdAAAAABAE)
 me = ![asdfasdf](https://static.wikia.nocookie.net/supermarioglitchy4/images/e/e8/Toads_SMR.png/revision/latest?cb=20240104115252)
 https://x.com/elonmusk/status/1834071245224308850`;
-
+// change all pw to sicp ->
 // marked.setOptions({
 //   gfm: true,
 //   breaks: true,
@@ -86,11 +86,11 @@ function ObservablePreview() {
 
             flex flex-row"
           >
-                   <iframe
+            <iframe
               className="h-screen w-1/2 flex-1 pointer-events-none"
               src="http://127.0.0.1:3001"
             ></iframe>
-             {/* <iframe
+            {/* <iframe
               className="h-screen w-1/2 flex-1"
               src="/public/dist/index.html"
             ></iframe> */}
@@ -99,7 +99,7 @@ function ObservablePreview() {
             src="https://radiant.tailwindui.com/screenshots/app.png"
             className="h-full rounded-[var(--radius)] shadow-2xl ring-1 ring-black/10"
           /> */}
-           
+
             {/* <div className="h-full w-1/4 flex flex-col justify-center border border-white/10">
               <h1 className="text-blue-500">Hello</h1>
               <h1 className="text-blue-500">Hello</h1>
