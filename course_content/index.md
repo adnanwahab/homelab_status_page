@@ -1924,7 +1924,6 @@ dimensions = md`
 
 ```html
 <figure>
-  <img src="${await FileAttachment("IRB_120_Dimensional_drawing.png").url()}" style="border: 1px solid #a0a0a0; width: 545px">
   <figcaption>Dimensional drawing of the IRB 120. The values are given in millimeters (mm).</figcaption>
 </figure>
 ```

@@ -125,13 +125,13 @@ function DynamicLand() {
   const viewofModuleNameRef = useRef();
   const [index, setIndex] = useState(0);
 
-      useEffect(() => {
-        const interval = setInterval(() => {
-          setIndex(prevIndex => prevIndex + 1);
-        }, 1000);
+      // useEffect(() => {
+      //   const interval = setInterval(() => {
+      //     setIndex(prevIndex => prevIndex + 1);
+      //   }, Infinity );
 
-        return () => clearInterval(interval);
-      }, []);
+      //   return () => clearInterval(interval);
+      // }, []);
 
 
 
@@ -184,7 +184,7 @@ function DynamicHow() {
         
                 
                   
-              <DynamicLand />
+              {/* <DynamicLand /> */}
 
 
                   

@@ -40,3 +40,6 @@ WorryDreams’s projects encourage collaborative experimentation, where people t
 https://github.com/dusty-nv/jetson-utils
 https://github.com/RishavRimoSaha/bumble-bot
 cognition engine = (research paper / story) -> img -> video -> (interactive explorable visualization) and two-way-data-binding between fantasy-reality - update-slider->future-city->building->updates->text-updates(dynamicland).
+
+
+https://en.uesp.net/wiki/Morrowind:Level for miranda 

@@ -86,15 +86,20 @@ function ObservablePreview() {
 
             flex flex-row"
           >
+                   <iframe
+              className="h-screen w-1/2 flex-1 pointer-events-none"
+              src="http://127.0.0.1:3001"
+            ></iframe>
+             {/* <iframe
+              className="h-screen w-1/2 flex-1"
+              src="/public/dist/index.html"
+            ></iframe> */}
             {/* <img
-            alt=""
+          alt=""
             src="https://radiant.tailwindui.com/screenshots/app.png"
             className="h-full rounded-[var(--radius)] shadow-2xl ring-1 ring-black/10"
           /> */}
-            <iframe
-              className="h-screen w-1/2 flex-1"
-              src="http://localhost:3000"
-            ></iframe>
+           
             {/* <div className="h-full w-1/4 flex flex-col justify-center border border-white/10">
               <h1 className="text-blue-500">Hello</h1>
               <h1 className="text-blue-500">Hello</h1>

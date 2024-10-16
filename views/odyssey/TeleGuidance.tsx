@@ -12,45 +12,29 @@ import define from "https://api.observablehq.com/@roboticsuniversity/livekit.js?
 import define2 from "https://api.observablehq.com/@roboticsuniversity/robotics-hardware.js?v=4";
 //import define3 from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d.js?v=4";
 //import define3 from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@84.js?v=6";
-
 // v??? - -- adsf
-import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
-
-
 //import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 import voxelpainter from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v=4";
 // new Runtime().module(define, name => {
 //   if (name === "pointerAndObjects") return new Inspector(document.querySelector("#observablehq-pointerAndObjects-cd3c836e"));
 // });
+import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/three-js-canvas@327.js?v=4";
 
-function VoxelPainter() {
 
-    const pointerAndObjectsRef = useRef();
-  
-    useEffect(() => {
-      const runtime = new Runtime();
-      runtime.module(voxelpainter, name => {
-        if (name === "pointerAndObjects") return new Inspector(pointerAndObjectsRef.current);
-      });
-      return () => runtime.dispose();
-    }, []);
-  
-    return (
-      <>
-        <div ref={pointerAndObjectsRef} />
-        <p>Credit: <a href="https://observablehq.com/@roboticsuniversity/alanthree">Three.js by roboticsuniversity</a></p>
-      </>
-    );
-  }
+
+// import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
+
 
 function Livekit() {
   const lOGORef = useRef();
-
+  const videoRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(define, (name) => {
       //console.log(name);
       if (name === "LOGO") return new Inspector(lOGORef.current);
+      if (name === "webrtc") return new Inspector(videoRef.current);
+
     });
     return () => runtime.dispose();
   }, []);
@@ -58,6 +42,7 @@ function Livekit() {
   return (
     <>
       <div ref={lOGORef} />
+      <div ref={videoRef} />
       <p>
         Credit:{" "}
         <a href="https://observablehq.com/@roboticsuniversity/livekit@132">
@@ -67,18 +52,12 @@ function Livekit() {
     </>
   );
 }
-
 // import notebook2 from "@roboticsuniversity/robotics-hardware";
-
 import { Tldraw, TldrawApp, TDDocument } from '@tldraw/tldraw';
-
 import 'tldraw/tldraw.css'
-
  function Whiteboard() {
   const handleMount = (app: TldrawApp) => {
-
   //app.selectTool('pencil'); 
-
   // Hide all unnecessary controls like UI, panels, etc.
   // app.updateSettings({
   //   isReadonly: true, // Disable interactions that aren't drawing.
@@ -145,29 +124,57 @@ function RoboticsHardware() {
 // https://files.hashirama.blog/static/blog/zed_sensor.gif
 
 // https://files.hashirama.blog/static/blog/arm-day1.gif
-function DiffusionVoxelPointCloud() {
-  const lOGORef = useRef();
-  const nOTCHRef = useRef();
 
+function VoxelPainter() {
+  const pointerAndObjectsRef = useRef();
+  useEffect(() => {
+    const runtime = new Runtime();
+    runtime.module(voxelpainter, name => {
+      if (name === "pointerAndObjects") return new Inspector(pointerAndObjectsRef.current);
+    });
+    return () => runtime.dispose();
+  }, []);
+
+  return (
+    <>
+      <div ref={pointerAndObjectsRef} />
+    </>
+  );
+}
+
+function DiffusionVoxelPointCloud() {
+  // const lOGORef = useRef();
+  // const nOTCHRef = useRef();
+  const output_threeRef = useRef();
+  const render_the_cavasRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(VoxelNotebook, name => {
-      if (name === "NOTCH") return new Inspector(nOTCHRef.current);
-      if (name === "LOGO") return new Inspector(lOGORef.current);
+      // if (name === "NOTCH") return new Inspector(nOTCHRef.current);
+      // if (name === "LOGO") return new Inspector(lOGORef.current);
+      if (name === "_canvas") return new Inspector(output_threeRef.current);
+      // if (name === "do_things") return new Inspector(render_the_cavasRef.current);
+
+      // if (name === "render_the_cavas") return new Inspector(render_the_cavasRef.current);
+      // if (name === "cube") return new Inspector(render_the_cavasRef.current);
+      // if (name === "scene") return new Inspector(render_the_cavasRef.current);
+      // if (name === "camera") return new Inspector(render_the_cavasRef.current);
+      // if (name === "renderer") return new Inspector(render_the_cavasRef.current);
+      // if (name === "three") return new Inspector(render_the_cavasRef.current);
+
 
     });
     return () => runtime.dispose();
   }, []);
-  
+  //import {output_three} from "@roboticsuniversity/voxels-diffusion-policy-3d"
   //return <></>
   return (
-    <>
-      <VoxelPainter />
+    <div className="grid grid-cols-3 gap-4">
+      <div ref={output_threeRef} />
+{/* 
       <div ref={nOTCHRef} />
-      <div ref={lOGORef} />
-
-      {/* <p>Credit: <a href="https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88">Voxels + diffusion-policy-3d by roboticsuniversity</a></p> */}
-    </>
+      <div ref={lOGORef} /> */}
+    </div>
   );
 
   // https://files.hashirama.blog/static/blog/animated_gifs/Animated%20GIF%20optimizer.gif
@@ -199,9 +206,7 @@ function TeleGuidance() {
             {/* <TeleGuidanceFrame link={list_of_links[2]}/> */}
           </div>
           <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-scroll" style={{maxHeight: '500px'}}>
-          <iframe width="900px" height="500px"
-  src="https://observablehq.com/embed/@roboticsuniversity/alanthree?cell=*"></iframe>
-            
+         
             <DiffusionVoxelPointCloud />
           </div>
         </div>
