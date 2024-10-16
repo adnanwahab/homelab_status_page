@@ -79,7 +79,45 @@ function captureImageFromStream(streamUrl, outputFile) {
 
   //exec(_)
 
+  gst-launch-1.0 rtspsrc location=rtsp://localhost:8555 latency=0 ! decodebin ! fpsdisplaysink
 
   //docker exec 34320163bee6 /bin/bash
   //ffmpeg -y -i rtsp://localhost:8555 -vframes 1 captured_frame.jpg
   //docker cp 34320163bee6:/captured_frame.jpg ./
+
+  let identity = 'publisher'
+  let room_name = 'room'
+  let steps = [
+  
+  `lk room join --identity publisher --publish h264://127.0.0.1:8554 ${room_name}`,
+
+  `lk token create --join --room <room_name> --identity ${identity}`
+
+  ]
+
+
+
+  //'lk token create --api-key <PROJECT_KEY> --api-secret <PROJECT_SECRET> --room test_room --identity test_user --valid-for 24h'
+  'lk token create   --room room --identity test_user --valid-for 24h'
+
+  //vocab - my bad, roger that, type.
+
+  let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjkxODEzNDgsImlzcyI6IkFQSXRTYndYdlNqaDRjZiIsIm5hbWUiOiJ0ZXN0XzIiLCJuYmYiOjE3MjkwOTQ5NDgsInN1YiI6InRlc3RfMiIsInZpZGVvIjp7ImNhblVwZGF0ZU93bk1ldGFkYXRhIjpmYWxzZSwicm9vbSI6InJvb20iLCJyb29tQWRtaW4iOnRydWUsInJvb21DcmVhdGUiOnRydWUsInJvb21Kb2luIjp0cnVlLCJyb29tTGlzdCI6dHJ1ZSwicm9vbVJlY29yZCI6dHJ1ZX19.cGhXWsE7aCOw5hoPXlHSeeGCsbsLl2-DA1FkS1GRfl4'
+
+
+// vow of work ethic
+// vow of receptivity
+////
+
+
+
+
+
+
+
+
+
+////
+//------------last resort
+// walk - vow of silence
+  // stop
