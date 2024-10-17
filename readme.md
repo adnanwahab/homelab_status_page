@@ -47,3 +47,12 @@ goal: sell nanosaur for $300 (200 treads , 30cam, jetson for 70) + magical softw
 11 spaces for folders before github - says click
 
 this is for miranda, the girl from 5th grade who sat on the bus next to me -+ played diablo - lied to say she was higher level
+
+
+1. hardware -golang / zig / cpp 
+2. notebooks/{perception,planning,simulation} / python 
+3. scripts/infra  / bash
+4. webui / js 
+5. course content - observable university
+6. data - rich hickey - 
+shipfast for robotics  - each should be 100 lines or less
