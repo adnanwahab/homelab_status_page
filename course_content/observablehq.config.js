@@ -9,81 +9,52 @@ export default {
     {
       name: "1. Perception",
       pages: [
-        { name: "Object Detection", path: "object-detection" },
-        { name: "Camera Calibration", path: "camera-calibration" },
-        { name: "Vision Transformers", path: "vision-transformers" },
+        { name: "Object Detection", path: "perception/object-detection" },
+        { name: "Camera Calibration", path: "perception/camera-calibration" },
+        { name: "Vision Transformers", path: "perception/vision-transformers" },
       ],
     },
     {
       name: "2. Planning & Prediction",
       pages: [
-        { name: "Motion Trajectory Prediction", path: "motion-prediction" },
-        { name: "LLMs vs Classical Planning", path: "llms-vs-classical" },
+        { name: "Motion Trajectory Prediction", path: "planning/motion-prediction" },
+        { name: "LLMs vs Classical Planning", path: "planning/llms-vs-classical" },
       ],
     },
     {
       name: "3. Simulation and UI",
       pages: [
-        { name: "Unreal Engine and Isaac ROS", path: "unreal-isaac" },
-        { name: "Sim2Real Generalization", path: "sim2real" },
-        { name: "Manipulation Policy Evaluation", path: "policy-evaluation" },
-        // { name: "Tele-guidance and Remote Control with livekit", path: "tele-guidance" },
+        { name: "Unreal Engine and Isaac ROS", path: "simulation-ui/unreal-isaac" },
+        { name: "Sim2Real Generalization", path: "simulation-ui/sim2real" },
+        { name: "Manipulation Policy Evaluation", path: "simulation-ui/policy-evaluation" },
+        { name: "Robotics Learning", path: "simulation-ui/robot-learning-simulation-and-environment-and-trajectory-planning" },
+        { name: "Environment and Trajectory Planning", path: "simulation-ui/environment-and-trajectory-planning" },
       ],
     },
 
     {
-      name: "Hardware Design & Maintenance",
+      name: "4. Hardware",
       pages: [
-        { name: "Assembly", path: "assembly-disassembly" },
-        { name: "Kinematics and Dynamics", path: "kinematics-dynamics" },
-        //{ name: "Essential Robotics Tools", path: "robotics-tools" },
-        //        { name: "Fault Diagnosis", path: "fault-diagnosis" },
-        // { name: "Motor and Sensor Repair", path: "motor-sensor-repair" },
-        { name: "Preventative Maintenance", path: "preventative-maintenance" },
-        // { name: "Power Management", path: "power-management" },
-        // { name: "Embedded Systems", path: "embedded-systems" },
-        // { name: "Communication Protocols", path: "communication-protocols" },
+        { name: "Assembly", path: "hardware/assembly-disassembly" },
+        { name: "Kinematics and Dynamics", path: "hardware/kinematics-dynamics" },
+
+        { name: "Preventative Maintenance", path: "hardware/preventative-maintenance" },
+  
       ],
     },
     {
-      name: "Real World Applications",
+      name: "5. Real World Applications",
       pages: [
         { name: "Cat Food", path: "cat-food" },
         { name: "Agriculture and Logistics", path: "agri-logistics" },
         { name: "House Building and Gardening", path: "house-garden" },
+        { name: "Science & Math Magic", path: "science-math-magic" },
       ],
     },
-    // {
-    //   name: "Electrical Engineering ",
-    //   pages: [],
-    // },
-
-    // {
-    //   name: "Building Robotics UI",
-    //   pages: [
-    //     // {name: "Command and Control Interface", path: "command-control"},
-    //     // {name: "Interactive Debugging", path: "interactive-debugging"}
-    //   ],
-    // },
   ],
-  //   pages: [
-  // {name: "Getting ever more awesome", path: "/getting-awesome"},
-  // {name: "Being totally awesome", path: "/being-awesome"},
-  // {name: "Staying as awesome as ever", path: "/staying-awesome"}
-  // ]
-
-  //   // pages: [
-  //   {
-  //     name: "Perception",
-  //     pages: [
-  //       {name: "Dashboard", path: "/example-dashboard"},
-  //       {name: "Report", path: "/example-report"}
-  //     ]
-  //   }
-  // ],
 
   // Content to add to the head of the page, e.g. for a favicon:
-  //head: '<link rel="icon" href="observable.png" type="image/png" sizes="32x32">',
+  head: '<link rel="icon" href="observable.png" type="image/png" sizes="32x32">',
 
   // The path to the source root.
   root: "src",
@@ -176,3 +147,4 @@ export default {
 // };
 
 // See https://observablehq.com/framework/config for documentation.
+
