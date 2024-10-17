@@ -177,25 +177,35 @@ function TeleGuidance() {
     "https://observablehq.com/embed/@roboticsuniversity/voxels-diffusion-policy-3d?cell=*",
   ];
   return (
-    <div className="bg-gray-900 ">
+    <div className="bg-slate-900 p-1">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
-          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
+        <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-2">
+          <div className="relative">
+            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-tl-[2rem]  h-[200px]"></div> */}
+            <div className="relative overflow-hidden rounded-lg lg:rounded-tl-[2rem] h-[200px]">
               <Livekit />
+            </div>
           </div>
-          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]" >
 
-            <TwitchPlaysPokemonPanel/>
-            {/* <Whiteboard /> */}
+          <div className="relative">
+            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-tr-[2rem]  h-[200px]"></div> */}
+            <div className="relative overflow-hidden rounded-lg lg:rounded-tr-[2rem] h-[100px]">
+              <TwitchPlaysPokemonPanel />
+            </div>
           </div>
-          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
-            <RoboticsHardware />
- 
-            {/* <TeleGuidanceFrame link={list_of_links[2]}/> */}
+
+          <div className="relative">
+            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-bl-[2rem]  h-[200px]"></div> */}
+            <div className="relative overflow-hidden rounded-lg lg:rounded-bl-[2rem] h-[200px]">
+              <RoboticsHardware />
+            </div>
           </div>
-          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-scroll h-[400px]">
-         
-            <DiffusionVoxelPointCloud />
+
+          <div className="relative">
+            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-br-[2rem]  h-[200px]"></div> */}
+            <div className="relative overflow-hidden rounded-lg lg:rounded-br-[2rem] h-[200px]">
+              <DiffusionVoxelPointCloud />
+            </div>
           </div>
         </div>
       </div>
@@ -275,3 +285,4 @@ const list_of_links = [
 // bun add "https://api.observablehq.com/@roboticsuniversity/robotics-hardware.tgz"
 // bun add "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.tgz"
 // bun add "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d.tgz"
+

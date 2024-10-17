@@ -24,10 +24,10 @@ function RoboticsOdyssey() {
               {" "}
               <TeleGuidance />{" "}
             </div>
-            <div className="">
+            <div className="relative">
               <ObservablePreview></ObservablePreview>
             </div>
-            <div className="">
+            <div className="relative">
               {" "}
               <DynamicHow />{" "}
             </div>
