@@ -1,5 +1,5 @@
 
-archive/*
+hardware/*
 notebooks/ObservableRobotRemote
 data/db/code_annotation.db
 data/alan_kay/images
@@ -22,7 +22,7 @@ bun.lockb
 
 scripts/infra/supporting_site/chrome-extension/
 scripts/infra/Dot-files/
-data.json
+data.jsong
 notebooks/flow/
 notebooks/deno-webgpu
 notebooks/robot_remote_control
