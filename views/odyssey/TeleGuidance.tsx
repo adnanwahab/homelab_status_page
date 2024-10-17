@@ -24,13 +24,13 @@ import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxe
 
 function Livekit() {
   const lOGORef = useRef();
-  const videoRef = useRef();
+  // const videoRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(define, (name) => {
       //console.log(name);
       if (name === "LOGO") return new Inspector(lOGORef.current);
-      if (name === "webrtc") return new Inspector(videoRef.current);
+      // if (name === "webrtc") return new Inspector(videoRef.current);
 
     });
     return () => runtime.dispose();
@@ -39,13 +39,8 @@ function Livekit() {
   return (
     <>
       <div ref={lOGORef} />
-      <div ref={videoRef} />
-      <p>
-        Credit:{" "}
-        <a href="https://observablehq.com/@roboticsuniversity/livekit@132">
-          TeleGuidance - Cooperative Robotics Control by roboticsuniversity
-        </a>
-      </p>
+      {/* <div ref={videoRef} /> */}
+ 
     </>
   );
 }
@@ -106,12 +101,9 @@ function RoboticsHardware() {
      
 
       <div ref={viewofModuleNameRef} />
-      <p className="text-green-100">
-        Credit:{" "}
-        <a href="https://observablehq.com/@observablehq/module-require-debugger">
-          LIVE KIT = WEBRTC = GREAT
-        </a>
-      </p>
+ 
+
+
     </>
   );
 }
@@ -178,8 +170,6 @@ function DiffusionVoxelPointCloud() {
   // https://files.hashirama.blog/static/blog/animated_gifs/Animated%20GIF%20optimizer.gif
 }
 
-
-
 function TeleGuidance() {
   const list_of_links = [
     "https://observablehq.com/embed/@roboticsuniversity/livekit?cell=*",
@@ -189,22 +179,22 @@ function TeleGuidance() {
   return (
     <div className="bg-gray-900 ">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <p className="mt-2 max-w-lg text-4xl font-medium tracking-tight text-white sm:text-5xl"></p>
+        <p className="max-w-lg text-4xl font-medium tracking-tight text-white sm:text-5xl"></p>
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
-          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-hidden" style={{maxHeight: '500px'}}>
+          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
               <Livekit />
           </div>
-          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden" style={{maxHeight: '500px'}}>
+          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]" >
 
             <TwitchPlaysPokemonPanel/>
             <Whiteboard />
           </div>
-          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden" style={{maxHeight: '500px'}}>
+          <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
             <RoboticsHardware />
  
             {/* <TeleGuidanceFrame link={list_of_links[2]}/> */}
           </div>
-          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-scroll" style={{maxHeight: '500px'}}>
+          <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-scroll h-[400px]">
          
             <DiffusionVoxelPointCloud />
           </div>
@@ -226,24 +216,6 @@ If the answer is no, you might want to stop and think about that. If everything 
 // import {Runtime, Inspector} from "@observablehq/runtime";
 //import alanthree from "@roboticsuniversity/alanthree";
 //import alanthree from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v= ";
-import alanthree from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v=4";
-
-function Alanthree() {
-  const ref = useRef();
-
-  useEffect(() => {
-    const runtime = new Runtime();
-    runtime.module(alanthree, Inspector.into(ref.current));
-    return () => runtime.dispose();
-  }, []);
-
-  return (
-    <>
-      <div ref={ref} />
-      <p>Credit: <a href="https://observablehq.com/@roboticsuniversity/alanthree">Three.js by roboticsuniversity</a></p>
-    </>
-  );
-}
 
 //export default Alanthree;
 

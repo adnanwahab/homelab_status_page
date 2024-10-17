@@ -20,14 +20,14 @@ function RoboticsOdyssey() {
               Thanks to BotParty.org + Dynamicland.org!
             </h1>
 
-            <div className="border border-white/10">
+            <div className="">
               {" "}
               <TeleGuidance />{" "}
             </div>
-            <div className="border border-white/10">
+            <div className="">
               <ObservablePreview></ObservablePreview>
             </div>
-            <div className="border border-white/10">
+            <div className="">
               {" "}
               <DynamicHow />{" "}
             </div>
