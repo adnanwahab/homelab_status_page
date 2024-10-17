@@ -1,3 +1,5 @@
+
+archive/*
 notebooks/ObservableRobotRemote
 data/db/code_annotation.db
 data/alan_kay/images
@@ -5,6 +7,7 @@ notebooks/robot_remote_control
 notebooks/deno-webgpu
 notebooks/2_perception
 notebooks/course-content-observable-data-app
+webs-ui/
 vendor/
 #dist/
 notebooks/deno-webgpu/
@@ -19,7 +22,7 @@ bun.lockb
 
 scripts/infra/supporting_site/chrome-extension/
 scripts/infra/Dot-files/
-
+data.json
 notebooks/flow/
 notebooks/deno-webgpu
 notebooks/robot_remote_control
