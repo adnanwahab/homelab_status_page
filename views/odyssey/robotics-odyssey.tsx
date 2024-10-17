@@ -21,10 +21,10 @@ function RoboticsOdyssey() {
             </h1> */}
 
             <div className="">
-              {" "}
+
               <TeleGuidance />{" "}
             </div>
-            <div className="relative">
+            <div className="" >
               <ObservablePreview></ObservablePreview>
             </div>
             <div className="relative">
@@ -34,7 +34,7 @@ function RoboticsOdyssey() {
             {/* <PowerPoint />
             <Box /> */}
 {/* <UseDirectImport /> */}
-            <Footer />
+            {/* <Footer /> */}
           </main>
         </div>
       </div>

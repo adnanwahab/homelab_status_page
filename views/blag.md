@@ -10,7 +10,7 @@ https://github.com/uber-go/guide/blob/master/style.md
 <!-- http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf -->
 <!-- https://worrydream.com/MagicInk/predictor.lua -->
 
-<<<<<<< HEAD
+
 
 #hardware (componennts, sensors, 3d-printing, arms, locomotion)
 1. jetson containers - setting up basics (jetson inital inistall, jupyter, segment-anythin-2, flux -> paint robot paint -> diffusion3d)
@@ -53,12 +53,13 @@ https://gilberttanner.com/blog/jetson-nano-getting-started/ -> jetson orin
  <!-- i made mistakes but i will try not to repeat them. -->
  <!-- ego has limits, but exalatation does not. -->
  <!-- 100% self responsiblity. -->
+ <!-- dump commpents - script -->
+ <!--  -->
 
 
-<<<<<<< HEAD
+
  <!-- HUmor + video game mechanics can popularize (alan kay) + dynamicland.org -->
->>>>>>> 6a2c816 (simplify)
-=======
+
  <!-- HUmor + video game mechanics can popularize (alan kay) + dynamicland.org
  
  thank kapil
@@ -105,7 +106,9 @@ pleiffer told you 3 things
 1. learn cpp 
 2. question -> 3 possibilie answers
 3. quality of data = quality ai 
-4. game mehanics for annotation (annotate games fro tool assisted speed runs to ) better world.
+4. game mehanics for annotation (annotate games fro tool assisted speed runs to ) 
+better world.
+5. labeling is ininfite  -  image by andrew ng - 
 
 -----
 

@@ -1,30 +1,53 @@
 import React from "react";
-import TwitchPlaysPokemonPanel from "./TwitchPlaysPokemonPanel";
 import { useRef, useEffect, useState } from "react";
-//import { Runtime, Inspector } from  "@observablehq/runtime"
-//import notebook1 from "@roboticsuniversity/livekit";
-// btw i publish my rewind.ai, reflect.app, and more daialy to a public folder 4 fun - like carmack.plna - hope to be like him in 25 years like jiro dreams of sushi guy making his first souffle 
 import {
   Runtime,
   Inspector,
 } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 import define from "https://api.observablehq.com/@roboticsuniversity/livekit.js?v=4";
 import define2 from "https://api.observablehq.com/@roboticsuniversity/robotics-hardware.js?v=4";
-//import define3 from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d.js?v=4";
-//import define3 from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@84.js?v=6";
-// v??? - -- adsf
-//import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
 import voxelpainter from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v=4";
-// new Runtime().module(define, name => {
-//   if (name === "pointerAndObjects") return new Inspector(document.querySelector("#observablehq-pointerAndObjects-cd3c836e"));
-// });
-// import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/three-js-canvas@327.js?v=4";
 import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
+import prediction_planning_notebook from "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.js?v=4";
+const observable_titles = [
+  {title: "Livekit", href: "https://observablehq.com/@roboticsuniversity/livekit"},
+  {title: "Robotics Hardware", href: "https://observablehq.com/@roboticsuniversity/robotics-hardware"},
+  {title: "Voxel Painter", href: "https://observablehq.com/@roboticsuniversity/alanthree"},
+  {title: "Voxel Notebook", href: "https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"},
+]
 
+function ObservableTitle(props) {
+  
+return <h1 className="text-white">
+  <a href={props.href}>{props.title}</a>
+  </h1>
+} 
+
+
+function MMO_Prediction_Planning(props) {
+  const TwitchPlaysPokemonPanelRef = useRef();
+
+  useEffect(() => {
+    const runtime = new Runtime();
+    runtime.module(prediction_planning_notebook, (name) => {
+      //console.log(name);
+      if (name === "Twitch_chat") return new Inspector(TwitchPlaysPokemonPanelRef.current);
+      // if (name === "webrtc") return new Inspector(videoRef.current);
+console.log('twitchplays-robots',TwitchPlaysPokemonPanelRef);
+    });
+    return () => runtime.dispose();
+  }, []);
+  return (
+    <div className="bg-gray-800 text-white p-4 font-mono text-sm bg-slate-900">
+    <ObservableTitle title="Prediction Planning" href="https://observablehq.com/@roboticsuniversity/3-planning-prediction"/>
+    <div ref={TwitchPlaysPokemonPanelRef} />
+    </div>
+  );
+}
 
 function Livekit() {
   const lOGORef = useRef();
-  // const videoRef = useRef();
+
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(define, (name) => {
@@ -38,39 +61,12 @@ function Livekit() {
 
   return (
     <>
+    <ObservableTitle title="Perception" href="https://observablehq.com/@roboticsuniversity/livekit"/>
       <div ref={lOGORef} />
       {/* <div ref={videoRef} /> */}
  
     </>
   );
-}
-// import notebook2 from "@roboticsuniversity/robotics-hardware";
-import { Tldraw, TldrawApp, TDDocument } from '@tldraw/tldraw';
-import 'tldraw/tldraw.css'
- function Whiteboard() {
-  const handleMount = (app: TldrawApp) => {
-  //app.selectTool('pencil'); 
-  // Hide all unnecessary controls like UI, panels, etc.
-  // app.updateSettings({
-  //   isReadonly: true, // Disable interactions that aren't drawing.
-  //   showPages: false, // Hide pages panel.
-  //   showMenu: false,  // Hide the top menu.
-  //   showStyles: false, // Hide style panel.
-  //   showZoom: false,  // Hide zoom controls.
-  //   showMultiplayerMenu: false, // Hide multiplayer options.
-  //   showStatusBar: false, // Hide the status bar.
-  // });
-};
-	return (
-		<div style={{ width: '300px', height: '300px',  inset: 0 }}>
-		 <Tldraw
-      autofocus // Optional: Focus on the canvas automatically.
-      disableAssets={true} // Disable assets upload.
-      showUI={false} // Hide the general UI.
-      onMount={handleMount} // Set up the app with custom behavior.
-    />
-		</div>
-	)
 }
 
 
@@ -98,7 +94,8 @@ function RoboticsHardware() {
 
   return (
     <>
-     
+    <ObservableTitle title="Hardware" href="https://observablehq.com/@roboticsuniversity/robotics-hardware"/>
+
 
       <div ref={viewofModuleNameRef} />
  
@@ -107,12 +104,6 @@ function RoboticsHardware() {
     </>
   );
 }
-// }https://github.com/tldraw/tldraw
-// https://files.hashirama.blog/static/blog/maze.gif
-// https://files.hashirama.blog/static/blog/health_wealth.gif
-// https://files.hashirama.blog/static/blog/zed_sensor.gif
-
-// https://files.hashirama.blog/static/blog/arm-day1.gif
 
 function VoxelPainter() {
   const pointerAndObjectsRef = useRef();
@@ -141,16 +132,6 @@ function DiffusionVoxelPointCloud() {
     runtime.module(VoxelNotebook, name => {
       if (name === "NOTCH") return new Inspector(nOTCHRef.current);
       if (name === "LOGO") return new Inspector(lOGORef.current);
-      // if (name === "_canvas") return new Inspector(output_threeRef.current);
-      // if (name === "do_things") return new Inspector(render_the_cavasRef.current);
-
-      // if (name === "render_the_cavas") return new Inspector(render_the_cavasRef.current);
-      // if (name === "cube") return new Inspector(render_the_cavasRef.current);
-      // if (name === "scene") return new Inspector(render_the_cavasRef.current);
-      // if (name === "camera") return new Inspector(render_the_cavasRef.current);
-      // if (name === "renderer") return new Inspector(render_the_cavasRef.current);
-      // if (name === "three") return new Inspector(render_the_cavasRef.current);
-
 
     });
     return () => runtime.dispose();
@@ -161,6 +142,8 @@ function DiffusionVoxelPointCloud() {
   return (
     <div className="grid grid-cols-3 gap-4">
       {/* <div ref={output_threeRef} /> */}
+      <ObservableTitle title="Simulation + UI" href="https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"/>
+
 
       <div ref={nOTCHRef} />
       <div ref={lOGORef} />
@@ -171,39 +154,32 @@ function DiffusionVoxelPointCloud() {
 }
 
 function TeleGuidance() {
-  const list_of_links = [
-    "https://observablehq.com/embed/@roboticsuniversity/livekit?cell=*",
-    "https://observablehq.com/embed/@roboticsuniversity/robotics-hardware?cell=*",
-    "https://observablehq.com/embed/@roboticsuniversity/voxels-diffusion-policy-3d?cell=*",
-  ];
+
   return (
     <div className="bg-slate-900 p-1">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-2">
           <div className="relative">
-            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-tl-[2rem]  h-[200px]"></div> */}
-            <div className="relative overflow-hidden rounded-lg lg:rounded-tl-[2rem] h-[200px]">
+            <div className="relative overflow-hidden rounded-lg lg:rounded-tl-[2rem] h-[300px]">
               <Livekit />
             </div>
           </div>
 
           <div className="relative">
-            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-tr-[2rem]  h-[200px]"></div> */}
-            <div className="relative overflow-hidden rounded-lg lg:rounded-tr-[2rem] h-[100px]">
-              <TwitchPlaysPokemonPanel />
+            <div className="relative overflow-hidden rounded-lg lg:rounded-tr-[2rem] h-[300px]">
+    
+              <MMO_Prediction_Planning />
             </div>
           </div>
 
           <div className="relative">
-            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-bl-[2rem]  h-[200px]"></div> */}
-            <div className="relative overflow-hidden rounded-lg lg:rounded-bl-[2rem] h-[200px]">
+            <div className="relative overflow-hidden rounded-lg lg:rounded-bl-[2rem] h-[300px]">
               <RoboticsHardware />
             </div>
           </div>
 
           <div className="relative">
-            {/* <div className="absolute inset-0 rounded-lg bg-white lg:rounded-br-[2rem]  h-[200px]"></div> */}
-            <div className="relative overflow-hidden rounded-lg lg:rounded-br-[2rem] h-[200px]">
+            <div className="relative overflow-hidden rounded-lg lg:rounded-br-[2rem] h-[300px]">
               <DiffusionVoxelPointCloud />
             </div>
           </div>
@@ -221,15 +197,6 @@ const pg = `“Let's start with a test: Do you have any opinions that you would 
 
 If the answer is no, you might want to stop and think about that. If everything you believe is something you're supposed to believe, could that possibly be a coincidence? Odds are it isn't. Odds are you just think whatever you're told.”`
 
-// import React, {useRef, useEffect} from "react";
-// import {Runtime, Inspector} from "@observablehq/runtime";
-//import alanthree from "@roboticsuniversity/alanthree";
-//import alanthree from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v= ";
-
-//export default Alanthree;
-
-//https://github.com/Erkaman/regl-cnn
-// blip - see conosole - import 
 export default TeleGuidance;
 
 //yarn add "https://api.observablehq.com/@observablehq/module-require-debugger.tgz?v=3"
@@ -285,4 +252,19 @@ const list_of_links = [
 // bun add "https://api.observablehq.com/@roboticsuniversity/robotics-hardware.tgz"
 // bun add "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.tgz"
 // bun add "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d.tgz"
+// }https://github.com/tldraw/tldraw
+// https://files.hashirama.blog/static/blog/maze.gif
+// https://files.hashirama.blog/static/blog/health_wealth.gif
+// https://files.hashirama.blog/static/blog/zed_sensor.gif
 
+// https://files.hashirama.blog/static/blog/arm-day1.gif
+
+// // # Bibliography
+// 1. notes on side panel - users comments - docs/medium/notion
+// 2. twitch plays pokemon
+// 3. reddit.com/r/place
+// 4. primagen doom
+// 5. minesweeper - (people crave this experience)
+// 6. mmo/starcraft/sim-city/ animal crossing/ mario-party
+// 7. land of lisp / sicp / hackers+painters
+// 8. https://observablehq.com/@rreusser/tracing-lamb-modes-in-the-complex-plane

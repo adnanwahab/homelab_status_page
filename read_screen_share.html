@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LiveKit Screenshare Client - Viewer</title>
+    <script src="https://unpkg.com/livekit-client"></script>
+  </head>
+  <body>
+    <video
+      id="screenShareVideo"
+      autoplay
+      playsinline
+      style="width: 640px; height: 480px"
+    ></video>
+
+    <script type="module">
+      import {
+        Room,
+        RoomEvent,
+        Track,
+      } from "https://cdn.jsdelivr.net/npm/livekit-client@2.5.9/+esm";
+
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjkyNzI5MDAsImlzcyI6IkFQSXRTYndYdlNqaDRjZiIsIm5hbWUiOiJ3ZWJfc2hhcmUiLCJuYmYiOjE3MjkxODY1MDAsInN1YiI6IndlYl9zaGFyZSIsInZpZGVvIjp7ImNhblVwZGF0ZU93bk1ldGFkYXRhIjp0cnVlLCJyb29tIjoicm9vbSIsInJvb21BZG1pbiI6dHJ1ZSwicm9vbUNyZWF0ZSI6dHJ1ZSwicm9vbUpvaW4iOnRydWUsInJvb21MaXN0Ijp0cnVlLCJyb29tUmVjb3JkIjp0cnVlfX0.i8GFrHUlPrsWZ0_hRMbmdcgHsmAozwc_gkRbzVySJhw"; // Use the same token or generate a new one for this user.
+      const url = "wss://omnissiah-university-kmuz0plz.livekit.cloud";
+
+      const sharedTrackData = JSON.parse(
+        localStorage.getItem("sharedScreenTrack"),
+      );
+
+      async function joinRoom() {
+        const room = new Room();
+        await room.connect(url, token);
+
+        // Check if the track exists in the room
+        room.on(
+          RoomEvent.TrackSubscribed,
+          (track, publication, participant) => {
+            if (track.sid === sharedTrackData.trackId) {
+              // Attach the video track to the video element on this second page
+              track.attach(screenShareVideo);
+            }
+          },
+        );
+
+        // If the track is already published and you're joining late, you can fetch the tracks
+        room.participants.forEach((participant) => {
+          participant.tracks.forEach((trackPublication) => {
+            if (
+              trackPublication.track &&
+              trackPublication.track.sid === sharedTrackData.trackId
+            ) {
+              // Attach the track if already published
+              trackPublication.track.attach(screenShareVideo);
+            }
+          });
+        });
+      }
+
+      joinRoom();
+    </script>
+  </body>
+</html>

@@ -12,20 +12,20 @@ import React from "react";
 //marked()
 function ObservablePreview() {
   return (
-    <div className="overflow-hidden">
-      <div className="pb-24 px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-7xl">
+    <div className="overflow-hidden" style={{height: "50vh"}}>
+      {/* <div className="pb-24 px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-7xl"> */}
           {/* <h2 className="max-w-3xl text-pretty text-4xl font-medium tracking-tighter text-gray-950 data-[dark]:text-white sm:text-6xl">
           A snapshot of your entire sales pipeline.
         </h2> */}
-          <div
-            className="mt-16  sm:h-auto sm:w-[76rem] relative  [--radius:theme(borderRadius.xl)]
+          {/* <div
+            className="sm:h-auto sm:w-[76rem] relative  [--radius:theme(borderRadius.xl)]
 
 
             flex flex-row"
-          >
+          > */}
             <iframe
-              className="h-1/4 w-3/4"
+              className="h-full w-full"
               src="http://127.0.0.1:3000"
             ></iframe>
             {/* <iframe
@@ -51,9 +51,9 @@ function ObservablePreview() {
             </div> */}
 
             {/* <iframe className="h-full w-full" src="https://roboticsuniversity.observablehq.cloud/robotics-odyssey/"></iframe> */}
-          </div>
-        </div>
-      </div>
+          {/* </div> */}
+        {/* </div>*/}
+    {/*   </div> */}
     </div>
   );
 }

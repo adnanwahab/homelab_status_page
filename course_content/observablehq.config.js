@@ -7,74 +7,64 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Machine Perception",
+      name: "1. Perception",
       pages: [
-        {name: "Object Detection", path: "object-detection"},
-        {name: "Camera Calibration", path: "camera-calibration"},
-        {name: "Vision Transformers", path: "vision-transformers"}
-      ]
+        { name: "Object Detection", path: "object-detection" },
+        { name: "Camera Calibration", path: "camera-calibration" },
+        { name: "Vision Transformers", path: "vision-transformers" },
+      ],
     },
     {
-      name: "Planning & Prediction",
+      name: "2. Planning & Prediction",
       pages: [
-        {name: "Attention Mechanisms", path: "attention-mechanisms"},
-        {name: "Motion Trajectory Prediction", path: "motion-prediction"},
-        {name: "LLMs vs Classical Planning", path: "llms-vs-classical"}
-      ]
+        { name: "Motion Trajectory Prediction", path: "motion-prediction" },
+        { name: "LLMs vs Classical Planning", path: "llms-vs-classical" },
+      ],
     },
     {
-      name: "Simulation",
+      name: "3. Simulation and UI",
       pages: [
-        {name: "Unreal Engine and Isaac ROS", path: "unreal-isaac"},
-        {name: "Sim2Real Generalization", path: "sim2real"},
-        {name: "Manipulation Policy Evaluation", path: "policy-evaluation"}
-      ]
+        { name: "Unreal Engine and Isaac ROS", path: "unreal-isaac" },
+        { name: "Sim2Real Generalization", path: "sim2real" },
+        { name: "Manipulation Policy Evaluation", path: "policy-evaluation" },
+        // { name: "Tele-guidance and Remote Control with livekit", path: "tele-guidance" },
+      ],
     },
+
     {
-      name: "User Interfaces and Command Systems",
+      name: "Hardware Design & Maintenance",
       pages: [
-        {name: "Tele-guidance and Remote Control", path: "tele-guidance"},
-        {name: "Command and Control Interface", path: "command-control"},
-        {name: "Interactive Debugging", path: "interactive-debugging"}
-      ]
+        { name: "Assembly", path: "assembly-disassembly" },
+        { name: "Kinematics and Dynamics", path: "kinematics-dynamics" },
+        //{ name: "Essential Robotics Tools", path: "robotics-tools" },
+        //        { name: "Fault Diagnosis", path: "fault-diagnosis" },
+        // { name: "Motor and Sensor Repair", path: "motor-sensor-repair" },
+        { name: "Preventative Maintenance", path: "preventative-maintenance" },
+        // { name: "Power Management", path: "power-management" },
+        // { name: "Embedded Systems", path: "embedded-systems" },
+        // { name: "Communication Protocols", path: "communication-protocols" },
+      ],
     },
     {
       name: "Real World Applications",
       pages: [
-        {name: "Cat Food", path: "cat-food"},
-        {name: "Agriculture and Logistics", path: "agri-logistics"},
-        {name: "House Building and Gardening", path: "house-garden"},
-        {name: "Aqua Robotics", path: "aqua-robotics"}
-      ]
+        { name: "Cat Food", path: "cat-food" },
+        { name: "Agriculture and Logistics", path: "agri-logistics" },
+        { name: "House Building and Gardening", path: "house-garden" },
+      ],
     },
-    {
-      name: "Foundations of Hardware Design & Repair & Maintenance",
-      pages: [
-        {name: "Assembly", path: "assembly-disassembly"},
-        {name: "Kinematics and Dynamics", path: "kinematics-dynamics"},
-        {name: "Essential Robotics Tools", path: "robotics-tools"},
-        {name: "Fault Diagnosis", path: "fault-diagnosis"},
-        {name: "Motor and Sensor Repair", path: "motor-sensor-repair"},
-        {name: "Preventative Maintenance", path: "preventative-maintenance"}
-      ]
-    },
-    {
-      name: "Electrical Engineering Essentials",
-      pages: [
-        {name: "Power Management", path: "power-management"},
-        {name: "Embedded Systems", path: "embedded-systems"},
-        {name: "Communication Protocols", path: "communication-protocols"}
-      ]
-    },
-  
-    {
-      name: "Building Robotics UI",
-      pages: [
-        {name: "Tele-guidance and Remote Control", path: "tele-guidance"},
-        // {name: "Command and Control Interface", path: "command-control"},
-        // {name: "Interactive Debugging", path: "interactive-debugging"}
-      ]
-    },
+    // {
+    //   name: "Electrical Engineering ",
+    //   pages: [],
+    // },
+
+    // {
+    //   name: "Building Robotics UI",
+    //   pages: [
+    //     // {name: "Command and Control Interface", path: "command-control"},
+    //     // {name: "Interactive Debugging", path: "interactive-debugging"}
+    //   ],
+    // },
   ],
   //   pages: [
   // {name: "Getting ever more awesome", path: "/getting-awesome"},
@@ -101,7 +91,7 @@ export default {
   // Some additional configuration options and their defaults:
   theme: "ocean-floor", // try "light", "dark", "slate", etc.
   //header: "make cube of worrydream for all things", // what to show in the header (HTML)
-  footer: "(DynamicLand.org+SICP+Zoox+Seinfeld)**2=Zootopia = Golden Chocobo", // what to show in the footer (HTML)
+  footer: "Robotics Odyssey", // what to show in the footer (HTML)
   sidebar: true, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
@@ -109,11 +99,11 @@ export default {
   //search: true, // activate search
   linkify: true, // convert URLs in Markdown to links
   globalStyleSheets: [
-
     // "https://unpkg.com/open-props/normalize.min.css",
-    "https://raw.githubusercontent.com/adnanwahab/homelab_status_page/refs/heads/main/public/css/output.css"
+    "https://raw.githubusercontent.com/adnanwahab/homelab_status_page/refs/heads/main/public/css/output.css",
+    "public/css/obs-edits.css",
   ],
-  // typographer: false, // smart quotes and other typographic improvements
+  typographer: true, // smart quotes and other typographic improvements
   // cleanUrls: true, // drop .html from URLs
 };
 
@@ -186,4 +176,3 @@ export default {
 // };
 
 // See https://observablehq.com/framework/config for documentation.
-

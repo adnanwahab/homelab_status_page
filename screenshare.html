@@ -9,7 +9,7 @@
   <body>
     <!-- <h1>i lost - the world will always win - everyone will be the hero of time.</h1> -->
     <button id="share">share</button>
-<!-- https://philip-haas.com/about/ -->
+    <!-- https://philip-haas.com/about/ -->
     <video
       id="screenShareVideo"
       autoplay
@@ -19,7 +19,7 @@
 
     <script type="module">
       //import {  Livekit }from "https://cdn.jsdelivr.net/npm/livekit-client@2.5.9/+esm";
-      import  {
+      import {
         Room,
         RoomEvent,
         Track,
@@ -29,60 +29,81 @@
         Room,
         RoomEvent,
         Track,
-      }
+      };
 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjkxOTU3MjEsImlzcyI6IkFQSXRTYndYdlNqaDRjZiIsIm5hbWUiOiJzY3JlZW5fc2hhcmUiLCJuYmYiOjE3MjkxMDkzMjEsInN1YiI6InNjcmVlbl9zaGFyZSIsInZpZGVvIjp7ImNhblVwZGF0ZU93bk1ldGFkYXRhIjp0cnVlLCJyb29tIjoicm9vbSIsInJvb21BZG1pbiI6dHJ1ZSwicm9vbUNyZWF0ZSI6dHJ1ZSwicm9vbUpvaW4iOnRydWUsInJvb21MaXN0Ijp0cnVlLCJyb29tUmVjb3JkIjp0cnVlfX0.Ub3VigeCkaL4sG4cdw7VaPfaHECuMg8buy6u38xqZPQ";
- 
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjkxOTU3MjEsImlzcyI6IkFQSXRTYndYdlNqaDRjZiIsIm5hbWUiOiJzY3JlZW5fc2hhcmUiLCJuYmYiOjE3MjkxMDkzMjEsInN1YiI6InNjcmVlbl9zaGFyZSIsInZpZGVvIjp7ImNhblVwZGF0ZU93bk1ldGFkYXRhIjp0cnVlLCJyb29tIjoicm9vbSIsInJvb21BZG1pbiI6dHJ1ZSwicm9vbUNyZWF0ZSI6dHJ1ZSwicm9vbUpvaW4iOnRydWUsInJvb21MaXN0Ijp0cnVlLCJyb29tUmVjb3JkIjp0cnVlfX0.Ub3VigeCkaL4sG4cdw7VaPfaHECuMg8buy6u38xqZPQ";
+
       let room;
       const button = document.getElementById("share");
       button.addEventListener("click", joinRoom);
-      async function joinRoom(){
+      async function joinRoom() {
         room = new Room();
         const url = "wss://omnissiah-university-kmuz0plz.livekit.cloud";
         await room.connect(url, token);
 
-        room.on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
-          if (track.kind === Track.Kind.Video && track.source === Track.Source.ScreenShare) {
-            track.attach(screenShareVideo);
-          }
-        });
+        room.on(
+          RoomEvent.TrackSubscribed,
+          (track, publication, participant) => {
+            if (
+              track.kind === Track.Kind.Video &&
+              track.source === Track.Source.ScreenShare
+            ) {
+              track.attach(screenShareVideo);
+            }
+          },
+        );
 
-        room.on(RoomEvent.TrackUnsubscribed, (track, publication, participant) => {
-          if (track.kind === Track.Kind.Video && track.source === Track.Source.ScreenShare) {
-            track.detach(screenShareVideo);
-          }
-        });
+        room.on(
+          RoomEvent.TrackUnsubscribed,
+          (track, publication, participant) => {
+            if (
+              track.kind === Track.Kind.Video &&
+              track.source === Track.Source.ScreenShare
+            ) {
+              track.detach(screenShareVideo);
+            }
+          },
+        );
 
         room.on(RoomEvent.LocalTrackPublished, (publication, participant) => {
-          if (publication.kind === Track.Kind.Video && publication.source === Track.Source.ScreenShare) {
+          if (
+            publication.kind === Track.Kind.Video &&
+            publication.source === Track.Source.ScreenShare
+          ) {
             publication.track.attach(screenShareVideo);
           }
         });
 
         room.on(RoomEvent.LocalTrackUnpublished, (publication, participant) => {
-          if (publication.kind === Track.Kind.Video && publication.source === Track.Source.ScreenShare) {
+          if (
+            publication.kind === Track.Kind.Video &&
+            publication.source === Track.Source.ScreenShare
+          ) {
             publication.track.detach(screenShareVideo);
           }
         });
-        toggleScreenShare(room)
+        toggleScreenShare(room);
       }
 
       async function toggleScreenShare(room) {
         const enabled = room.localParticipant.isScreenShareEnabled;
-        console.log(`${enabled ? 'stopping' : 'starting'} screen share`);
+        console.log(`${enabled ? "stopping" : "starting"} screen share`);
         try {
-          await room.localParticipant.setScreenShareEnabled(!enabled, { audio: true });
+          await room.localParticipant.setScreenShareEnabled(!enabled, {
+            audio: true,
+          });
         } catch (e) {
-          console.error('error sharing screen', e);
+          console.error("error sharing screen", e);
         }
       }
-                 //private tracker - 1tb animated stories(comics, hn, cartoons)
-                 // 1 tb - robot actions
-                 // 1tb research ppapers and books - discussion.
-                 // 1tb intermediate represenstaiton
+      //private tracker - 1tb animated stories(comics, hn, cartoons)
+      // 1 tb - robot actions
+      // 1tb research ppapers and books - discussion.
+      // 1tb intermediate represenstaiton
       //we 'll meet someday.
       // you'll be megaman x, and i'll be one of dr lights - helpers in the capsule.
-      // all of you will be mega manx. you'll have boots, armor, and hellmet. 
+      // all of you will be mega manx. you'll have boots, armor, and hellmet.
       // you win. i lost. i was weak. i am weak. i will always be weak.
       // but mega man x  will always be strong. because the world needs everyone to be a  champion.
       //mass effect, matt, shodan, and the 3 factions and inner circle and 3 pyramid = mega man x * 1 million. you win.
