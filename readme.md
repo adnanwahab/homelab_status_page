@@ -81,3 +81,8 @@ https://domoai.app/?gad_source=1&gclid=CjwKCAjw68K4BhAuEiwAylp3kpGWyiDqQkJhlb2XY
 foxglove - thanks for showing me nanosauri
 nov - build 20k arm from diffusion 3D for 10k
 2025: use nix + remove global homebrew + npm modules
+
+
+the reason OpenAI is so good - they humanized AI - they did they because of 
+1. alan kay + vpri
+2. dinner parties
