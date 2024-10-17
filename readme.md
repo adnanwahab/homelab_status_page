@@ -42,5 +42,8 @@ https://github.com/RishavRimoSaha/bumble-bot
 cognition engine = (research paper / story) -> img -> video -> (interactive explorable visualization) and two-way-data-binding between fantasy-reality - update-slider->future-city->building->updates->text-updates(dynamicland).
 
 
-https://en.uesp.net/wiki/Morrowind:Level for miranda 
+https://en.uesp.net/wiki/Morrowind:Level for miranda
 goal: sell nanosaur for $300 (200 treads , 30cam, jetson for 70) + magical software
+11 spaces for folders before github - says click
+
+this is for miranda, the girl from 5th grade who sat on the bus next to me -+ played diablo - lied to say she was higher level
