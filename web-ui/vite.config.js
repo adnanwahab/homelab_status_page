@@ -8,7 +8,22 @@
     //  root: '',
      server: {
        port: 8000, // You can specify the port here
+       proxy: {
+         '/api': {
+           target: 'http://localhost:8003',
+           changeOrigin: true,
+           rewrite: (path) => path.replace(/^\/api/, '')
+         }
+       }
      },
+    build: {
+      rollupOptions: {
+        input: {
+          main: 'views/cgi-tools/voice_reactive_particles.html',
+          // Add more HTML files here if needed
+        },
+      },
+    },
     //  resolve: {
     //    alias: {
     //      $components: '/src/components',

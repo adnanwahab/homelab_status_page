@@ -1,21 +1,28 @@
-# Robotics-Odyssey.com - goal= Build lots dynamicland.org
+# Robotics-Odyssey.com - goal = Build lots dynamicland.org
 Our goal is to make everyone's life 20% easier in 5 years by constructing a dynamicland in every neighborhood, because its like a computer but more fun to use and more augmentative.
 # Why?? dynamicland.org = the coolest thing ever
 
-## observablehq = the magic papyrus for bret's magic ink
+## observablehq = the magic papyrus for bret victor's magic ink
 
 ## 1. Perception
 
-## 2. Planing + Predciton
+## 2. Planning + Predciton
 
-## 3. Simulation + UI + Real World Applications
-
+## 3. Simulation + UI
+Unreal - shopping -> improve perception - computer vision
 ## 4. Hardware Design + Repair
-[![Watch the video](https://img.youtube.com/vi/NNzMjrJQKsc/maxresdefault.jpg)](https://youtu.be/NNzMjrJQKsc)
-[![Watch the video](https://img.youtube.com/vi/_gXiVOmaVSo/maxresdefault.jpg)](https://youtu.be/_gXiVOmaVSo)
-[![Watch the video](https://img.youtube.com/vi/mwMUJg2mfII/maxresdefault.jpg)](https://youtu.be/mwMUJg2mfII)
+
+## 5 Real World Applications (dynamical systems.)
+1. cleaning your room
+2. gardening -
+3. feed stray cats
+incorpate -- ideas from 8 billion people
+[![3D Manipulation of Molecular Machines](https://img.youtube.com/vi/_gXiVOmaVSo/maxresdefault.jpg)](https://youtu.be/_gXiVOmaVSo)
+[![Mr. Bean fixing a Disaster overnight.](https://img.youtube.com/vi/mwMUJg2mfII/maxresdefault.jpg)](https://youtu.be/mwMUJg2mfII)
 ![https://www.ssbwiki.com/File:R.O.B._Famicom.jpg](https://www.ssbwiki.com/images/f/fd/R.O.B._Famicom.jpg)
-[![Watch the video](https://img.youtube.com/vi/mwMUJg2mfII/maxresdefault.jpg)](https://youtu.be/SxdOUGdseq4?si=dh0gFVybuG8m3Mgw)
+[![Rich Hickey - Simple Mady Easy - 2011](https://img.youtube.com/vi/mwMUJg2mfII/maxresdefault.jpg)](https://youtu.be/SxdOUGdseq4?si=dh0gFVybuG8m3Mgw)
+
+[![Rich Hickey - Simple Mady Easy - 2011](https://img.youtube.com/vi/mwMUJg2mfII/maxresdefault.jpg)](https://youtu.be/SxdOUGdseq4?si=dh0gFVybuG8m3Mgw)
 # 1. ALan kay + his 25 friends created 60 Trillion in USD in 5 years - thats more than saudi aramco and 250 million years of dino saur fermentation using their mind!
 # 2. Alan kay asked <a href="https://internetat50.com/references/Kay_How.pdf">HOW?</a>.
 # 3. OpeAI was made when Alan Kay met with YCResearch around 2016.
@@ -49,10 +56,10 @@ goal: sell nanosaur for $300 (200 treads , 30cam, jetson for 70) + magical softw
 this is for miranda, the girl from 5th grade who sat on the bus next to me -+ played diablo - lied to say she was higher level
 
 
-1. hardware -golang / zig / cpp 
-2. notebooks/{perception,planning,simulation} / python 
+1. hardware -golang / zig / cpp
+2. notebooks/{perception,planning,simulation} / python
 3. scripts/infra  / bash
-4. webui / js 
+4. webui / js
 5. course content - observable university
-6. data - rich hickey - 
+6. data - rich hickey -
 shipfast for robotics  - each should be 100 lines or less

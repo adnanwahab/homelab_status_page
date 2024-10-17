@@ -5,13 +5,38 @@ import { StrictMode } from "react";
 import "../public/css/output.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+function GitVisualizer () {
+  // periodidc 
+ return {
+  "route": "hash",
+ }
+}
+
+function ParticleMorphTargetFromVideo () {
+  return <div>Particle Morph Target From Video</div>;
+  
+}
+
+function VoiceReactiveParticles () {
+  return <><div>Voice Reactive Particles</div>
+  
+  <iframe src="http://localhost:49564/voice_reactive_particles" />
+  </>
+  ;
+}
+
 function Dashboard() {
   const panels = [
     { id: "livekit_audio", title: "LiveKit Audio" },
     { id: "cognition_engine", title: "Cognition Engine" },
     { id: "logs_viewer", title: "Logs Viewer" },
     { id: "import_docs", title: "Import Docs" },
+    { id: "Particle_morph_target_from_video", title: "Particle morph target from video" },
+    { id: "Git Visualier", title: "Git Visualier-screenshot->iframe" },
+    { id: "voice_reactive_particles", title: "voice reactive particles" },
   ];
+
+  
 
   return (
     <div className="bg-white">
@@ -22,8 +47,10 @@ function Dashboard() {
               <div className="absolute inset-px rounded-lg bg-white"></div>
               <div className="relative flex h-full flex-col overflow-hidden">
                 <div className={`container-${panel.id}`}></div>
-                <iframe src={`/llama-backend/${panel.id}`}></iframe>
-                <div className="p-10 pt-4"></div>
+                {/* <iframe src={`/cgi-backend/${panel.id}`}></iframe> */}
+                <iframe src={`api/${panel.id}`}></iframe>
+
+                <div className="p-10 pt-4">{panel.title}</div>
               </div>
               <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
             </div>
@@ -34,19 +61,12 @@ function Dashboard() {
   );
 }
 
-
-
 console.log("main.js");
-
-
 function CGI_Tools () {
-  return (<div>CGI Tool</div>
-  
-<div>
-
-<Dashboard />
-</div>
-  )
+  return (<><div>CGI Tool</div>
+          <div><Dashboard /></div>
+          <div><RoamResearch /></div>
+          </>)
 }
 function LLAMA_Tools () {
   return <div>LLAMA Tools</div>;
@@ -83,6 +103,17 @@ function Documentation() {
   );
 }
 
+function RoamResearch () {
+  return (<><div>Open_problems.robotics</div>
+  <img src="/public/dynamic_land_toolchain.png" />
+  <div>Roam Research</div>
+
+
+  
+  </>);
+}
+
+
 const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
   <StrictMode>
@@ -105,5 +136,9 @@ root.render(
 // cgi? 
 //robotics - you did robotics ? 
 // find pau 
-// send to JP + mark + eric - 2pm
+// send to YC: JP + mark + eric - 2pm
 // send to stork 4pm 
+
+
+// nolagen - flower for algenernon + naver
+//reflect = read only - populate from roam resarch

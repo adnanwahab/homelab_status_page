@@ -40,7 +40,6 @@
     "@headlessui/react": "^2.1.10",
     "@heroicons/react": "^2.1.4",
     "@livekit/rtc-node": "latest",
-    "@livekit/rtc-node": "latest",
     "@observablehq/runtime": "5",
     "@octokit/rest": "^21.0.2",
     "@tldraw/tldraw": "^3.3.1",
