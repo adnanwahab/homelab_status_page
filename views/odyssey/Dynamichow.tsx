@@ -147,7 +147,7 @@ function DynamicLand() {
   return (
     <>
       <div ref={viewofModuleNameRef} />
-      <img src={`https://files.hashirama.blog/static/blog/seeing/cropped_image_${index}.png`} alt="Cropped Image" />
+      {/* <img src={`https://files.hashirama.blog/static/blog/seeing/cropped_image_${index}.png`} alt="Cropped Image" /> */}
       {/* <img src="https://files.hashirama.blog/static/blog/animated_gifs/Optimized%20%281%29.gif" alt="Optimized GIF" /> */}
       {/* <img src="https://files.hashirama.blog/static/blog/animated_gifs/samus.jpeg" alt="Samus" /> */}
       <p className="text-green-100">Credit: <a href="https://observablehq.com/@observablehq/module-require-debugger">LIVE KIT = WEBRTC = GREAT</a></p>
@@ -168,29 +168,29 @@ function DynamicHow() {
           <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-2">
             <div className="relative lg:row-span-2">
               <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+              <div className="relative flex h-1/4 flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
         
                 
                 <AlanHow />
                
                 
               </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
+              {/* <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div> */}
             </div>
  
             <div className="relative lg:row-span-2">
               <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
+              <div className="relative flex h-1/4 flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
         
                 
                   
-              {/* <DynamicLand /> */}
+              <DynamicLand />
 
 
                   
                 
               </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
+              {/* <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div> */}
             </div>
           </div>
         </div>

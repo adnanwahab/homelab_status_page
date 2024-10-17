@@ -43,3 +43,4 @@ cognition engine = (research paper / story) -> img -> video -> (interactive expl
 
 
 https://en.uesp.net/wiki/Morrowind:Level for miranda 
+goal: sell nanosaur for $300 (200 treads , 30cam, jetson for 70) + magical software

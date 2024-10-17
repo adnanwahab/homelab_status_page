@@ -18,8 +18,8 @@ import voxelpainter from "https://api.observablehq.com/@roboticsuniversity/alant
 // new Runtime().module(define, name => {
 //   if (name === "pointerAndObjects") return new Inspector(document.querySelector("#observablehq-pointerAndObjects-cd3c836e"));
 // });
-import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/three-js-canvas@327.js?v=4";
-// import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
+// import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/three-js-canvas@327.js?v=4";
+import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
 
 
 function Livekit() {
@@ -140,16 +140,16 @@ function VoxelPainter() {
 }
 
 function DiffusionVoxelPointCloud() {
-  // const lOGORef = useRef();
-  // const nOTCHRef = useRef();
-  const output_threeRef = useRef();
+  const lOGORef = useRef();
+  const nOTCHRef = useRef();
+  // const output_threeRef = useRef();
   const render_the_cavasRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(VoxelNotebook, name => {
-      // if (name === "NOTCH") return new Inspector(nOTCHRef.current);
-      // if (name === "LOGO") return new Inspector(lOGORef.current);
-      if (name === "_canvas") return new Inspector(output_threeRef.current);
+      if (name === "NOTCH") return new Inspector(nOTCHRef.current);
+      if (name === "LOGO") return new Inspector(lOGORef.current);
+      // if (name === "_canvas") return new Inspector(output_threeRef.current);
       // if (name === "do_things") return new Inspector(render_the_cavasRef.current);
 
       // if (name === "render_the_cavas") return new Inspector(render_the_cavasRef.current);
@@ -168,10 +168,10 @@ function DiffusionVoxelPointCloud() {
   // https://github.com/zed-industries/zed
   return (
     <div className="grid grid-cols-3 gap-4">
-      <div ref={output_threeRef} />
-{/* 
+      {/* <div ref={output_threeRef} /> */}
+
       <div ref={nOTCHRef} />
-      <div ref={lOGORef} /> */}
+      <div ref={lOGORef} />
     </div>
   );
 

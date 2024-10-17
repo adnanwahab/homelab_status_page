@@ -25,7 +25,7 @@ function ObservablePreview() {
             flex flex-row"
           >
             <iframe
-              className="h-screen w-1/2 flex-1"
+              className="h-1/4 w-3/4"
               src="http://127.0.0.1:3000"
             ></iframe>
             {/* <iframe
