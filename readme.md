@@ -63,3 +63,21 @@ this is for miranda, the girl from 5th grade who sat on the bus next to me -+ pl
 5. course content - observable university
 6. data - rich hickey -
 shipfast for robotics  - each should be 100 lines or less
+
+90 hours of course content in 2 weeks
+https://web.descript.com/25a86ac0-02be-44f0-9ba3-21e09a4856f0/3817a?lite=false
+
+
+$100 flat fee - one time purchase for all (AI tools) for robotics
+$400 for Nanosaur.ai - one time fee + software included for free for life.
+
+$20 discount for any contribution to course - up to $140 repaid back.
+
+english -> codegen - show steps
+https://tamagui.dev/
+https://domoai.app/?gad_source=1&gclid=CjwKCAjw68K4BhAuEiwAylp3kpGWyiDqQkJhlb2XYKKlyd4ut754bWJ3alYtKVs64iHGlTLK_H-sQhoCNMkQAvD_BwE
+
+
+foxglove - thanks for showing me nanosauri
+nov - build 20k arm from diffusion 3D for 10k
+2025: use nix + remove global homebrew + npm modules

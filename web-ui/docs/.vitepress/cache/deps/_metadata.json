@@ -1,0 +1,49 @@
+{
+  "hash": "2ec6f3d3",
+  "configHash": "ffa74c3c",
+  "lockfileHash": "cb055f1a",
+  "browserHash": "744d5c89",
+  "optimized": {
+    "vue": {
+      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "85e43925",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "592b90d4",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/core": {
+      "src": "../../../../node_modules/@vueuse/core/index.mjs",
+      "file": "vitepress___@vueuse_core.js",
+      "fileHash": "9e786954",
+      "needsInterop": false
+    },
+    "@theme/index": {
+      "src": "../../../../../../../../opt/homebrew/lib/node_modules/vitepress/dist/client/theme-default/index.js",
+      "file": "@theme_index.js",
+      "fileHash": "f9d70e91",
+      "needsInterop": false
+    },
+    "vue-demi": {
+      "src": "../../../../../../../../opt/homebrew/lib/node_modules/vitepress/lib/vue-demi.mjs",
+      "file": "vue-demi.js",
+      "fileHash": "421ece15",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-DIKDUDGI": {
+      "file": "chunk-DIKDUDGI.js"
+    },
+    "chunk-JA7HFLSP": {
+      "file": "chunk-JA7HFLSP.js"
+    },
+    "chunk-PZ5AY32C": {
+      "file": "chunk-PZ5AY32C.js"
+    }
+  }
+}

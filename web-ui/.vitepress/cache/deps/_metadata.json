@@ -1,0 +1,97 @@
+{
+  "hash": "0b0f5db3",
+  "configHash": "fa980a06",
+  "lockfileHash": "cb055f1a",
+  "browserHash": "4c72bda2",
+  "optimized": {
+    "react": {
+      "src": "../../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "b6b7394c",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "6d297fe8",
+      "needsInterop": true
+    },
+    "react/jsx-runtime": {
+      "src": "../../../node_modules/react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "12099f8c",
+      "needsInterop": true
+    },
+    "vue": {
+      "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "7836af2c",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../node_modules/@vue/devtools-api/dist/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "3ea97a09",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/core": {
+      "src": "../../../node_modules/@vueuse/core/index.mjs",
+      "file": "vitepress___@vueuse_core.js",
+      "fileHash": "b9da65be",
+      "needsInterop": false
+    },
+    "@observablehq/runtime": {
+      "src": "../../../node_modules/@observablehq/runtime/src/index.js",
+      "file": "@observablehq_runtime.js",
+      "fileHash": "f6df4d48",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "36e8d4eb",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "c1011d52",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "0be85f5e",
+      "needsInterop": false
+    },
+    "three/addons/libs/stats.module.js": {
+      "src": "../../../node_modules/three/examples/jsm/libs/stats.module.js",
+      "file": "three_addons_libs_stats__module__js.js",
+      "fileHash": "13359a79",
+      "needsInterop": false
+    },
+    "@theme/index": {
+      "src": "../../../node_modules/vitepress/dist/client/theme-default/index.js",
+      "file": "@theme_index.js",
+      "fileHash": "5869af70",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZKS7ZPS7": {
+      "file": "chunk-ZKS7ZPS7.js"
+    },
+    "chunk-XYSSNQS4": {
+      "file": "chunk-XYSSNQS4.js"
+    },
+    "chunk-6NR6OG7D": {
+      "file": "chunk-6NR6OG7D.js"
+    },
+    "chunk-VN6DB63A": {
+      "file": "chunk-VN6DB63A.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
+}

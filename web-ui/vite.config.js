@@ -2,6 +2,7 @@
    import { defineConfig } from 'vite'
    import react from '@vitejs/plugin-react'
 
+
    export default defineConfig({
      plugins: [react()],
     publicDir: 'static',
@@ -18,11 +19,14 @@
      },
     build: {
       rollupOptions: {
+        external: ['three',  /^screenshot\.png$/ , 'firefox.png'],
         input: {
-          main: 'views/cgi-tools/voice_reactive_particles.html',
+          main: 'index.html', // Change this to your main entry point
+          voiceReactiveParticles: 'views/cgi-tools/voice_reactive_particles.html',
           // Add more HTML files here if needed
         },
       },
+      target: 'esnext', // Add this line to target the latest ECMAScript version
     },
     //  resolve: {
     //    alias: {

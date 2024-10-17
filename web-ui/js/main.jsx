@@ -1,9 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from "../views/odyssey/robotics-odyssey.tsx";
+import RoboticsOdyssey from "../views/odyssey/robotics-odyssey.tsx";
 import { StrictMode } from "react";
 import "../public/css/output.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//JP + mark + eric - 3pm
+//stork + shawn - 4pm
+//NVDusty - 5pm
+
+const links = [
+  { path: "/cgi", component: CGI_Tools },
+  { path: "/llama", component: LLAMA_Tools },
+  { path: "/hardware", component: Hardware_Tools },
+  { path: "/docs", component: Documentation },
+  { path: "/math-tools", component: Math_Tools },
+
+];
 
 function GitVisualizer () {
   // periodidc 
@@ -27,10 +40,10 @@ function VoiceReactiveParticles () {
 
 function Dashboard() {
   const panels = [
-    { id: "livekit_audio", title: "LiveKit Audio" },
-    { id: "cognition_engine", title: "Cognition Engine" },
-    { id: "logs_viewer", title: "Logs Viewer" },
-    { id: "import_docs", title: "Import Docs" },
+    //{ id: "livekit_audio", title: "LiveKit Audio" },
+    //{ id: "cognition_engine", title: "Cognition Engine" },
+//    { id: "logs_viewer", title: "Logs Viewer" },
+  //  { id: "import_docs", title: "Import Docs" },
     { id: "Particle_morph_target_from_video", title: "Particle morph target from video" },
     { id: "Git Visualier", title: "Git Visualier-screenshot->iframe" },
     { id: "voice_reactive_particles", title: "voice reactive particles" },
@@ -65,7 +78,7 @@ console.log("main.js");
 function CGI_Tools () {
   return (<><div>CGI Tool</div>
           <div><Dashboard /></div>
-          <div><RoamResearch /></div>
+          {/* <div><RoamResearch /></div> */}
           </>)
 }
 function LLAMA_Tools () {
@@ -77,14 +90,13 @@ function Hardware_Tools () {
 function Math_Tools () {
   return <div>Math Tools</div>;
 }
-const links = [
-  { path: "/cgi", component: CGI_Tools },
-  { path: "/llama", component: LLAMA_Tools },
-  { path: "/hardware", component: Hardware_Tools },
-  { path: "/documentation", component: Documentation },
-  { path: "/math-tools", component: Math_Tools },
 
-];
+function Outliers () {
+  // resume
+  // https://clarity.microsoft.com/projects/view/ok8h7h9e0q/gettingstarted
+  return <div>Outleirs</div>;
+}
+
 
 function Documentation() {
   const linkElements = links.map((link) => (
@@ -95,10 +107,15 @@ function Documentation() {
     </div>
   ));
 
+  const iframes = links.map((link) => (
+    <iframe key={link.path} src={link.path} />
+  ));
+
   return (
     <div>
       <div>Documentation</div>
       <div>{linkElements}</div>
+      <div>{iframes}</div>
     </div>
   );
 }
@@ -121,11 +138,14 @@ root.render(
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Documentation />} />
+      <Route path="/" element={<RoboticsOdyssey />} />
+
+        <Route path="/docs" element={<Documentation />} />
         <Route path="/cgi" element={<CGI_Tools />} />
         <Route path="/llama" element={<LLAMA_Tools />} />
         <Route path="/hardware" element={<Hardware_Tools />} />
-
+        <Route path="/course_content"  element={<iframe width="1920" height="1080" src="http://localhost:3000" />} />
+        <Route path="/outliers"  element={<Outliers />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
