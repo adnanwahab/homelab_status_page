@@ -5,9 +5,9 @@ import { StrictMode } from "react";
 import "../public/css/output.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-//JP + mark + eric - 3pm
-//stork + shawn - 4pm
-//NVDusty - 5pm
+//JP + mark + eric - 4pm
+//stork + shawn - 6pm
+//NVDusty - 8pm
 
 const links = [
   { path: "/cgi", component: CGI_Tools },
@@ -17,11 +17,19 @@ const links = [
   { path: "/math-tools", component: Math_Tools },
 
 ];
+// steam + netflix
+function ReplayAnalyzer () {
+
+  return <div>Replay Analyzer</div>;
+}
 
 function GitVisualizer () {
   // periodidc 
  return {
   "route": "hash",
+  "title": "Git Visualizer",
+  "description": "Git Visualizer",
+  "iframe": "http://localhost:3000",
  }
 }
 
@@ -44,10 +52,11 @@ function Dashboard() {
     //{ id: "cognition_engine", title: "Cognition Engine" },
 //    { id: "logs_viewer", title: "Logs Viewer" },
   //  { id: "import_docs", title: "Import Docs" },
-    { id: "Particle_morph_target_from_video", title: "Particle morph target from video" },
-    { id: "Git Visualier", title: "Git Visualier-screenshot->iframe" },
+    // { id: "Particle_morph_target_from_video", title: "Particle morph target from video" },
     { id: "voice_reactive_particles", title: "voice reactive particles" },
-  ];
+    { id: "Git Visualier", title: "Git Visualier-screenshot->iframe" },
+    { id: "Replay analyzer", title: "Replay analyzer" , component: ReplayAnalyzer},
+  ]; 
 
   
 
@@ -61,7 +70,7 @@ function Dashboard() {
               <div className="relative flex h-full flex-col overflow-hidden">
                 <div className={`container-${panel.id}`}></div>
                 {/* <iframe src={`/cgi-backend/${panel.id}`}></iframe> */}
-                <iframe src={`api/${panel.id}`}></iframe>
+                {panel.component ? <panel.component /> : <iframe src={`/cgi-backend/${panel.id}`}></iframe>}
 
                 <div className="p-10 pt-4">{panel.title}</div>
               </div>
@@ -76,19 +85,21 @@ function Dashboard() {
 
 console.log("main.js");
 function CGI_Tools () {
-  return (<><div>CGI Tool</div>
+  return (<><div>CGI Tool for John Patrick Whitaker</div>
           <div><Dashboard /></div>
           {/* <div><RoamResearch /></div> */}
           </>)
 }
 function LLAMA_Tools () {
-  return <div>LLAMA Tools</div>;
+  return <div>LLAMA Tools for Eric Levin</div>;
 }
 function Hardware_Tools () {
-  return <div>Hardware Tools</div>;
+  // zed2i 
+  //roomba
+  return <div>Hardware Tools for Arthur Simon Art</div>;
 }
 function Math_Tools () {
-  return <div>Math Tools</div>;
+  return <div>Math Tools for Mark Chatkhan</div>;
 }
 
 function Outliers () {
@@ -111,11 +122,25 @@ function Documentation() {
     <iframe key={link.path} src={link.path} />
   ));
 
+  // bun, go, react, tailwind 
+  // cursor, zed 
+  // anything zoox uses 
+  // creative_ai tools 
+  const tools_i_use = [
+    "https://go.dev/doc/",
+    "https://bun.sh/docs"
+  ]
+
+  const documentation = tools_i_use.map((link) => (
+    <iframe key={link} src={link} />
+  ));
+
   return (
     <div>
       <div>Documentation</div>
       <div>{linkElements}</div>
       <div>{iframes}</div>
+      <div>{documentation}</div>
     </div>
   );
 }
@@ -144,8 +169,11 @@ root.render(
         <Route path="/cgi" element={<CGI_Tools />} />
         <Route path="/llama" element={<LLAMA_Tools />} />
         <Route path="/hardware" element={<Hardware_Tools />} />
-        <Route path="/course_content"  element={<iframe width="1920" height="1080" src="http://localhost:3000" />} />
-        <Route path="/outliers"  element={<Outliers />} />
+        <Route path="/math" element={<Math_Tools />} />
+
+        {/* <Route path="/course_content"  element={<iframe width="1920" height="1080" src="http://localhost:3000" />} /> */}
+
+        {/* <Route path="/outliers"  element={<Outliers />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>,
