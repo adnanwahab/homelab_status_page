@@ -94,24 +94,29 @@ async function processChunk(folderName, index) {
 }
 
 async function processAllFilesInDirectory() {
-  course_structure.forEach((module) => {
-      const human_name = module.name.replace(/&| /g, "-");
+  for (const module of course_modules) {
+    const human_name = module.name.slice(3).replace(/&| /g, "-");
     const currentModulePath = join(
       "course_content/src",
       human_name,
     );
 
-    let content = "";
-    module.pages.forEach((page, index) => {
-      let processed = processChunk(page.name, index);
-      content += processed;
-    });
-    fs.writeFileSync(join(currentModulePath, human_name + ".md"), content);
-  });
+    const pagePromises = module.pages.map((page, index) => 
+      processChunk(page.name, index)
+    );
+
+    const processedPages = await Promise.all(pagePromises);
+    const content = processedPages.join('');
+
+      const pathname = join(currentModulePath  + ".md")
+      console.log(content);
+      fs.writeFileSync(pathname, content);
+  }
 }
 
 
 const startTime = Date.now();
+console.log("starting");
 await processAllFilesInDirectory();
 const endTime = Date.now();
 console.log(
