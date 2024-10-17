@@ -1,0 +1,121 @@
+#face {
+    display: block;
+    height: 50%;
+    width: 100%;
+}
+
+#face > div {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 50%;
+    width: 100%;
+}
+
+#face img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#face.large-face,
+#face.large-face > div {
+    height: 100%;
+}
+
+/* hide non-selected elements */
+#face [data-frame]:not([data-selected]) {
+    display: none;
+}
+
+/* hide nose when begging */
+#face[data-emotion="begging"] .nose {
+    display: none;
+}
+
+/* face background colors */
+#face[data-emotion="angry"] {
+    background-color: red;
+}
+
+#face[data-emotion="bedroom"] {
+    background-color: pink;
+}
+
+#face[data-emotion="begging"] {
+    background-color: lightblue;
+}
+
+#face[data-emotion="buckteeth"] {
+    background-color: white;
+}
+
+#face[data-emotion="dead"] {
+    background-color: white;
+}
+
+#face[data-emotion="disgust"] {
+    background-color: green;
+}
+
+#face[data-emotion="dizzy"] {
+    background-color: white;
+}
+
+#face[data-emotion="eyeroll"] {
+    background-color: gray;
+}
+
+#face[data-emotion="happy"] {
+    background-color: yellow;
+}
+
+#face[data-emotion="heart"] {
+    background-color: pink;
+}
+
+#face[data-emotion="laughter"] {
+    background-color: yellow;
+}
+
+#face[data-emotion="mischevious"] {
+    background-color: grey;
+}
+
+#face[data-emotion="money"] {
+    background-color: mediumseagreen;
+}
+
+#face[data-emotion="neutral"] {
+    background-color: gray;
+}
+
+#face[data-emotion="peeved"] {
+    background-color: green;
+}
+
+#face[data-emotion="sad"] {
+    background-color: dodgerblue;
+}
+
+#face[data-emotion="stars"] {
+    background-color: yellow;
+}
+
+#face[data-emotion="stoned"] {
+    background-color: gray;
+}
+
+#face[data-emotion="surprised"] {
+    background-color: lightcoral;
+}
+
+#face[data-emotion="thinking"] {
+    background-color: darkgoldenrod;
+}
+
+#face[data-emotion="worry"] {
+    background-color: mediumpurple;
+}

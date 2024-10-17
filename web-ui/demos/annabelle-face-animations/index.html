@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<!-- Polyfills: Use newer standard features in older browsers -->
+<script src="polyfills/url-search-params.max.js"></script>
+<script src="polyfills/es6-promise.js"></script>
+<script src="polyfills/fetch.js"></script>
+
+<!-- Install Firebug before any of the robot face scripts to catch console io -->
+<script src="js/installfirebug.js"></script>
+
+<!-- Robot Face Scripts -->
+<link rel="stylesheet" type="text/css" href="style/face.css">
+<link rel="stylesheet" type="text/css" href="style/app.css">
+<script src="js/support.js"></script>
+<script src="js/facecontroller.js"></script>
+<script src="js/animationengine.js"></script>
+<script src="js/connectionmanager.js"></script>
+<script src="js/main.js"></script>
+
+</head>
+
+<body>
+
+<div id="face" data-http-connection-url="http://localhost:8088/api/face">
+<div data-part="eyes" data-starting-frame="last">
+<div data-emotion="angry">
+<img src="faces/eyes-angry-0.svg" data-frame="0">
+<img src="faces/eyes-angry-1.svg" data-frame="1">
+<img src="faces/eyes-angry-2.svg" data-frame="2">
+</div>
+<div data-emotion="bedroom">
+<img src="faces/eyes-bedroom-0.svg" data-frame="0">
+<img src="faces/eyes-bedroom-1.svg" data-frame="1">
+<img src="faces/eyes-bedroom-2.svg" data-frame="2">
+</div>
+<div data-emotion="begging">
+<img src="faces/eyes-begging-0.svg" data-frame="0">
+<img src="faces/eyes-begging-1.svg" data-frame="1">
+</div>
+<div data-emotion="buckteeth">
+<img src="faces/eyes-buckteeth-0.svg" data-frame="0">
+</div>
+<div data-emotion="dead">
+<img src="faces/eyes-dead-0.svg" data-frame="0">
+</div>
+<div data-emotion="disgust">
+<img src="faces/eyes-disgust-0.svg" data-frame="0">
+<img src="faces/eyes-disgust-1.svg" data-frame="1">
+<img src="faces/eyes-disgust-2.svg" data-frame="2">
+</div>
+<div data-emotion="dizzy">
+<img src="faces/eyes-dizzy-0.svg" data-frame="0">
+<img src="faces/eyes-dizzy-1.svg" data-frame="1">
+<img src="faces/eyes-dizzy-2.svg" data-frame="2">
+<img src="faces/eyes-dizzy-3.svg" data-frame="3">
+</div>
+<div data-emotion="eyeroll">
+<img src="faces/eyes-eyeroll-0.svg" data-frame="0">
+<img src="faces/eyes-eyeroll-1.svg" data-frame="1">
+<img src="faces/eyes-eyeroll-2.svg" data-frame="2">
+</div>
+<div data-emotion="happy">
+<img src="faces/eyes-happy-0.svg" data-frame="0">
+<img src="faces/eyes-happy-1.svg" data-frame="1">
+<img src="faces/eyes-happy-2.svg" data-frame="2">
+</div>
+<div data-emotion="heart">
+<img src="faces/eyes-heart-0.svg" data-frame="0">
+<img src="faces/eyes-heart-1.svg" data-frame="1">
+</div>
+<div data-emotion="laughter">
+<img src="faces/eyes-laughter-0.svg" data-frame="0">
+</div>
+<div data-emotion="mischevious">
+<img src="faces/eyes-mischevious-0.svg" data-frame="0">
+<img src="faces/eyes-mischevious-1.svg" data-frame="1">
+<img src="faces/eyes-mischevious-2.svg" data-frame="2">
+</div>
+<div data-emotion="money">
+<img src="faces/eyes-money-0.svg" data-frame="0">
+</div>
+<div data-emotion="neutral">
+<img src="faces/eyes-neutral-0.svg" data-frame="0">
+<img src="faces/eyes-neutral-1.svg" data-frame="1">
+<img src="faces/eyes-neutral-2.svg" data-frame="2">
+</div>
+<div data-emotion="peeved">
+<img src="faces/eyes-peeved-0.svg" data-frame="0">
+</div>
+<div data-emotion="sad">
+<img src="faces/eyes-sad-0.svg" data-frame="0">
+<img src="faces/eyes-sad-1.svg" data-frame="1">
+<img src="faces/eyes-sad-2.svg" data-frame="2">
+</div>
+<div data-emotion="stars">
+<img src="faces/eyes-stars-0.svg" data-frame="0">
+</div>
+<div data-emotion="stoned">
+<img src="faces/eyes-stoned-0.svg" data-frame="0">
+</div>
+<div data-emotion="surprised">
+<img src="faces/eyes-surprised-0.svg" data-frame="0">
+<img src="faces/eyes-surprised-1.svg" data-frame="1">
+<img src="faces/eyes-surprised-2.svg" data-frame="2">
+</div>
+<div data-emotion="thinking">
+<img src="faces/eyes-thinking-0.svg" data-frame="0">
+<img src="faces/eyes-thinking-1.svg" data-frame="1">
+<img src="faces/eyes-thinking-2.svg" data-frame="2">
+</div>
+<div data-emotion="worry">
+<img src="faces/eyes-worry-0.svg" data-frame="0">
+<img src="faces/eyes-worry-1.svg" data-frame="1">
+<img src="faces/eyes-worry-2.svg" data-frame="2">
+</div>
+</div>
+<div data-part="mouth">
+<div data-emotion="angry">
+<img src="faces/mouth-angry-0.svg" data-frame="0">
+<img src="faces/mouth-angry-1.svg" data-frame="1">
+</div>
+<div data-emotion="bedroom">
+<img src="faces/mouth-bedroom-0.svg" data-frame="0">
+<img src="faces/mouth-bedroom-1.svg" data-frame="1">
+</div>
+<div data-emotion="begging">
+<img src="faces/mouth-begging-0.svg" data-frame="0">
+</div>
+<div data-emotion="buckteeth">
+<img src="faces/mouth-buckteeth-0.svg" data-frame="0">
+</div>
+<div data-emotion="dead">
+<img src="faces/mouth-dead-0.svg" data-frame="0">
+</div>
+<div data-emotion="disgust">
+<img src="faces/mouth-disgust-0.svg" data-frame="0">
+<img src="faces/mouth-disgust-1.svg" data-frame="1">
+</div>
+<div data-emotion="dizzy">
+<img src="faces/mouth-dizzy-0.svg" data-frame="0">
+</div>
+<div data-emotion="eyeroll">
+<img src="faces/mouth-eyeroll-0.svg" data-frame="0">
+</div>
+<div data-emotion="happy">
+<img src="faces/mouth-happy-0.svg" data-frame="0">
+<img src="faces/mouth-happy-1.svg" data-frame="1">
+</div>
+<div data-emotion="heart">
+<img src="faces/mouth-heart-0.svg" data-frame="0">
+</div>
+<div data-emotion="laughter">
+<img src="faces/mouth-laughter-0.svg" data-frame="0">
+<img src="faces/mouth-laughter-1.svg" data-frame="1">
+</div>
+<div data-emotion="mischevious">
+<img src="faces/mouth-mischevious-0.svg" data-frame="0">
+<img src="faces/mouth-mischevious-1.svg" data-frame="1">
+</div>
+<div data-emotion="money">
+<img src="faces/mouth-money-0.svg" data-frame="0">
+</div>
+<div data-emotion="neutral">
+<img src="faces/mouth-neutral-0.svg" data-frame="0">
+<img src="faces/mouth-neutral-1.svg" data-frame="1">
+</div>
+<div data-emotion="peeved">
+<img src="faces/mouth-peeved-0.svg" data-frame="0">
+</div>
+<div data-emotion="sad">
+<img src="faces/mouth-sad-0.svg" data-frame="0">
+<img src="faces/mouth-sad-1.svg" data-frame="1">
+</div>
+<div data-emotion="stars">
+<img src="faces/mouth-stars-0.svg" data-frame="0">
+</div>
+<div data-emotion="stoned">
+<img src="faces/mouth-stoned-0.svg" data-frame="0">
+</div>
+<div data-emotion="surprised">
+<img src="faces/mouth-surprised-0.svg" data-frame="0">
+<img src="faces/mouth-surprised-1.svg" data-frame="1">
+</div>
+<div data-emotion="thinking">
+<img src="faces/mouth-thinking-0.svg" data-frame="0">
+<img src="faces/mouth-thinking-1.svg" data-frame="1">
+</div>
+<div data-emotion="worry">
+<img src="faces/mouth-worry-0.svg" data-frame="0">
+<img src="faces/mouth-worry-1.svg" data-frame="1">
+</div>
+</div>
+
+<div class="nose">
+<img src="faces/nose.svg">
+</div>
+
+</div>
+<div id="controlpanel">
+    <div class="controls">
+    <span>Face size</span>
+    <button id="fullscreen">Make Fullscreen</button>
+    <button id="largeface">Toggle Large Face</button>
+    </div>
+
+    <div class="controls">
+    <span>Debug</span>
+    <button id="console">Toggle Firebug Console</button>
+    <button id="noconnect">Toggle Connect to Server</button>
+    </div>
+
+    <div class="controls">
+    <span>Face Update Mode</span>
+    <button id="benchmark">Toggle Benchmark Mode</button>
+    <button id="cycle">Toggle Cycle Mode</button>
+    <button id="random">Toggle Random Single Face Mode</button>
+    </div>
+
+    <div class="controls">
+    <span>Emotion Panel</span>
+    <div id="emotioncontroller"></div>
+    </div<
+</div>
+</body>
+
+</html>
+

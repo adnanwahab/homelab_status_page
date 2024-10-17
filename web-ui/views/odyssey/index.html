@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <div>
+      <script src="https://cdn.tailwindcss.com"></script>
+
+      <meta
+        property="og:title"
+        content="Robotics Odyssey - Reimagining Robotics: Merging Systems Thinking and Dynamic Media"
+      />
+      <meta
+        property="og:description"
+        content="Explore a new approach to robotics that transcends conventional thinking, inspired by the principles of Alan Kay and Bret Victor. Discover how interconnected systems, dynamic media, and human-centric design can tackle the immense challenges of our time."
+      />
+      <meta property="og:url" content="https://robtics-odyssey.com" />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:image"
+        content="https://hashirama.blog/static/images/blog/sicp.png"
+      />
+
+      <link rel="canonical" href="https://robtics-odyssey.com" />
+
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Robotics-Odyssey" />
+      <meta itemprop="url" content="https://robtics-odyssey.com" />
+      <meta name="twitter:title" content="Robotics-Odyssey" />
+      <meta name="twitter:url" content="https://robtics-odyssey.com" />
+      <meta
+        name="twitter:card"
+        content="Reimagining Robotics: Merging Systems Thinking and Dynamic Media"
+      />
+      <meta
+        name="description"
+        content="Explore a new approach to robotics that transcends conventional thinking, inspired by the principles of Alan Kay and Bret Victor. Discover how interconnected systems, dynamic media, and human-centric design can tackle the immense challenges of our time."
+      />
+
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>Robotics Odyssey</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+      <link rel="icon" href="/static/images/blog/favicon.svg" />
+      <link
+        rel="sitemap"
+        type="application/xml"
+        title="Sitemap"
+        href="/sitemap.xml"
+      />
+      <meta name="language" content="English" />
+      <link href="/static/css/output.css" rel="stylesheet" />
+      <script src="/static/js/htmx.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
+      />
+    </div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 3D Perspective Animation</title>
+    <style>
+     body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #222;
+            perspective: 1000px;
+        }
+
+        .scene {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+        }
+
+        .mirror {
+            width: 100px;
+            height: 150px;
+            position: absolute;
+            background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(0,0,0,0.2));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform-origin: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .mirror:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
+        .mirror:nth-child(2) { transform: rotateY(45deg) translateZ(150px); }
+        .mirror:nth-child(3) { transform: rotateY(90deg) translateZ(150px); }
+        .mirror:nth-child(4) { transform: rotateY(135deg) translateZ(150px); }
+        .mirror:nth-child(5) { transform: rotateY(180deg) translateZ(150px); }
+        .mirror:nth-child(6) { transform: rotateY(225deg) translateZ(150px); }
+        .mirror:nth-child(7) { transform: rotateY(270deg) translateZ(150px); }
+        .mirror:nth-child(8) { transform: rotateY(315deg) translateZ(150px); }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        } 
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+     // const socket = new WebSocket("ws://localhost/ws");
+const socket = {}
+      socket.onopen = function(event) {
+        console.log("WebSocket is open now.");
+      };
+
+      socket.onmessage = function(event) {
+        console.log("WebSocket message received:", event.data);
+      };
+      socket.onclose = function(event) {
+        console.log("WebSocket is closed now.");
+      };
+
+      socket.onerror = function(error) {
+        console.error("WebSocket error observed:", error);
+      };
+
+// const refreshInterval = setInterval(() => {
+//   socket.send("refresh");
+// }, 5000);
+
+// socket.onmessage = function(event) {
+//   if (event.data === "refresh") {
+//     window.location.reload();
+//   } else {
+//     console.log("WebSocket message received:", event.data);
+//   }
+// };
+
+// // Cleanup interval on socket close
+// socket.onclose = function(event) {
+//   clearInterval(refreshInterval);
+//   console.log("WebSocket is closed now.");
+// };
+//       // frontend script
+// function refreshPage() {
+//   window.location.reload();
+// }
+
+// const eventSource = new EventSource("/sse");
+// eventSource.onmessage = (event) => {
+//   if (event.data === "refresh") {
+//     refreshPage();
+//   } else {
+//     console.log(event.data);
+//   }
+// };
+
+    </script>
+
+    <!-- <script type="module">
+
+import {
+createLocalTracks,
+    Participant,
+    RemoteParticipant,
+    RemoteTrack,
+    RemoteTrackPublication,
+    RoomEvent,
+VideoPresets,
+    Track,
+    LocalTrackPublication,
+    LocalParticipant,
+    Room 
+} from 'https://unpkg.com/livekit-client@2.5.7/dist/livekit-client.esm.mjs?module'
+
+ // Replace with a valid token
+
+
+  //  const data = { identity: "happydream" + Math.random() };
+  const token_get_url = `livekit_connect?identity="happydream.5"`;
+  const datum = await d3.json(token_get_url);
+
+
+//   {const roomName = 'my-room';
+const token =  datum.token
+//token_get_url = `https://shels-macbook-pro.jerboa-kokanue.ts.net/livekit?identity="happydream.5"`
+const client = new LiveKitClient({
+  // Your LiveKit server URL
+  token: datum.token,
+  url: datum.wsUrl
+});
+
+client.connect(token).then(() => {
+  const room = client.joinRoom(roomName);
+
+  // Create a track from the local MP4 file
+  const track = room.createTrack('video', 'local-video', {
+    source: 'file',
+    filePath: 'static/day1.mp4',
+  });
+
+  // Publish the track to the room
+  room.publishTrack(track);
+});
+
+
+
+
+
+    </script>
+   -->
+  </head>
+  <body class="bg-blue-500">
+
+    <div id="app"></div>
+
+    <script type="module" src="/js/main.js"></script>
+
+  </body>
+</html>
+
+<!--
+        <div id="observablehq-2a85717e"></div>
+<p>Credit: <a href="https://observablehq.com/@roboticsuniversity/alanthree">Three.js by roboticsuniversity</a></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+import define from "https://api.observablehq.com/@roboticsuniversity/alanthree.js?v=4";
+new Runtime().module(define, Inspector.into("#observablehq-2a85717e"));
+</script> -->
+
+
+<!-- const fileKey = "your-file-key";
+const apiKey = "your-api-token";
+const url = `https://api.figma.com/v1/files/${fileKey}`;
+
+fetch(url, {
+  headers: {
+    'X-Figma-Token': apiKey
+  }
+})
+  .then(response => response.json())
+  .then(data => console.log(data)); -->
+
+  <!-- https://worrydream.com/MagicInk/p/communication_model.png -->
+<!-- 
+  <h1>Zig REPL in Browser</h1>
+  <textarea id="code" placeholder="Enter your Zig code here..."></textarea>
+  <button onclick="runZig()">Run</button>
+  <pre id="output"></pre>
+
+  <script>
+    let wasmModule;
+
+    async function loadWasm() {
+      const response = await fetch('foo.wasm');
+      const buffer = await response.arrayBuffer();
+      const wasm = await WebAssembly.instantiate(buffer);
+      wasmModule = wasm.instance.exports;
+    }
+
+    function runZig() {
+      const code = document.getElementById('code').value;
+      try {
+        const result = wasmModule._evalZig(code);
+        document.getElementById('output').textContent = result;
+      } catch (e) {
+        document.getElementById('output').textContent = 'Error: ' + e.message;
+      }
+    }
+
+    loadWasm();
+  </script> -->
+
+  <!-- https://github.com/zigcc/awesome-zig -->
+  <!-- https://yann.lecun.com/ -->
+   <!-- https://codepen.io/ -->
+    <!-- https://codesandbox.io/p/sandbox/whiteboard-react-app-gozlg?file=%2Fsrc%2FApp.js -->
+    <!-- https://github.com/observablehq/framework/tree/main/examples/codemirror -->
+    <!-- https://observablehq.observablehq.cloud/framework-example-intersection-observer/ -->
+     <!-- https://observablehq.observablehq.cloud/framework-example-responsive-iframe/ -->
+      <!-- https://observablehq.observablehq.cloud/framework-example-custom-stylesheet/ -->

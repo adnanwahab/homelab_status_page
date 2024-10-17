@@ -1,0 +1,30 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Matches all files in root, js, and style
+[{/*,/js/*,/style/*,/tools/createfacedom/files/**}]
+
+# Unix-style newlines with a newline ending every file
+end_of_line = lf
+insert_final_newline = true
+
+# Set default charset
+charset = utf-8
+
+# Set 4 space indentation
+indent_style = space
+indent_size = 4
+
+# Remove any whitespace characters preceding newline characters
+trim_trailing_whitespace = true
+
+# Matches the exact files Gemfile.lock
+[{Gemfile.lock}]
+indent_style = tab
+
+# Would prefer indent_size = 0 for HTML but some editors like Brackets do not support
+[*.html]
+indent_style = space
+indent_size = 1

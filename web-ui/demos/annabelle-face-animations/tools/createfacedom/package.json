@@ -1,0 +1,16 @@
+{
+  "name": "createfacedom",
+  "version": "1.0.0",
+  "description": "Takes a folder of svgs with the 'part-emotion-framenum.svg' convention and builds robotface html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Milan Raj (@rajsite)",
+  "license": "MIT",
+  "dependencies": {
+    "hyperscript": "^2.0.2",
+    "js-beautify": "^1.6.4",
+    "yargs": "^5.0.0"
+  }
+}

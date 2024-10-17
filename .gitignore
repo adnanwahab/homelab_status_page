@@ -1,6 +1,8 @@
 
 hardware/*
-web-ui/*
+web-ui/archive
+web-ui/demos
+
 data.json
 
 

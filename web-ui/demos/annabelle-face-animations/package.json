@@ -1,0 +1,19 @@
+{
+  "name": "annabelles-face",
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "",
+  "scripts": {
+    "test": "eslint .",
+    "serve": "http-server -p 8020 -o"
+  },
+  "author": "Milan Raj (@rajsite), Brandon Alessi (@hairylime)",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "~4.0.0",
+    "body-parser": "~1.0.1",
+    "eslint": "3.4.0",
+    "http-server": "0.9.0"
+  }
+}
+

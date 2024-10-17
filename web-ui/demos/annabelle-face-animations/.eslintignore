@@ -1,0 +1,4 @@
+polyfills/*
+firebug-lite/*
+node_modules/*
+tools/createfacedom/node_modules/*
