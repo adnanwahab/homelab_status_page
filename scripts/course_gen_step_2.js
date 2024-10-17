@@ -106,10 +106,11 @@ async function processAllFilesInDirectory() {
     );
 
     const processedPages = await Promise.all(pagePromises);
-    const content = processedPages.join('');
 
       const pathname = join(currentModulePath  + ".md")
       console.log(content);
+      let content = 
+      fs.readFileSyncFileSync(pathname, content) +  processedPages.join('');
       fs.writeFileSync(pathname, content);
   }
 }

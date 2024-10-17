@@ -51,6 +51,22 @@ export default {
         { name: "Science & Math Magic", path: "science-math-magic" },
       ],
     },
+
+    // course_content/src/Hardware.md
+    // course_content/src/Perception.md
+    // course_content/src/Planning---Prediction.md
+    // course_content/src/Real-World-Applications.md
+    // course_content/src/Simulation-and-UI.md
+    {
+      name: "creative ai",
+      pages: [
+        { name: "Hardware", path: "hardware" },
+        { name: "Perception", path: "perception" },
+        { name: "Planning---Prediction", path: "Planning---Prediction" },
+        { name: "Real-World-Applications", path: "Real-World-Applications" },
+        { name: "Simulation-and-UI", path: "Simulation-and-UI" },
+      ],
+    },
   ],
 
   // Content to add to the head of the page, e.g. for a favicon:
