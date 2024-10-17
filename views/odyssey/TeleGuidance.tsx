@@ -179,15 +179,14 @@ function TeleGuidance() {
   return (
     <div className="bg-gray-900 ">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <p className="max-w-lg text-4xl font-medium tracking-tight text-white sm:text-5xl"></p>
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
+        <div className="grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
           <div className="lg:col-span-4 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
               <Livekit />
           </div>
           <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]" >
 
             <TwitchPlaysPokemonPanel/>
-            <Whiteboard />
+            {/* <Whiteboard /> */}
           </div>
           <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden h-[400px]">
             <RoboticsHardware />
