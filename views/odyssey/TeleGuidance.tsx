@@ -10,19 +10,31 @@ import voxelpainter from "https://api.observablehq.com/@roboticsuniversity/alant
 import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d@88.js?v=4";
 import prediction_planning_notebook from "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.js?v=4";
 const observable_titles = [
-  {title: "Livekit", href: "https://observablehq.com/@roboticsuniversity/livekit"},
-  {title: "Robotics Hardware", href: "https://observablehq.com/@roboticsuniversity/robotics-hardware"},
-  {title: "Voxel Painter", href: "https://observablehq.com/@roboticsuniversity/alanthree"},
-  {title: "Voxel Notebook", href: "https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"},
-]
+  {
+    title: "Livekit",
+    href: "https://observablehq.com/@roboticsuniversity/livekit",
+  },
+  {
+    title: "Robotics Hardware",
+    href: "https://observablehq.com/@roboticsuniversity/robotics-hardware",
+  },
+  {
+    title: "Voxel Painter",
+    href: "https://observablehq.com/@roboticsuniversity/alanthree",
+  },
+  {
+    title: "Voxel Notebook",
+    href: "https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d",
+  },
+];
 
 function ObservableTitle(props) {
-  
-return <h1 className="text-white">
-  <a href={props.href}>{props.title}</a>
-  </h1>
-} 
-
+  return (
+    <h1 className="text-white">
+      <a href={props.href}>{props.title}</a>
+    </h1>
+  );
+}
 
 function MMO_Prediction_Planning(props) {
   const TwitchPlaysPokemonPanelRef = useRef();
@@ -31,16 +43,20 @@ function MMO_Prediction_Planning(props) {
     const runtime = new Runtime();
     runtime.module(prediction_planning_notebook, (name) => {
       //console.log(name);
-      if (name === "Twitch_chat") return new Inspector(TwitchPlaysPokemonPanelRef.current);
+      if (name === "Twitch_chat")
+        return new Inspector(TwitchPlaysPokemonPanelRef.current);
       // if (name === "webrtc") return new Inspector(videoRef.current);
-console.log('twitchplays-robots',TwitchPlaysPokemonPanelRef);
+      console.log("twitchplays-robots", TwitchPlaysPokemonPanelRef);
     });
     return () => runtime.dispose();
   }, []);
   return (
     <div className="bg-gray-800 text-white p-4 font-mono text-sm bg-slate-900">
-    <ObservableTitle title="Prediction Planning" href="https://observablehq.com/@roboticsuniversity/3-planning-prediction"/>
-    <div ref={TwitchPlaysPokemonPanelRef} />
+      <ObservableTitle
+        title="Prediction Planning"
+        href="https://observablehq.com/@roboticsuniversity/3-planning-prediction"
+      />
+      <div ref={TwitchPlaysPokemonPanelRef} />
     </div>
   );
 }
@@ -54,21 +70,28 @@ function Livekit() {
       //console.log(name);
       if (name === "LOGO") return new Inspector(lOGORef.current);
       // if (name === "webrtc") return new Inspector(videoRef.current);
-
     });
     return () => runtime.dispose();
   }, []);
 
   return (
     <>
-    <ObservableTitle title="Perception" href="https://observablehq.com/@roboticsuniversity/livekit"/>
-      <div ref={lOGORef} />
+      <ObservableTitle
+        title="Perception"
+        href="https://observablehq.com/@roboticsuniversity/livekit"
+      />
+      <div>
+        <iframe
+          height="1000px"
+          width="100%"
+          src="https://shels-macbook-pro.jerboa-kokanue.ts.net/read_screen_share"
+        />
+      </div>
+      <div class="hidden" ref={lOGORef} />
       {/* <div ref={videoRef} /> */}
- 
     </>
   );
 }
-
 
 function RoboticsHardware() {
   const viewofModuleNameRef = useRef();
@@ -94,13 +117,12 @@ function RoboticsHardware() {
 
   return (
     <>
-    <ObservableTitle title="Hardware" href="https://observablehq.com/@roboticsuniversity/robotics-hardware"/>
-
+      <ObservableTitle
+        title="Hardware"
+        href="https://observablehq.com/@roboticsuniversity/robotics-hardware"
+      />
 
       <div ref={viewofModuleNameRef} />
- 
-
-
     </>
   );
 }
@@ -109,8 +131,9 @@ function VoxelPainter() {
   const pointerAndObjectsRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
-    runtime.module(voxelpainter, name => {
-      if (name === "pointerAndObjects") return new Inspector(pointerAndObjectsRef.current);
+    runtime.module(voxelpainter, (name) => {
+      if (name === "pointerAndObjects")
+        return new Inspector(pointerAndObjectsRef.current);
     });
     return () => runtime.dispose();
   }, []);
@@ -129,10 +152,9 @@ function DiffusionVoxelPointCloud() {
   const render_the_cavasRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
-    runtime.module(VoxelNotebook, name => {
+    runtime.module(VoxelNotebook, (name) => {
       if (name === "NOTCH") return new Inspector(nOTCHRef.current);
       if (name === "LOGO") return new Inspector(lOGORef.current);
-
     });
     return () => runtime.dispose();
   }, []);
@@ -142,8 +164,10 @@ function DiffusionVoxelPointCloud() {
   return (
     <div className="grid grid-cols-3 gap-4">
       {/* <div ref={output_threeRef} /> */}
-      <ObservableTitle title="Simulation + UI" href="https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"/>
-
+      <ObservableTitle
+        title="Simulation + UI"
+        href="https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"
+      />
 
       <div ref={nOTCHRef} />
       <div ref={lOGORef} />
@@ -154,7 +178,6 @@ function DiffusionVoxelPointCloud() {
 }
 
 function TeleGuidance() {
-
   return (
     <div className="bg-slate-900 p-1">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
@@ -167,7 +190,6 @@ function TeleGuidance() {
 
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg lg:rounded-tr-[2rem] h-[300px]">
-    
               <MMO_Prediction_Planning />
             </div>
           </div>
@@ -189,13 +211,12 @@ function TeleGuidance() {
   );
 }
 
-
 // "The less confident you are, the more serious you have to act."
 //"“At every period of history, people have believed things that were just ridiculous, and believed them so strongly that you risked ostracism or even violence by saying otherwise. If our own time were any different, that would be remarkable. As far as I can tell it isn't.”"
 
 const pg = `“Let's start with a test: Do you have any opinions that you would be reluctant to express in front of a group of your peers?
 
-If the answer is no, you might want to stop and think about that. If everything you believe is something you're supposed to believe, could that possibly be a coincidence? Odds are it isn't. Odds are you just think whatever you're told.”`
+If the answer is no, you might want to stop and think about that. If everything you believe is something you're supposed to believe, could that possibly be a coincidence? Odds are it isn't. Odds are you just think whatever you're told.”`;
 
 export default TeleGuidance;
 
