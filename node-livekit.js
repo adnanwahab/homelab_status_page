@@ -4,6 +4,9 @@ const { exec } = require('child_process');
 //const { Room, LocalVideoTrack, VideoSource, VideoFrame, AudioFrame, AudioSource, LocalAudioTrack, TrackPublishOptions, TrackSource, dispose } = require('@livekit/rtc-node');
 const { Readable } = require('stream');
 import send_from_file from './livekit-audio'
+
+import send_from_mp4 from './livekit_from_mp4_sample'
+
 import {
     AudioFrame,
     AudioSource,
@@ -111,8 +114,14 @@ connect_to_room().catch(console.error);
     room.on(RoomEvent.ParticipantConnected, (participant) => {
             console.log(`Participant connected: ${participant.identity}`);
 
-            startRTSPStream(room);
+            //startRTSPStream(room);
 
-            //send_from_file(room);
+            send_from_mp4(room);
           });
 }
+
+
+// 
+//export NVM_DIR="$HOME/.nvm"
+//[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+//[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

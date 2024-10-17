@@ -1,3 +1,15 @@
+import {
+    AudioFrame,
+    AudioSource,
+    LocalAudioTrack,
+    Room,
+    TrackPublishOptions,
+    TrackSource,
+    dispose,
+} from '@livekit/rtc-node';
+
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
  async function send_from_file(room) {
     const sample = readFileSync(join(process.cwd(), './speex.wav'));
@@ -39,4 +51,4 @@
   console.log('disconnected');
 }
 
-export default send_from_file
+export default send_from_file;
