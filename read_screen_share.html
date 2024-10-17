@@ -34,6 +34,19 @@
         await room.connect(url, token);
 
         // Check if the track exists in the room
+        //
+
+        let _ = room.remoteParticipants
+          .get("screen_share")
+          .trackPublications.values()
+          .next()
+          .value.track.attach(screenShareVideo);
+
+        window.room = room;
+        // let publications =
+        //   room.remoteParticipants.get("screen_share").trackPublications;
+        // events as graph?
+
         room.on(
           RoomEvent.TrackSubscribed,
           (track, publication, participant) => {
@@ -43,22 +56,29 @@
             }
           },
         );
-
-        // If the track is already published and you're joining late, you can fetch the tracks
-        room.participants.forEach((participant) => {
-          participant.tracks.forEach((trackPublication) => {
-            if (
-              trackPublication.track &&
-              trackPublication.track.sid === sharedTrackData.trackId
-            ) {
-              // Attach the track if already published
-              trackPublication.track.attach(screenShareVideo);
-            }
+        window.room = room;
+        room.on(RoomEvent.ParticipantConnected, (participant) => {
+          console.log("participant");
+          room.participants.forEach((participant) => {
+            participant.tracks.forEach((trackPublication) => {
+              if (
+                trackPublication.track &&
+                trackPublication.track.sid === sharedTrackData.trackId
+              ) {
+                // Attach the track if already published
+                trackPublication.track.attach(screenShareVideo);
+              }
+            });
           });
         });
+
+        // If the track is already published and you're joining late, you can fetch the tracks
       }
 
       joinRoom();
     </script>
   </body>
 </html>
+<!-- the only thing a chatbot can't do is - build a robot - heres the admin dashboard -->
+<!-- a map to building robots the right way can generate 10 billion jobs by 2025- link holman -->
+<!-- students = mario, im toadstool -->

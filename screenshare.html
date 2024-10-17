@@ -39,6 +39,7 @@
       button.addEventListener("click", joinRoom);
       async function joinRoom() {
         room = new Room();
+        //console.log('room', room.name)
         const url = "wss://omnissiah-university-kmuz0plz.livekit.cloud";
         await room.connect(url, token);
 
