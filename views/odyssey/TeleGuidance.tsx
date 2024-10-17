@@ -103,7 +103,7 @@ function RoboticsHardware() {
 
   return (
     <>
-          <Whiteboard />
+     
 
       <div ref={viewofModuleNameRef} />
       <p className="text-green-100">
@@ -195,8 +195,9 @@ function TeleGuidance() {
               <Livekit />
           </div>
           <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden" style={{maxHeight: '500px'}}>
+
             <TwitchPlaysPokemonPanel/>
-  
+            <Whiteboard />
           </div>
           <div className="lg:col-span-2 flex flex-col rounded-lg bg-gray-800 overflow-hidden" style={{maxHeight: '500px'}}>
             <RoboticsHardware />

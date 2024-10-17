@@ -159,43 +159,26 @@ function DynamicLand() {
 
 
 function DynamicHow() {
-
-  
-    return (
-      <div className="bg-slate-900 ">
-        <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-  
-          <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-2">
-            <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-              <div className="relative flex h-1/4 flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-        
-                
-                <AlanHow />
-               
-                
-              </div>
-              {/* <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div> */}
+  return (
+    <div className="bg-slate-900 p-4">
+      <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-1">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-lg bg-white lg:rounded-l-[2rem]"></div>
+            <div className="relative overflow-hidden rounded-lg lg:rounded-l-[2rem] h-[500px]">
+              <AlanHow />
             </div>
- 
-            <div className="relative lg:row-span-2">
-              <div className="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div>
-              <div className="relative flex h-1/4 flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-        
-                
-                  
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 rounded-lg bg-white lg:rounded-r-[2rem]"></div>
+            <div className="relative overflow-hidden rounded-lg lg:rounded-r-[2rem] h-[500px]">
               <DynamicLand />
-
-
-                  
-                
-              </div>
-              {/* <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"></div> */}
             </div>
           </div>
         </div>
       </div>
-    )
-
+    </div>
+  )
 }
 export default DynamicHow;
