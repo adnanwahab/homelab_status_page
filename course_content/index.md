@@ -1,5 +1,5 @@
 ---
-theme: slate
+  theme: slate
 ---
 
 ```js
