@@ -5,7 +5,8 @@ const { exec } = require('child_process');
 const { Readable } = require('stream');
 import send_from_file from './livekit-audio'
 
-import send_from_mp4 from './livekit_from_mp4_sample'
+import send_from_mp4 from './livekit_video'
+import send_from_screen from './live_screen'
 
 import {
     AudioFrame,
@@ -116,7 +117,7 @@ connect_to_room().catch(console.error);
 
             //startRTSPStream(room);
 
-            send_from_mp4(room);
+            send_from_screen(room);
           });
 }
 
