@@ -117,3 +117,4 @@ make robotics fool-proof - bc i am a fool - fool-proof house -> fool-proof robot
 alan kay + 25 colleages - made the internet work like a cell of an organism - thats why it works so well - how.pdf
 
 samus - eyes - my favortite video game
+

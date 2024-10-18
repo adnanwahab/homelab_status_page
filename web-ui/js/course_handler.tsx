@@ -33,23 +33,37 @@ ${routes_links.join("\n")}
 
  </body></html>`
 
+ async function static_files(req: Request) {
+  const url = new URL(req.url);    
+  const files = fs.readdirSync("user_code");
+  const basename = url.pathname.split("/").slice(-1)[0] || "";
+  console.log("file", basename);
 
- console.log('compile time checks: ' ,'typeof default_response === string' , typeof default_response === 'string');
+  const file = files.find(file => file == basename);
+  if (file) {
+    const filePath = path.join('user_code', basename);
+    // console.log("filePath", filePath);
+    return new Response(Bun.file(`./user_code/${basename}`));
+  }
+  return new Response(`Files in user_code: ${files.join(", ")}`, {
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  });
+}
+
 async function proxy(req: Request) {
    const url = new URL(req.url);    
    console.log("req url", url.pathname);
     // if (url.pathname === "/") return routes["/"](req)
-
-  //   if (url.pathname === '/livekit_connect') return handle_livekit_connect(req)
-  
-  //   if (url.pathname === "/robotics-odyssey") return routes["/robotics-odyssey"](req)
+    if (url.pathname === '/livekit_connect') return handle_livekit_connect(req)  
+    if (url.pathname === "/robotics-odyssey") return routes["/robotics-odyssey"](req)
 
     if (url.pathname === "/make_bun_cell") return routes["/make_bun_cell"](req)
     if (url.pathname === "/make_deno_cell") return routes["/make_deno_cell"](req)
     if (url.pathname === "/make_python_cell") return routes["/make_python_cell"](req)
-  // if (url.pathname === "/sse") {}
+    if (url.pathname.includes("/user_code")) return static_files(req)
 
-  // return routes["/"](req)
   return new Response(default_response, {
     headers: {
       "Content-Type": "text/html",
@@ -64,10 +78,9 @@ async function main() {
     port,
     fetch: proxy,
   });
- 
 }
+console.log('compile time checks: ' ,'typeof default_response === string' , typeof default_response === 'string');
 main();
-
 console.log("Server running at http://localhost", port);
 
 // let routes = {

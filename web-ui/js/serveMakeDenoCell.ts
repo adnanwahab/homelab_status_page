@@ -27,7 +27,7 @@ async function serveMakeDenoCell(req: Request) {
   
           // Use the Function constructor to execute the template string safely
           const result = fs.readFileSync("user_code/templates/template_deno_code.js", "utf-8") + deno_code;
-          const user_code_file_name = `user_code/${json.file_name}.js`;
+          const user_code_file_name = `user_code/tmp/${json.file_name}.ts`;
           
           fs.writeFileSync(user_code_file_name, result);
   

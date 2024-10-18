@@ -86,7 +86,10 @@ uv run example
 
 -- if necessary - use llama to rewrite user-code with minimal edits - so it works with repo
 
-deno --allow-all user_code/template_deno_code.js 
-
 
 git clone https://github.com/denoland/webgpu-examples -> user_code/webgpu-examples -> run all 
+
+
+# TDD for agent-helpers
+
+deno --allow-all user_code/tmp/initial_webgpu_test.js 
