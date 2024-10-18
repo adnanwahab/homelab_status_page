@@ -35,7 +35,9 @@ ${routes_links.join("\n")}
 
  async function static_files(req: Request) {
   const url = new URL(req.url);    
-  const files = fs.readdirSync("user_code");
+  //const files = fs.readdirSync(url.pathname.slice(1));
+  let dir_name = `user_code/tmp/webgpu-exmples/shadow/`
+  const files = fs.readdirSync(dir_name);
   const basename = url.pathname.split("/").slice(-1)[0] || "";
   console.log("file", basename);
 
@@ -58,7 +60,9 @@ async function proxy(req: Request) {
     // if (url.pathname === "/") return routes["/"](req)
     if (url.pathname === '/livekit_connect') return handle_livekit_connect(req)  
     if (url.pathname === "/robotics-odyssey") return routes["/robotics-odyssey"](req)
+    if (url.pathname == '/favicon.ico') return new Response(Bun.file('public/images/favicon.svg'))
 
+      //web-ui/public/images/favicon.svg//
     if (url.pathname === "/make_bun_cell") return routes["/make_bun_cell"](req)
     if (url.pathname === "/make_deno_cell") return routes["/make_deno_cell"](req)
     if (url.pathname === "/make_python_cell") return routes["/make_python_cell"](req)

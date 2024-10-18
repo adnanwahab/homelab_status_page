@@ -93,3 +93,14 @@ git clone https://github.com/denoland/webgpu-examples -> user_code/webgpu-exampl
 # TDD for agent-helpers
 
 deno --allow-all user_code/tmp/initial_webgpu_test.js 
+
+
+git clone --depth=1 https://github.com/mrdoob/three.js.git
+
+https://github.com/mrdoob/three.js
+
+
+# 20,000 pull-request
+1. zed2i + zed.dev
+2. three.js
+3. trossen-
