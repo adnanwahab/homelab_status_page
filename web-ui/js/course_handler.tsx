@@ -2,12 +2,14 @@
 import { renderToString } from "react-dom/server";
 import React from "react";
 import { serve } from "bun";
-import RoboticsOdyssey from "../../views/odyssey/robotics-odyssey.tsx";
+
+
+//import RoboticsOdyssey from "views/odyssey/robotics-odyssey.tsx";
 import fs from "fs";
 import path from "path";
 import { watch } from "fs";
 
-import { connect_to_livekit } from './bun-livekit-server.js'
+import { connect_to_livekit } from './bun_handlers/bun-livekit-server.js'
 
 
 let routes = {
@@ -27,9 +29,6 @@ let routes = {
   ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
   portfolio: "views/portfolio",
 };
-const filePath = path.join(__dirname, "../views/odyssey/index.html");
-
-let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
 
 
 
@@ -37,8 +36,12 @@ let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
 //export default html;
 
 function makeReactApp() {
-  
-      const App = () => <RoboticsOdyssey />;
+  const filePath = path.join(__dirname, "views/odyssey/index.html");
+
+let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
+
+      //const App = () => <RoboticsOdyssey />;
+      const App = () => { return <div>course_handler</div> }
       let html = indexHtmlContent.replace(
         "{{template roboticsodyssey}}",
         `${renderToString(<App />)}`,
@@ -48,38 +51,43 @@ function makeReactApp() {
 
 const { spawn } = require("child_process");
 
-const containerName = "zed2i-container";
-const imageName = "<zed-container>";  // Replace with your ZED Docker image
 
-const dockerRunArgs = [
-  "run", 
-  "--rm",
-  "--runtime", "nvidia",
-  "--gpus", "all",
-  "--network", "host",
-  "--env", "DISPLAY=$DISPLAY",
-  "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
-  "--device", "/dev/video0", // Adjust if using another device
-  "--name", containerName,
-  imageName,
-  "/bin/bash"
-];
+function docker_run(){ 
+  const containerName = "zed2i-container";
+  const imageName = "<zed-container>";  // Replace with your ZED Docker image
+  
+  const dockerRunArgs = [
+    "run", 
+    "--rm",
+    "--runtime", "nvidia",
+    "--gpus", "all",
+    "--network", "host",
+    "--env", "DISPLAY=$DISPLAY",
+    "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--device", "/dev/video0", // Adjust if using another device
+    "--name", containerName,
+    imageName,
+    "/bin/bash"
+  ];
+  
+  console.log("Starting Jetson container for ZED 2i...");
+  
+  const dockerProcess = spawn("docker", dockerRunArgs);
+  
+  dockerProcess.stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  
+  dockerProcess.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
+  
+  dockerProcess.on("close", (code) => {
+    console.log(`Docker process exited with code ${code}`);
+  });
 
-console.log("Starting Jetson container for ZED 2i...");
+}
 
-const dockerProcess = spawn("docker", dockerRunArgs);
-
-dockerProcess.stdout.on("data", (data) => {
-  console.log(`stdout: ${data}`);
-});
-
-dockerProcess.stderr.on("data", (data) => {
-  console.error(`stderr: ${data}`);
-});
-
-dockerProcess.on("close", (code) => {
-  console.log(`Docker process exited with code ${code}`);
-});
 
 async function proxy(req: Request) {
    const url = new URL(req.url);

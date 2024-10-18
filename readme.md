@@ -68,7 +68,7 @@ shipfast for robotics  - each should be 100 lines or less
 https://web.descript.com/25a86ac0-02be-44f0-9ba3-21e09a4856f0/3817a?lite=false
 
 
-$100 flat fee - one time purchase for all (AI tools) for robotics
+$95 flat fee - one time purchase for all (AI tools) for robotics
 $400 for Nanosaur.ai - one time fee + software included for free for life.
 
 $20 discount for any contribution to course - up to $140 repaid back.
@@ -86,3 +86,26 @@ nov - build 20k arm from diffusion 3D for 10k
 the reason OpenAI is so good - they humanized AI - they did they because of 
 1. alan kay + vpri
 2. dinner parties
+
+
+
+![POW Block - Mario Kart Wii](https://static.wikia.nocookie.net/mariokart/images/2/2a/POW_Block_-_Mario_Kart_Wii.png/revision/latest/scale-to-width-down/1000?cb=20231130184018)
+
+
+
+
+humility, honesty, kindness, generosity, patience, bravery, forgiveness, trust, love, faith
+
+100% grateful for everything - see randomness
+
+thank you to 100 billion people who worked hard so life could be more fun - pau
+
+delete adnan - pdeudoynm - talk to old friends
+
+blog = (projection mapping + sensors, arm, wheel)
+
+make a 3D captcha - fun 
+
+https://mail.google.com/mail/u/eggnog.wahab@gmail.com/#search/from:notifications@stripe.com
+
+200,000 - is this okay - augment their blog + product - twitch 2016 

@@ -26,6 +26,12 @@ https://gilberttanner.com/blog/jetson-nano-getting-started/ -> jetson orin
 3. roomba
 4. arm - dynamixel
 
+
+
+Focus :
+
+1. blog = (projection mapping + sensors, arm, wheel)
+
 # building nanosaur
 # building panther
 =======

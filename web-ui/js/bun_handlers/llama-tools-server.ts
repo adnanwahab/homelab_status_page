@@ -1,5 +1,5 @@
 import { serve } from 'bun';
-import { connect_to_livekit } from './bun-livekit-server';
+import { connect_to_livekit } from '../bun-livekit-server';
 import { AccessToken } from "livekit-server-sdk";
 const port = 8888;
 const apiKey = "APIXi25c9hddrpj";

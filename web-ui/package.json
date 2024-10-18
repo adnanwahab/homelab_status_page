@@ -41,6 +41,7 @@
   "dependencies": {
     "3-planning-prediction": "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.tgz",
     "@anthropic-ai/sdk": "^0.29.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@headlessui/react": "^2.1.10",
     "@heroicons/react": "^2.1.4",
     "@livekit/rtc-node": "latest",

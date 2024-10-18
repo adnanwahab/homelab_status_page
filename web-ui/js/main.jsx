@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import RoboticsOdyssey from "../views/odyssey/robotics-odyssey.tsx";
 import { StrictMode } from "react";
 import "../public/css/output.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-//JP + mark + eric - 4pm
-//stork + shawn - 6pm
-//NVDusty - 8pm
+  import RoboticsOdyssey from "./robotics-odyssey.tsx";
+import CGI_Tools from "./CGI_Tools.jsx";
+import LLAMA_Tools from "./LLAMA_Tools.jsx";
+import Hardware_Tools from "./Hardware_Tools.jsx";
+ import Blog from "./blag.jsx";
 
 const links = [
   { path: "/cgi", component: CGI_Tools },
@@ -15,97 +15,13 @@ const links = [
   { path: "/hardware", component: Hardware_Tools },
   { path: "/docs", component: Documentation },
   { path: "/math-tools", component: Math_Tools },
-
+  { path: "/blog  ", component: Blog },
 ];
-// steam + netflix
-function ReplayAnalyzer () {
 
-  return <div>Replay Analyzer</div>;
-}
 
-function GitVisualizer () {
-  // periodidc 
- return {
-  "route": "hash",
-  "title": "Git Visualizer",
-  "description": "Git Visualizer",
-  "iframe": "http://localhost:3000",
- }
-}
 
-function ParticleMorphTargetFromVideo () {
-  return <div>Particle Morph Target From Video</div>;
-  
-}
-
-function VoiceReactiveParticles () {
-  return <><div>Voice Reactive Particles</div>
-  
-  <iframe src="http://localhost:49564/voice_reactive_particles" />
-  </>
-  ;
-}
-
-function Dashboard() {
-  const panels = [
-    //{ id: "livekit_audio", title: "LiveKit Audio" },
-    //{ id: "cognition_engine", title: "Cognition Engine" },
-//    { id: "logs_viewer", title: "Logs Viewer" },
-  //  { id: "import_docs", title: "Import Docs" },
-    // { id: "Particle_morph_target_from_video", title: "Particle morph target from video" },
-    { id: "voice_reactive_particles", title: "voice reactive particles" },
-    { id: "Git Visualier", title: "Git Visualier-screenshot->iframe" },
-    { id: "Replay analyzer", title: "Replay analyzer" , component: ReplayAnalyzer},
-  ]; 
-
-  
-
-  return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
-          {panels.map((panel) => (
-            <div key={panel.id} className="relative lg:col-span-4">
-              <div className="absolute inset-px rounded-lg bg-white"></div>
-              <div className="relative flex h-full flex-col overflow-hidden">
-                <div className={`container-${panel.id}`}></div>
-                {/* <iframe src={`/cgi-backend/${panel.id}`}></iframe> */}
-                {panel.component ? <panel.component /> : <iframe src={`/cgi-backend/${panel.id}`}></iframe>}
-
-                <div className="p-10 pt-4">{panel.title}</div>
-              </div>
-              <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-console.log("main.js");
-function CGI_Tools () {
-  return (<><div>CGI Tool for John Patrick Whitaker</div>
-          <div><Dashboard /></div>
-          {/* <div><RoamResearch /></div> */}
-          </>)
-}
-function LLAMA_Tools () {
-  return <div>LLAMA Tools for Eric Levin</div>;
-}
-function Hardware_Tools () {
-  // zed2i 
-  //roomba
-  return <div>Hardware Tools for Arthur Simon Art</div>;
-}
 function Math_Tools () {
   return <div>Math Tools for Mark Chatkhan</div>;
-}
-
-function Outliers () {
-  // resume
-  // https://clarity.microsoft.com/projects/view/ok8h7h9e0q/gettingstarted
-  return <div>Outleirs</div>;
 }
 
 
@@ -159,21 +75,17 @@ function RoamResearch () {
 const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
   <StrictMode>
-
-
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<RoboticsOdyssey />} />
-
+        <Route path="/" element={<RoboticsOdyssey />} />
         <Route path="/docs" element={<Documentation />} />
         <Route path="/cgi" element={<CGI_Tools />} />
         <Route path="/llama" element={<LLAMA_Tools />} />
         <Route path="/hardware" element={<Hardware_Tools />} />
         <Route path="/math" element={<Math_Tools />} />
+        {/* <Route path="/blag" element={<Blog />} /> */}
 
         {/* <Route path="/course_content"  element={<iframe width="1920" height="1080" src="http://localhost:3000" />} /> */}
-
-        {/* <Route path="/outliers"  element={<Outliers />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>,
@@ -190,3 +102,12 @@ root.render(
 
 // nolagen - flower for algenernon + naver
 //reflect = read only - populate from roam resarch
+
+// function Blog () {
+//   return <div>Blog</div>;
+// }
+
+//JP + mark + eric - 4pm
+//stork + shawn - 6pm
+//NVDusty - 8pm
+// steam + netflix

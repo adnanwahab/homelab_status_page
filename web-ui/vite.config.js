@@ -6,7 +6,7 @@
    export default defineConfig({
      plugins: [react()],
     publicDir: 'static',
-    //  root: '',
+    root: 'js',
      server: {
        port: 8000, // You can specify the port here
        proxy: {
