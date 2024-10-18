@@ -17,17 +17,39 @@ files.hashirama.blog {
 	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
 	header Access-Control-Allow-Headers "Content-Type"
 }
-
+#health, robotics-odyssey, hello, api/*
 hashirama.blog {
 	tls {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 		resolvers 1.1.1.1
 	}
 
+	route / {
+		root * /home/adnan/homelab_status_page/web-ui/docs
+		file_server
+	}
+
+	route /health {
+		respond "ok"
+	}
+
+	route /robotics-odyssey {
+		redir https://roboticsodyssey.com #static bundle 
+	}
+
+	route /hello {
+		respond "hello world"
+	}
+
+	route /api/* {
+		reverse_proxy localhost:8080
+	}
+
 	header Access-Control-Allow-Origin *
 	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
 	header Access-Control-Allow-Headers "Content-Type"
-	reverse_proxy localhost:8080
+
+	
 
 	# Add logging for this site
 	log {
@@ -64,21 +86,3 @@ hashirama.blog {
 #     #reverse_proxy localhost:8080
 #     respond "hi world"
 # }
-# files.hashirama.blog {
-# tls {
-# 	dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-# 	resolvers 1.1.1.1
-# }
-# respond "hi world"
-# }
-#respond "hi world"
-# header Access-Control-Allow-Origin *
-# header Access-Control-Allow-Methods "GET, POST, OPTIONS"
-# header Access-Control-Allow-Headers "Content-Type"
-# reverse_proxy localhost:8080
-
-#reverse_proxy localhost:8080
-#         log {
-#         output file /var/log/caddy/access.log
-#         level INFO
-#     }

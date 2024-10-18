@@ -1,4 +1,45 @@
 # divide - install.sh + bootstrap.sh -blah;adlgapsdok
+# merge scripts - make them good -> infra  -> levels + shipfast jam stack shit 
+
+
+# To install a new plugin in Caddy, you need to build Caddy from source with the desired plugin included.
+# Here is a step-by-step guide to do this:
+
+# Step 1: Install Go
+# Caddy requires Go to be installed on your system. You can install it using the following commands:
+# sudo apt update
+# sudo apt install -y golang-go
+
+# Step 2: Set up Go environment
+# It's a good practice to set up a Go workspace. Add the following lines to your ~/.bashrc or ~/.zshrc:
+# export GOPATH=$HOME/go
+# export PATH=$PATH:$GOPATH/bin
+# source ~/.bashrc
+
+# Step 3: Get xcaddy
+# xcaddy is a command-line tool to build Caddy with plugins.
+# go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+
+# Step 4: Build Caddy with the plugin
+# Use xcaddy to build Caddy with the desired plugin. Replace 'github.com/your/plugin' with the actual plugin repository.
+# xcaddy build --with github.com/your/plugin
+
+# Step 5: Replace existing Caddy binary
+# Once built, replace the existing Caddy binary with the new one.
+# sudo mv ./caddy /usr/bin/caddy
+
+# Step 6: Verify installation
+# Verify that the plugin is installed by running:
+# caddy list-modules | grep your-plugin
+
+# Note: Ensure that the plugin you want to install is compatible with your version of Caddy.
+# xcaddy build --with github.com/abiosoft/caddy-exec
+
+#caddy add-package github.com/abiosoft/caddy-exec
+# caddy add-package github.com/caddy-dns/porkbun
+
+
+
 
 
 # run this on jetson to install hashirama platform + desktop 
