@@ -114,7 +114,17 @@ function Blog () {
                 <section class="mb-6">
                   <h2 id="memory-updated" class="text-3xl font-bold mb-4">
                     <a id="memory-updated" href="/robotics-odyssey"
-                      >Launch: Robotics Odyssey - oct 10 midnight</a
+                      >Launch: Robotics Odyssey - oct 10 midnight
+                      
+                      
+             
+                      <img
+              alt=""
+              src="https://files.hashirama.blog/static/blog/5.png"
+              className="mt-16 aspect-[6/5] w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto lg:h-[34.5rem]"
+            />
+                      
+                      </a
                     >
                   </h2>
                   <ul class="list-none pl-0 space-y-2">
@@ -208,7 +218,7 @@ function Blog () {
                     </div>
                   </section>
                   <a
-                    href="/archive"
+                    href="/blag-archive"
                     class="border border-gray-600 py-2 px-4 text-gray-400 hover:bg-gray-800 inline-block"
                   >
                     View full archive (174 essays)

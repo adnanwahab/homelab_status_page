@@ -32,7 +32,7 @@ let cgi_tools = {
 };
 
 function serveBlag(req: Request) { 
-  const filePath = path.join(__dirname, "views/odyssey/index.html");
+  const filePath = path.join(__dirname, "views/odyssey/blag.html");
   let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
 
   const blag = indexHtmlContent.replace(
@@ -62,7 +62,7 @@ const routes_links = Object.keys(routes).map(
   key => `<li><a href=${key}>${key}</a></li>`
 )
 
- const default_response = `<html><body>docs - please thank you
+ const response_404 = `<html><body>docs - please thank you
  
 
 ${routes_links.join("\n")}
@@ -102,9 +102,11 @@ async function proxy(req: Request) {
     if (url.pathname === "/make_python_cell") return routes["/make_python_cell"](req)
     if (url.pathname.includes("/user_code")) return static_files(req)
 
-      if (url.pathname === "/blag") return routes["/blag"](req)
+    if (url.pathname === "/blag" || url.pathname === "/") return routes["/blag"](req)
 
-  return new Response(default_response, {
+      if (url.pathname === "/archive") return routes["/archive-blog"](req)
+
+  return new Response(response_404, {
     headers: {
       "Content-Type": "text/html",
     },
