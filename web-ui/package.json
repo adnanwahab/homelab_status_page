@@ -23,51 +23,10 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@egoist/tailwindcss-icons": "^1.7.4",
-    "@iconify-json/mdi": "^1.1.66",
-    "@tailwindcss/forms": "^0.5.9",
-    "@vitejs/plugin-react": "^4.3.2",
-    "@vue/compiler-sfc": "^3.5.12",
-    "daisyui": "4.6.1",
-    "eslint-config-prettier": "^9.1.0",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "standard": "^17.1.2",
-    "tailwindcss": "^3.4.13",
-    "tailwindcss-3d": "^1.0.7",
-    "vite": "^5.4.8",
-    "vitepress": "^1.4.1"
+
   },
   "dependencies": {
-    "3-planning-prediction": "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.tgz",
-    "@anthropic-ai/sdk": "^0.29.0",
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "@headlessui/react": "^2.1.10",
-    "@heroicons/react": "^2.1.4",
-    "@livekit/rtc-node": "latest",
-    "@observablehq/runtime": "5",
-    "@octokit/rest": "^21.0.2",
-    "@tldraw/tldraw": "^3.3.1",
-    "autoprefixer": "^10.4.20",
-    "clsx": "^2.1.1",
-    "d3": "^7.9.0",
-    "dotenv": "^16.4.5",
-    "ffmpeg-static": "^5.2.0",
-    "fluent-ffmpeg": "^2.1.3",
-    "framer-motion": "^11.2.10",
-    "livekit-client": "^2.5.7",
-    "livekit-server-sdk": "^2.7.0",
-    "marked": "^14.1.3",
-    "octokit": "^4.0.2",
-    "ollama": "^0.5.9",
-    "openai": "^4.67.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0",
-    "replicate": "^1.0.0",
-    "sqlite3": "^5.1.7",
-    "three": "0.152.2",
-    "tldraw": "^3.3.1",
-    "vue": "^3.3.4"
-  }
+    "gmath": "^0.0.6"
+
+      }
 }

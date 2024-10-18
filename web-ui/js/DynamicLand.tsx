@@ -8,7 +8,7 @@ function Dynamicland() {
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(notebook, Inspector.into(ref.current));
-    return () => runtime.dispose();
+    return () => runtime.dispose();p
   }, []);
 
   return (

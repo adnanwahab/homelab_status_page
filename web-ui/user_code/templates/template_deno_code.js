@@ -32,5 +32,3 @@ import  util from "node:util";
 // ... user code goes here
 
 
-
-console.log("hello world", fs.readdirSync("./", "utf-8"));
