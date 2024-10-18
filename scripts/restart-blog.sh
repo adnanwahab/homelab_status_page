@@ -1,20 +1,112 @@
+#!/bin/bash
+# Display the Caddy service file
+#echo "Displaying the Caddy service file..."
+# cat /etc/systemd/system/caddy.service
+# [Unit]
+# Description=Caddy web server
+# After=network.target
+# [Service]
+# Environment=HOME=/home/adnan
+# ExecStart=/usr/local/bin/caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+# ExecReload=/usr/local/bin/caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+# Restart=on-failure
+# [Install]
+# WantedBy=multi-user.target
+# Find the Caddy log file
+#curl -I https://hashirama.blog
+#curl ifconfig.me
+# Function to check if Caddy is running
+
+# admin dahboard to be public 
+# Check if the Caddyfile has good syntax
+echo "Checking Caddyfile syntax..."
+sudo caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile || {
+    echo "Caddyfile has syntax errors."
+    exit 1
+}
 
 
-sudo caddy reload --config /etc/caddy/Caddyfile
+check_caddy_status() {
+    if systemctl is-active --quiet caddy; then
+        echo "Caddy is running."
+    else
+        echo "Error: Caddy is not running."
+        sudo systemctl status caddy
+        exit 1
+    fi
+}
 
+# Check if Caddy is already running before stopping it
+if systemctl is-active --quiet caddy; then
+    echo "Stopping Caddy service..."
+    sudo systemctl stop caddy
+else
+    echo "Caddy is not running, skipping stop."
+fi
+
+# Reload system daemon (only needed if you changed systemd unit files)
+echo "Reloading system daemon (if necessary)..."
 sudo systemctl daemon-reload
 
-# sudo systemctl stop homelab-status-page
+# Format Caddyfile
+echo "Formatting Caddyfile..."
+sudo caddy fmt --overwrite /etc/caddy/Caddyfile || {
+    echo "Error formatting Caddyfile."
+    exit 1
+}
 
-# sudo systemctl start homelab-status-page
+# Start Caddy service
+echo "Starting Caddy service..."
+sudo systemctl start caddy || {
+    echo "Error starting Caddy service."
+    exit 1
+}
 
-# sudo systemctl enable homelab-status-page
+# Check Caddy status
+echo "Checking Caddy status..."
+check_caddy_status
 
-sudo  systemctl stop caddy
+# Enable Caddy service to start on boot (if not already enabled)
+if systemctl is-enabled --quiet caddy; then
+    echo "Caddy service already enabled on boot."
+else
+    echo "Enabling Caddy service to start on boot..."
+    sudo systemctl enable caddy || {
+        echo "Error enabling Caddy service."
+        exit 1
+    }
+fi
 
-sudo systemctl start caddy
+# Reload Caddy configuration (optional, Caddy reloads on start by default)
+echo "Reloading Caddy configuration..."
+sudo caddy reload --config /etc/caddy/Caddyfile || {
+    echo "Error reloading Caddy configuration."
+    exit 1
+}
 
-sudo systemctl enable caddy 
+# Final status check
+echo "Performing final status check..."
+check_caddy_status
 
-sudo systemctl status caddy #& sudo systemctl status homelab-status-page
-#mamba activate sam
+
+
+
+echo "Checking Caddy logs..."
+log_file=$(sudo find /var/log/caddy -name "caddy.log" 2>/dev/null)
+
+if [ -n "$log_file" ]; then
+    echo "Caddy log file found at: $log_file"
+    # Optionally, you can add a command to display the last few lines of the log
+    # sudo tail -n 20 "$log_file"
+else
+    echo "Caddy log file not found. Checking journalctl logs..."
+    sudo journalctl -u caddy -n 50 --no-pager
+fi
+
+echo "Restart process completed."
+
+# Display the Caddy service file (if needed for debugging)
+# echo "Displaying the Caddy service file..."
+# cat /etc/systemd/system/caddy.service
+
+# Log file check: Caddy typically logs via systemd's journal, but you can check for file logs

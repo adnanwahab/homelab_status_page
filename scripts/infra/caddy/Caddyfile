@@ -1,4 +1,4 @@
-	{
+{
 	email adnan.f.wahab@gmail.com
 	log {
 		output file /var/log/caddy/caddy.log {
@@ -8,29 +8,77 @@
 		}
 		level DEBUG
 	}
-
 }
 
 files.hashirama.blog {
-    root * /home/adnan/Videos
-    file_server browse
-    header Access-Control-Allow-Origin *
-    header Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    header Access-Control-Allow-Headers "Content-Type"
+	root * /home/adnan/derp
+	file_server browse
+	header Access-Control-Allow-Origin *
+	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+	header Access-Control-Allow-Headers "Content-Type"
+}
+
+hashirama.blog {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+		resolvers 1.1.1.1
+	}
+
+	header Access-Control-Allow-Origin *
+	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+	header Access-Control-Allow-Headers "Content-Type"
+	reverse_proxy localhost:8080
+
+	# Add logging for this site
+	log {
+		output file /home/adnan/derp/log/caddy/hashirama.blog.log {
+			roll_size 10MiB
+			roll_keep 5
+			roll_gzip
+		}
+	}
+}
+
+#
+# jupyter.hashirama.blog {
+# 	tls {
+# 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+# 		resolvers 1.1.1.1
+# 	}
+# 	#respond "hi world"
+# 	header Access-Control-Allow-Origin *
+# 	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+# 	header Access-Control-Allow-Headers "Content-Type"
+# 	reverse_proxy localhost:8888
+# }
+# llama-tools.com {
+# 	# tls {
+# 	# 	dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+# 	# 	resolvers 1.1.1.1
+# 	# }
+# 	#respond "hi world"
+# 	# header Access-Control-Allow-Origin *
+# 	# header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+# 	# header Access-Control-Allow-Headers "Content-Type"
+# 	# reverse_proxy localhost:8080
+#     #reverse_proxy localhost:8080
+#     respond "hi world"
+# }
+# files.hashirama.blog {
+# tls {
+# 	dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+# 	resolvers 1.1.1.1
+# }
+# respond "hi world"
+# }
 #respond "hi world"
+# header Access-Control-Allow-Origin *
+# header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+# header Access-Control-Allow-Headers "Content-Type"
+# reverse_proxy localhost:8080
 
-}
-
-
-jupyter.hashirama.blog {
-    tls {
-        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-        resolvers 1.1.1.1
-    }
-
-    #respond "hi world"
-	    header Access-Control-Allow-Origin *
-    header Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    header Access-Control-Allow-Headers "Content-Type"
-	reverse_proxy localhost:8888
-}
+#reverse_proxy localhost:8080
+#         log {
+#         output file /var/log/caddy/access.log
+#         level INFO
+#     }
