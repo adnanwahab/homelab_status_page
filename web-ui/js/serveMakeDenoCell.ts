@@ -20,6 +20,11 @@ async function serveMakeDenoCell(req: Request) {
         //console.log("Received JSON:", json);
         // Process your POST request here
         const deno_code = json.deno_code;
+        const datum = json.datum;
+        // console.log("datum", Object.keys(datum));
+        // if (!datum) {
+        //   return new Response("deno_code parameter is missing", { status: 400 });
+        //}
         //console.log("deno_code", deno_code);
       if (!deno_code) {
             return new Response("deno_code parameter is missing", { status: 400 });
@@ -47,7 +52,11 @@ async function serveMakeDenoCell(req: Request) {
   
           try {
             //tip: to pass '--access-all' as a value, use '-- --access-all'
-            let run_coommand = `deno run --allow-all --unstable ${user_code_file_name}`
+            // let run_coommand = `deno run --allow-all --unstable ${user_code_file_name} ${JSON.stringify(datum)}`
+
+            
+            let run_coommand = `deno run --allow-all --unstable /Users/shelbernstein/homelab_status_page/web-ui/user_code/tmp/initial_webgpu_test.ts ${JSON.stringify(datum)}`
+
             //console.log("run_coommand", run_coommand);
             const { stdout, stderr } = await execPromise(run_coommand);
             

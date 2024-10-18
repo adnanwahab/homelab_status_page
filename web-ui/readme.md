@@ -104,3 +104,6 @@ https://github.com/mrdoob/three.js
 1. zed2i + zed.dev
 2. three.js
 3. trossen-
+https://docs.trossenrobotics.com/interbotix_xsarms_docs/ros_interface/ros1/quickstart.html
+
+rosservice call /vx250/torque_enable "{cmd_type: 'group', name: 'all', enable: true}

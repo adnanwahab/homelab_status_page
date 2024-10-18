@@ -14,6 +14,23 @@ import serveMakePythonCell from './serveMakePythonCell.ts'
 import serveMakeBunCell from './bun_helper.ts'
 import docker_run from './docker_helper.ts'
 
+let cgi_tools = {
+  framesplitter: "views/framesplitter",
+  object_search: "views/object_search",
+
+    // vr_ghost_in_shell: "views/vr_ghost_in_shell",
+
+  // css_webgl_animation_from_paper_image:
+  //   "views/css_webgl_animation_from_paper_image",
+  // particles: "views/particles",
+  // cloud_flare: "views/cloud_flare",
+  // perspective_transformation: "views/perspective_transformation",
+  // "jsonp-yt-instant-everything": "views/jsonp-yt-instant-everything",
+  // all_tools_in_obs: "views/all_tools_in_obs",
+  // ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
+};
+
+
 const routes = {
   //"/": (req: Request) => make_docs,
   "/livekit_connect": (req: Request) => handle_livekit_connect(req),
@@ -21,6 +38,7 @@ const routes = {
   "/make_bun_cell": (req: Request) => serveMakeBunCell(req),
   "/make_deno_cell": (req: Request) => serveMakeDenoCell(req),
   "/make_python_cell": (req: Request) => serveMakePythonCell(req),
+  ...cgi_tools
  }
 const routes_links = Object.keys(routes).map(
   key => `<li><a href=${key}>${key}</a></li>`
@@ -36,22 +54,20 @@ ${routes_links.join("\n")}
  async function static_files(req: Request) {
   const url = new URL(req.url);    
   //const files = fs.readdirSync(url.pathname.slice(1));
-  let dir_name = `user_code/tmp/webgpu-exmples/shadow/`
-  const files = fs.readdirSync(dir_name);
-  const basename = url.pathname.split("/").slice(-1)[0] || "";
-  console.log("file", basename);
-
-  const file = files.find(file => file == basename);
-  if (file) {
-    const filePath = path.join('user_code', basename);
-    // console.log("filePath", filePath);
-    return new Response(Bun.file(`./user_code/${basename}`));
+  let dir_name = path.join(process.cwd(), url.pathname.slice(1));
+  console.log(dir_name);
+  console.log("Current working directory:", process.cwd());
+  const stats = fs.statSync(dir_name);
+  //dont duplicate - if is direcory - readisync - if its a file - split and then read-dir-sync
+  if (stats.isDirectory()) {
+    const files = fs.readdirSync(dir_name);
+    return new Response(`Files in user_code: ${files.join(", ")}`, {
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    });
   }
-  return new Response(`Files in user_code: ${files.join(", ")}`, {
-    headers: {
-      "Content-Type": "text/plain",
-    },
-  });
+  return new Response(Bun.file(dir_name));
 }
 
 async function proxy(req: Request) {
@@ -87,23 +103,7 @@ console.log('compile time checks: ' ,'typeof default_response === string' , type
 main();
 console.log("Server running at http://localhost", port);
 
-// let routes = {
-//   framesplitter: "views/framesplitter",
-//   css_webgl_animation_from_paper_image:
-//     "views/css_webgl_animation_from_paper_image",
-//   make1e9jobs: "views/make1e9jobs",
-//   vr_ghost_in_shell: "views/vr_ghost_in_shell",
-//   object_search: "views/object_search",
-//   particles: "views/particles",
-//   cloud_flare: "views/cloud_flare",
-//   perspective_transformation: "views/perspective_transformation",
-//   "bumble-flow": "views/bumble-flow",
-//   "jsonp-yt-instant-everything": "views/jsonp-yt-instant-everything",
-//   "request-5k": "views/request-5k",
-//   all_tools_in_obs: "views/all_tools_in_obs",
-//   ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
-//   portfolio: "views/portfolio",
-// };
+
 
 function makeReactApp() {
   const filePath = path.join(__dirname, "views/odyssey/index.html");
