@@ -107,6 +107,7 @@ async function serveRoboticsOdyssey(req: Request) {
   });
 }
 
+
 async function serveMakeBunCell(req: Request) { 
   //console.log("serveMakeBunCell", req);
     if (req.method === "OPTIONS") {
@@ -123,24 +124,52 @@ async function serveMakeBunCell(req: Request) {
   // If not OPTIONS, process the actual POST request
   if (req.method === "POST") {
       const json = await req.json();
-      console.log("Received JSON:", json);
+      //console.log("Received JSON:", json);
       // Process your POST request here
       const bun_code = json.bun_code;
     if (!bun_code) {
           return new Response("bun_code parameter is missing", { status: 400 });
         }
 
-      try {
         // Use the Function constructor to execute the template string safely
-        const result = new Function(bun_code)(fs);
-        console.log("Execution result:", result);
-      } catch (error) {
-        console.error("Error executing bun_code:", error);
-        return new Response("Error executing bun_code", { status: 500 });
-      }
+        const result = fs.readFileSync("template_bun_code.js", "utf-8") + bun_code;
+        const user_code_file_name = `${json.file_name}.js`;
+        
+        fs.writeFileSync(user_code_file_name, result);
+ 
+        const exec = require('child_process').exec;
+        const json_response = {
+          //file: result,
+          stdout: "",
+          stderr: "",
+          error: "",
+          streamable: false
+        }
+        exec(`bun run  ${user_code_file_name}`, (error, stdout, stderr) => {
+          if (error) {
+            console.error(`exec error: ${error}`);
+            return new Response("Error executing user code", { status: 500 });
+          }
+          json_response.stdout = stdout;
+          json_response.stderr = stderr;
+
+          console.log(`stdout: ${stdout}`);
+          console.error(`stderr: ${stderr}`);
+        });
+ 
+        // console.error("Error executing file:", execError);
+        // return new Response("Error executing file", { status: 500 });
+        console.log("json_response", json_response);
+
+      return new Response(JSON.stringify(json_response), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
 
 
-      return new Response("Bun cell processed", { status: 200 });
+
   }
 
 
@@ -159,11 +188,11 @@ async function serveMakeBunCell(req: Request) {
 
     // Process the bun_code here
     // For now, we'll just return a placeholder response
-    return new Response("Method not allowed", { status: 405 });
+    //return new Response("Method not allowed", { status: 405 });
 
     return new Response("make bun cell", {
       headers: {
-        "Content-Type": "text/html",
+        "Content-Type": "application/json",
       },
     });
 

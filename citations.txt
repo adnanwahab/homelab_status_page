@@ -163,3 +163,5 @@ https://www.summarize.tech/
 https://vite.dev/guide/
 https://www.youtube.com/watch?v=n4slRYLuLB8
 https://github.com/enjalot/latent-scope
+
+https://johnresig.com/blog/how-javascript-timers-work/ {{addsearch}}

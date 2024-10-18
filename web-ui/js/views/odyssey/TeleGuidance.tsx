@@ -168,6 +168,10 @@ function DiffusionVoxelPointCloud() {
         title="Simulation + UI"
         href="https://observablehq.com/@roboticsuniversity/voxels-diffusion-policy-3d"
       />
+          <ObservableTitle
+        title="Stixels"
+        href="https://observablehq.com/@roboticsuniversity/stixels"
+      />
 
       <div ref={nOTCHRef} />
       <div ref={lOGORef} />
