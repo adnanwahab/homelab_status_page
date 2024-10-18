@@ -1,39 +1,14 @@
-// server.js
+const { exec } = require('child_process');
 import { renderToString } from "react-dom/server";
 import React from "react";
 import { serve } from "bun";
-
+const { spawn } = require("child_process");
 
 //import RoboticsOdyssey from "views/odyssey/robotics-odyssey.tsx";
 import fs from "fs";
 import path from "path";
 import { watch } from "fs";
-
 import { connect_to_livekit } from './bun_handlers/bun-livekit-server.js'
-
-
-// let routes = {
-//   framesplitter: "views/framesplitter",
-//   css_webgl_animation_from_paper_image:
-//     "views/css_webgl_animation_from_paper_image",
-//   make1e9jobs: "views/make1e9jobs",
-//   vr_ghost_in_shell: "views/vr_ghost_in_shell",
-//   object_search: "views/object_search",
-//   particles: "views/particles",
-//   cloud_flare: "views/cloud_flare",
-//   perspective_transformation: "views/perspective_transformation",
-//   "bumble-flow": "views/bumble-flow",
-//   "jsonp-yt-instant-everything": "views/jsonp-yt-instant-everything",
-//   "request-5k": "views/request-5k",
-//   all_tools_in_obs: "views/all_tools_in_obs",
-//   ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
-//   portfolio: "views/portfolio",
-// };
-
-
-
-
-//export default html;
 
 function makeReactApp() {
   const filePath = path.join(__dirname, "views/odyssey/index.html");
@@ -48,9 +23,6 @@ let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
       );
       return html
 }
-
-const { spawn } = require("child_process");
-
 
 function docker_run(){ 
   const containerName = "zed2i-container";
@@ -136,44 +108,52 @@ async function serveMakeBunCell(req: Request) {
         const user_code_file_name = `${json.file_name}.js`;
         
         fs.writeFileSync(user_code_file_name, result);
- 
-        const exec = require('child_process').exec;
-        const json_response = {
-          //file: result,
-          stdout: "",
-          stderr: "",
-          error: "",
-          streamable: false
+
+     
+        
+        // Wrap the exec function in a Promise
+        const execPromise = (command) => {
+          return new Promise((resolve, reject) => {
+            exec(command, (error, stdout, stderr) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve({ stdout, stderr });
+              }
+            });
+          });
+        };
+
+        try {
+          const { stdout, stderr } = await execPromise(`bun run ${user_code_file_name}`);
+          
+          const json_response = {
+            stdout: stdout,
+            stderr: stderr,
+            error: "",
+            streamable: false
+          };
+
+          console.log("json_response", json_response);
+
+          return new Response(JSON.stringify(json_response), {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*", // Add CORS header
+            }
+          });
+        } catch (error) {
+          console.error("Error executing file:", error);
+          return new Response(JSON.stringify({ error: "Error executing file" }), {
+            status: 500,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*", // Add CORS header
+            }
+          });
         }
-        exec(`bun run  ${user_code_file_name}`, (error, stdout, stderr) => {
-          if (error) {
-            console.error(`exec error: ${error}`);
-            return new Response("Error executing user code", { status: 500 });
-          }
-          json_response.stdout = stdout;
-          json_response.stderr = stderr;
-
-          console.log(`stdout: ${stdout}`);
-          console.error(`stderr: ${stderr}`);
-        });
- 
-        // console.error("Error executing file:", execError);
-        // return new Response("Error executing file", { status: 500 });
-        console.log("json_response", json_response);
-
-      return new Response(JSON.stringify(json_response), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
-
-
   }
-
-
-
 
   // try {
   //   const json = await req.json();
@@ -258,3 +238,21 @@ async function main() {
 main();
 
 console.log("Server running at http://localhost", port);
+
+// let routes = {
+//   framesplitter: "views/framesplitter",
+//   css_webgl_animation_from_paper_image:
+//     "views/css_webgl_animation_from_paper_image",
+//   make1e9jobs: "views/make1e9jobs",
+//   vr_ghost_in_shell: "views/vr_ghost_in_shell",
+//   object_search: "views/object_search",
+//   particles: "views/particles",
+//   cloud_flare: "views/cloud_flare",
+//   perspective_transformation: "views/perspective_transformation",
+//   "bumble-flow": "views/bumble-flow",
+//   "jsonp-yt-instant-everything": "views/jsonp-yt-instant-everything",
+//   "request-5k": "views/request-5k",
+//   all_tools_in_obs: "views/all_tools_in_obs",
+//   ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
+//   portfolio: "views/portfolio",
+// };
