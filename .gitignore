@@ -2,7 +2,10 @@ archive/
 hardware/*
 web-ui/archive
 web-ui/demos
-
+api/
+demos/
+pdfs/
+previous_static/
 data.json
 
 
