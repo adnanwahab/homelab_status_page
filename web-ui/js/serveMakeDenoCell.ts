@@ -13,14 +13,14 @@ async function serveMakeDenoCell(req: Request) {
             },
         });
     }
-  
+    //https://threejs.org/examples/?q=webgpu#webgpu_tsl_vfx_linkedparticles
     // If not OPTIONS, process the actual POST request
     if (req.method === "POST") {
         const json = await req.json();
         //console.log("Received JSON:", json);
         // Process your POST request here
         const deno_code = json.deno_code;
-        console.log("deno_code", deno_code);
+        //console.log("deno_code", deno_code);
       if (!deno_code) {
             return new Response("deno_code parameter is missing", { status: 400 });
           }
