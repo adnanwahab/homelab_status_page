@@ -3,194 +3,24 @@ import { renderToString } from "react-dom/server";
 import React from "react";
 import { serve } from "bun";
 const { spawn } = require("child_process");
-
 //import RoboticsOdyssey from "views/odyssey/robotics-odyssey.tsx";
 import fs from "fs";
 import path from "path";
 import { watch } from "fs";
 import { connect_to_livekit } from './bun_handlers/bun-livekit-server.js'
+import serveMakeDenoCell from './serveMakeDenoCell.ts'
+import serveMakePythonCell from './serveMakePythonCell.ts'
 
-function makeReactApp() {
-  const filePath = path.join(__dirname, "views/odyssey/index.html");
-
-let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
-
-      //const App = () => <RoboticsOdyssey />;
-      const App = () => { return <div>course_handler</div> }
-      let html = indexHtmlContent.replace(
-        "{{template roboticsodyssey}}",
-        `${renderToString(<App />)}`,
-      );
-      return html
-}
-
-function docker_run(){ 
-  const containerName = "zed2i-container";
-  const imageName = "<zed-container>";  // Replace with your ZED Docker image
-  
-  const dockerRunArgs = [
-    "run", 
-    "--rm",
-    "--runtime", "nvidia",
-    "--gpus", "all",
-    "--network", "host",
-    "--env", "DISPLAY=$DISPLAY",
-    "--volume", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
-    "--device", "/dev/video0", // Adjust if using another device
-    "--name", containerName,
-    imageName,
-    "/bin/bash"
-  ];
-  
-  console.log("Starting Jetson container for ZED 2i...");
-  
-  const dockerProcess = spawn("docker", dockerRunArgs);
-  
-  dockerProcess.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
-  
-  dockerProcess.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
-  
-  dockerProcess.on("close", (code) => {
-    console.log(`Docker process exited with code ${code}`);
-  });
-
-}
-
-async function handle_livekit_connect(req: Request) { 
-  const identity = url.searchParams.get("identity");
-  if (!identity) {
-    return new Response("Identity parameter is missing", { status: 400 });
-  }
-
-  const json = await connect_to_livekit();
-  console.log(json, json);
-    return new Response(JSON.stringify(json));
-}
-
-async function serveRoboticsOdyssey(req: Request) { 
-  return new Response(makeReactApp(), {
-    headers: {
-      "Content-Type": "text/html",
-    },
-  });
-}
-
-
-async function serveMakeBunCell(req: Request) { 
-  //console.log("serveMakeBunCell", req);
-    if (req.method === "OPTIONS") {
-      return new Response(null, {
-          status: 204, // No Content
-          headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "POST, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type",
-          },
-      });
-  }
-
-  // If not OPTIONS, process the actual POST request
-  if (req.method === "POST") {
-      const json = await req.json();
-      //console.log("Received JSON:", json);
-      // Process your POST request here
-      const bun_code = json.bun_code;
-    if (!bun_code) {
-          return new Response("bun_code parameter is missing", { status: 400 });
-        }
-
-        // Use the Function constructor to execute the template string safely
-        const result = fs.readFileSync("template_bun_code.js", "utf-8") + bun_code;
-        const user_code_file_name = `${json.file_name}.js`;
-        
-        fs.writeFileSync(user_code_file_name, result);
-
-     
-        
-        // Wrap the exec function in a Promise
-        const execPromise = (command) => {
-          return new Promise((resolve, reject) => {
-            exec(command, (error, stdout, stderr) => {
-              if (error) {
-                reject(error);
-              } else {
-                resolve({ stdout, stderr });
-              }
-            });
-          });
-        };
-
-        try {
-          const { stdout, stderr } = await execPromise(`bun run ${user_code_file_name}`);
-          
-          const json_response = {
-            stdout: stdout,
-            stderr: stderr,
-            error: "",
-            streamable: false
-          };
-
-          console.log("json_response", json_response);
-
-          return new Response(JSON.stringify(json_response), {
-            status: 200,
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*", // Add CORS header
-            }
-          });
-        } catch (error) {
-          console.error("Error executing file:", error);
-          return new Response(JSON.stringify({ error: "Error executing file" }), {
-            status: 500,
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*", // Add CORS header
-            }
-          });
-        }
-  }
-
-  // try {
-  //   const json = await req.json();
-  // } catch (error) {
-
-  //   console.error("Error parsing JSON:", error);
-  //   return new Response("Invalid JSON in request body", { status: 400 });
-  // }
-    // const bun_code = json.bun_code;
-   
-    // console.log("Received bun_code:", bun_code);
-
-    // Process the bun_code here
-    // For now, we'll just return a placeholder response
-    //return new Response("Method not allowed", { status: 405 });
-
-    return new Response("make bun cell", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-}
-
-async function make_docs(req: Request) { 
-  return new Response("make_docs", {
-    headers: {
-      "Content-Type": "text/html",
-    },
-  });
-}
+import serveMakeBunCell from './bun_helper.ts'
+import docker_run from './docker_helper.ts'
 
 const routes = {
   //"/": (req: Request) => make_docs,
   "/livekit_connect": (req: Request) => handle_livekit_connect(req),
   "/robotics-odyssey": (req: Request) => serveRoboticsOdyssey(req),
-  "/make-bun-cell": (req: Request) => serveMakeBunCell(req),
+  "/make_bun_cell": (req: Request) => serveMakeBunCell(req),
+  "/make_deno_cell": (req: Request) => serveMakeDenoCell(req),
+  "/make_python_cell": (req: Request) => serveMakePythonCell(req),
  }
 const routes_links = Object.keys(routes).map(
   key => `<li><a href=${key}>${key}</a></li>`
@@ -214,8 +44,9 @@ async function proxy(req: Request) {
   
   //   if (url.pathname === "/robotics-odyssey") return routes["/robotics-odyssey"](req)
 
-      if (url.pathname === "/make-bun-cell") return routes["/make-bun-cell"](req)
-
+    if (url.pathname === "/make_bun_cell") return routes["/make_bun_cell"](req)
+    if (url.pathname === "/make_deno_cell") return routes["/make_deno_cell"](req)
+    if (url.pathname === "/make_python_cell") return routes["/make_python_cell"](req)
   // if (url.pathname === "/sse") {}
 
   // return routes["/"](req)
@@ -256,3 +87,45 @@ console.log("Server running at http://localhost", port);
 //   ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
 //   portfolio: "views/portfolio",
 // };
+
+function makeReactApp() {
+  const filePath = path.join(__dirname, "views/odyssey/index.html");
+
+let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
+
+      //const App = () => <RoboticsOdyssey />;
+      const App = () => { return <div>course_handler</div> }
+      let html = indexHtmlContent.replace(
+        "{{template roboticsodyssey}}",
+        `${renderToString(<App />)}`,
+      );
+      return html
+}
+
+async function handle_livekit_connect(req: Request) { 
+  const identity = url.searchParams.get("identity");
+  if (!identity) {
+    return new Response("Identity parameter is missing", { status: 400 });
+  }
+
+  const json = await connect_to_livekit();
+  console.log(json, json);
+    return new Response(JSON.stringify(json));
+}
+
+async function serveRoboticsOdyssey(req: Request) { 
+  return new Response(makeReactApp(), {
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
+}
+
+
+async function make_docs(req: Request) { 
+  return new Response("make_docs", {
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
+}

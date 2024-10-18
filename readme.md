@@ -109,3 +109,11 @@ make a 3D captcha - fun
 https://mail.google.com/mail/u/eggnog.wahab@gmail.com/#search/from:notifications@stripe.com
 
 200,000 - is this okay - augment their blog + product - twitch 2016 
+
+recipe to follow alan kay's footsteps - read 10,000 books/blogs/videos + work hard for 10 years - ask him.
+
+make robotics fool-proof - bc i am a fool - fool-proof house -> fool-proof robotics -> launch course nov 1 -> fool-proof civlization.
+
+alan kay + 25 colleages - made the internet work like a cell of an organism - thats why it works so well - how.pdf
+
+samus - eyes - my favortite video game
