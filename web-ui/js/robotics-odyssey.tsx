@@ -9,6 +9,7 @@ import PowerPoint from "./views/odyssey/PowerPoints.tsx";
 import Box from "./views/odyssey/Box.tsx";
 import { Runtime, Inspector} from "@observablehq/runtime";
 import Hardware_Picker from "./Hardware_picker.jsx";
+import OdysseyIntro from "./Odyssey-Intro.tsx";
 
 function RoboticsOdyssey() {
   return (
@@ -17,9 +18,8 @@ function RoboticsOdyssey() {
       <div className="text-gray-950 antialiased bg-slate-900">
         <div className="overflow-hidden flex justify-center items-center min-h-screen">
           <main>
-            {/* <h1 className="text-white glowing-rainbow-text">
-              Thanks to BotParty.org + Dynamicland.org!
-            </h1> */}
+          <OdysseyIntro />
+     
 
             <div className="">
 
@@ -35,8 +35,8 @@ function RoboticsOdyssey() {
             {/* <PowerPoint />
             <Box /> */}
 {/* <UseDirectImport /> */}
-            {/* <Footer /> */}
-            <Hardware_Picker></Hardware_Picker>
+            <Footer />
+            {/* <Hardware_Picker></Hardware_Picker> */}
 
           </main>
         </div>

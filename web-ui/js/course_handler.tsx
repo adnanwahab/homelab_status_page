@@ -3,6 +3,7 @@ import { renderToString } from "react-dom/server";
 import React from "react";
 import { serve } from "bun";
 const { spawn } = require("child_process");
+import Blag from "./blag.jsx";
 //import RoboticsOdyssey from "views/odyssey/robotics-odyssey.tsx";
 import fs from "fs";
 import path from "path";
@@ -30,6 +31,22 @@ let cgi_tools = {
   // ffmpeg_vid_to_img: "views/ffmpeg_vid_to_img",
 };
 
+function serveBlag(req: Request) { 
+  const filePath = path.join(__dirname, "views/odyssey/index.html");
+  let indexHtmlContent = fs.readFileSync(filePath, "utf-8");
+
+  const blag = indexHtmlContent.replace(
+    "{{template blag}}",
+    `${renderToString(<Blag />)}`,
+  );
+console.log(req.url);
+  return new Response(blag, {
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
+}
+
 
 const routes = {
   //"/": (req: Request) => make_docs,
@@ -38,7 +55,8 @@ const routes = {
   "/make_bun_cell": (req: Request) => serveMakeBunCell(req),
   "/make_deno_cell": (req: Request) => serveMakeDenoCell(req),
   "/make_python_cell": (req: Request) => serveMakePythonCell(req),
-  ...cgi_tools
+  "/blag": (req: Request) => serveBlag(req),
+  //...cgi_tools
  }
 const routes_links = Object.keys(routes).map(
   key => `<li><a href=${key}>${key}</a></li>`
@@ -83,6 +101,8 @@ async function proxy(req: Request) {
     if (url.pathname === "/make_deno_cell") return routes["/make_deno_cell"](req)
     if (url.pathname === "/make_python_cell") return routes["/make_python_cell"](req)
     if (url.pathname.includes("/user_code")) return static_files(req)
+
+      if (url.pathname === "/blag") return routes["/blag"](req)
 
   return new Response(default_response, {
     headers: {

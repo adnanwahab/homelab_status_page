@@ -13,6 +13,8 @@ import React from "react";
 function ObservablePreview() {
   return (
     <div className="overflow-hidden" style={{height: "50vh"}}>
+                  <iframe className="h-full w-full" src="https://roboticsuniversity.observablehq.cloud/robotics-odyssey/"></iframe>
+
       {/* <div className="pb-24 px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-7xl"> */}
           {/* <h2 className="max-w-3xl text-pretty text-4xl font-medium tracking-tighter text-gray-950 data-[dark]:text-white sm:text-6xl">
@@ -24,10 +26,10 @@ function ObservablePreview() {
 
             flex flex-row"
           > */}
-            <iframe
+            {/* <iframe
               className="h-full w-full"
               src="http://127.0.0.1:3000"
-            ></iframe>
+            ></iframe> */}
             {/* <iframe
               className="h-screen w-1/2 flex-1"
               src="/public/dist/index.html"
@@ -50,7 +52,6 @@ function ObservablePreview() {
 
             </div> */}
 
-            {/* <iframe className="h-full w-full" src="https://roboticsuniversity.observablehq.cloud/robotics-odyssey/"></iframe> */}
           {/* </div> */}
         {/* </div>*/}
     {/*   </div> */}

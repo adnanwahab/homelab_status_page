@@ -7,6 +7,8 @@ demos/
 pdfs/
 previous_static/
 data.json
+web-ui/user_code/tmp/web_bg.wasm
+web-ui/user_code/tmp/webgpu-examples
 
 
 ObservableRobotRemote

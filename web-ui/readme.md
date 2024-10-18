@@ -107,3 +107,9 @@ https://github.com/mrdoob/three.js
 https://docs.trossenrobotics.com/interbotix_xsarms_docs/ros_interface/ros1/quickstart.html
 
 rosservice call /vx250/torque_enable "{cmd_type: 'group', name: 'all', enable: true}
+
+https://docs.trossenrobotics.com/
+
+https://docs.trossenrobotics.com/
+
+curl -LsSf https://astral.sh/uv/install.sh | sh

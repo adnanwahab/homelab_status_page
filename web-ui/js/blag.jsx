@@ -1,7 +1,22 @@
-import React from "react";
+
 // the wizards are humans too -- shodan was right.
 function Blog () {  
-  return (<div class="bg-slate-900 font-white">
+  let focus = {
+    "sensors": ["zed-2i", "realsense", "roomba", "lidar", "camera"],
+    "manipulators": ["trossen", "gello", "shadow"],
+    "locomotion": ["roomba", "segway", "wheelchair"],
+    "tools": [],
+    "foundation_models": ["llama", "gpt", "gemini", "claude"]
+  }
+
+
+
+
+
+  return (
+
+  
+  <div class="bg-slate-900 font-white">
     <div
       class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none h-full"
     >
@@ -118,42 +133,49 @@ function Blog () {
                     Robotics Sensors
                   </h2>
                   <ul class="list-none pl-0 space-y-2">
-                    <li>
-                      <a
-                        href="/?"
-                        class="text-xl text-gray-400 hover:underline"
-                      >
-                        zed-2i
-                      </a>
-                    </li>
+                    {focus.sensors.map(sensor => (
+                      <li>
+                        <a
+                          href="/?"
+                          class="text-xl text-gray-400 hover:underline"
+                        >
+                          {sensor}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </section>
                 <section class="mb-6">
                   <h2 class="text-3xl font-bold mb-4">Robotic Manipulators</h2>
                   <ul class="list-none pl-0 space-y-2">
-                    <li>
-                      <a
-                        href="/?"
+                    {focus.manipulators.map(manipulator => (
+                      <li>
+                        <a
+                          href="/?"
                         class="text-xl text-gray-400 hover:underline"
                       >
-                        trossen
+                        {manipulator}
                       </a>
-                    </li>
-                  </ul>
+                      <a>https://github.com/wuphilipp/gello_mechanical</a>
+                    </li> 
+                    ))}
+                  </ul> 
                 </section>
                 <section class="mb-6">
                   <h2 class="text-3xl font-bold mb-4">
                     Robotic Locomotion
                   </h2>
                   <ul class="list-none pl-0 space-y-2">
-                    <li>
-                      <a
-                        href="/?"
+                    {focus.locomotion.map(locomotion => (
+                      <li>
+                        <a
+                          href="/?"
                         class="text-xl text-gray-400 hover:underline"
                       >
-                        roomba
+                        {locomotion}
                       </a>
                     </li>
+                  ))}
                   </ul>
                 </section>
 
@@ -162,14 +184,16 @@ function Blog () {
                    
                   </h2>
                   <ul class="list-none pl-0 space-y-2">
-                    <li>
-                      <a
-                        href="/?"
+                    {focus.tools.map(tool => (
+                      <li>
+                        <a
+                          href="/?"
                         class="text-xl text-gray-400 hover:underline"
                       >
-                        hi
+                        {tool}
                       </a>
                     </li>
+                  ))}
                   </ul>
                 </section>
 
@@ -225,6 +249,8 @@ function Blog () {
             class="relative flex h-full max-w-full flex-1 flex-col overflow-hidden hidden"
           ></div>
         </div>
+   
+{/* 
         <footer class="border-t border-gray-700 border-2-t">
           <div
             class="mx-auto max-w-7xl px-6 py-6 md:flex md:items-center md:justify-between lg:px-8"
@@ -242,7 +268,7 @@ function Blog () {
                   height="28"
                   aria-label="Observable"
                   fill="currentColor"
-                  style="width: 22px"
+                  style={{ width: "22px" }}
                   class="white"
                 >
                   <path
@@ -345,10 +371,15 @@ function Blog () {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
+
+
+
       </div>
     </div>
-    </div>)
+    </div>
+  
+    )
 }
 
 export default Blog;
