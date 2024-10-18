@@ -22,11 +22,9 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "gmath": "^0.0.6"
-
-      }
+  }
 }

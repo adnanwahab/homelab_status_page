@@ -11,7 +11,7 @@ import VoxelNotebook from "https://api.observablehq.com/@roboticsuniversity/voxe
 import prediction_planning_notebook from "https://api.observablehq.com/@roboticsuniversity/3-planning-prediction.js?v=4";
 const observable_titles = [
   {
-    title: "Livekit",
+    title: "Perception Module",
     href: "https://observablehq.com/@roboticsuniversity/livekit",
   },
   {
@@ -38,7 +38,7 @@ function ObservableTitle(props) {
 
 function MMO_Prediction_Planning(props) {
   const TwitchPlaysPokemonPanelRef = useRef();
-
+  const Karpathy_AI_ClassRef = useRef();
   useEffect(() => {
     const runtime = new Runtime();
     runtime.module(prediction_planning_notebook, (name) => {
@@ -46,7 +46,10 @@ function MMO_Prediction_Planning(props) {
       if (name === "Twitch_chat")
         return new Inspector(TwitchPlaysPokemonPanelRef.current);
       // if (name === "webrtc") return new Inspector(videoRef.current);
-      console.log("twitchplays-robots", TwitchPlaysPokemonPanelRef);
+      //console.log("twitchplays-robots", TwitchPlaysPokemonPanelRef);
+      // if (name === "Karpathy_AI_Class")
+      //   return new Inspector(Karpathy_AI_ClassRef.current);
+
     });
     return () => runtime.dispose();
   }, []);
@@ -56,12 +59,14 @@ function MMO_Prediction_Planning(props) {
         title="Prediction Planning"
         href="https://observablehq.com/@roboticsuniversity/3-planning-prediction"
       />
-      <div ref={TwitchPlaysPokemonPanelRef} />
+      <div class="hidden" ref={TwitchPlaysPokemonPanelRef} />
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/PaCmpygFfXo?si=pamD56WkBAsJBEPF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+
     </div>
   );
 }
 
-function Livekit() {
+function Perception_Module() {
   const lOGORef = useRef();
 
   useEffect(() => {
@@ -80,14 +85,14 @@ function Livekit() {
         title="Perception"
         href="https://observablehq.com/@roboticsuniversity/livekit"
       />
-      <div>
+      {/* <div>
         <iframe
           height="1000px"
           width="100%"
           src="https://shels-macbook-pro.jerboa-kokanue.ts.net/read_screen_share"
         />
-      </div>
-      <div class="hidden" ref={lOGORef} />
+      </div> */}
+      <div  ref={lOGORef} />
       {/* <div ref={videoRef} /> */}
     </>
   );
@@ -188,7 +193,7 @@ function TeleGuidance() {
         <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-2">
           <div className="relative">
             <div className="relative overflow-hidden rounded-lg lg:rounded-tl-[2rem] h-[300px]">
-              <Livekit />
+              <Perception_Module />
             </div>
           </div>
 
