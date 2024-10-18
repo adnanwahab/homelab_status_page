@@ -168,3 +168,31 @@ https://johnresig.com/blog/how-javascript-timers-work/ {{addsearch}}
 https://deno.com/blog/v2.0
 
 https://gist.github.com/Fil
+
+
+https://roamresearch.com/ {{index3layers}}
+
+
+https://hn.algolia.com/?q=alan+kay {{addsearch}}
+https://news.ycombinator.com/item?id=15261691 {{addsearch}}
+
+https://www.nytimes.com/wirecutter/
+
+nolgera + nevar
+
+https://www.katonahyoga.com/ {{occult_electic_truestudent}}
+
+
+https://web.archive.org/web/20170404011547/http://shelfjoy.com/shelfjoy/alan-kay-from-viewpoints-research-institute-recommends-his-reading-list-for-beginners
+
+https://www.quora.com/Experienced-programmers-and-computer-scientists-what-are-some-really-old-or-even-nearly-forgotten-books-you-think-every-new-programmer-should-read/answer/Alan-Kay-11?share=1
+
+paul graham book shelf {{todo}}
+pether thiel book shelf {{todo}}
+http://squeakland.org/resources/books/readingList.jsp
+
+https://jetsonhacks.com/2023/05/30/jetson-orin-nano-tutorial-ssd-install-boot-and-jetpack-setup/
+
+https://web.archive.org/web/20191125073329/http://alexsharry.com/ - {reflect.app}
+
+https://edu.irobot.com/what-we-offer/create3
