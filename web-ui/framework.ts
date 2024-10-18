@@ -41,7 +41,7 @@ export class Framework {
   async init() {}
   render(_encoder: GPUCommandEncoder, _view: GPUTextureView) {}
 
-  async renderPng(outputPath: string) {
+  async renderPng() {
     await this.init();
     const { texture, outputBuffer } = createCapture(
       this.device,
@@ -53,6 +53,8 @@ export class Framework {
     copyToBuffer(encoder, texture, outputBuffer, this.dimensions);
     this.device.queue.submit([encoder.finish()]);
 
-    await createPng(outputBuffer, this.dimensions, outputPath);
+    await createPng(outputBuffer, this.dimensions);
   }
 }
+
+//import simple-webgpu + amanda ghassier + three.js -> make a simple compute shader like computetoys.

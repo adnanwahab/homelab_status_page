@@ -6,7 +6,7 @@ web-ui/demos
 data.json
 
 
-notebooks/ObservableRobotRemote
+ObservableRobotRemote
 data/db/code_annotation.db
 data/alan_kay/images
 notebooks/robot_remote_control

@@ -1,6 +1,12 @@
-import { getRowPadding } from "std/webgpu";
-import * as gmath from "gmath";
-import * as png from "png";
+
+// 
+//import { getRowPadding } from "std/webgpu";
+
+import * as webgpu from "https://deno.land/std@0.213.0/webgpu/mod.ts";
+import * as gmath from "https://deno.land/x/gmath@0.1.11/mod.ts";
+import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
+
+const { getRowPadding } = webgpu
 
 export interface Dimensions {
   width: number;
@@ -26,11 +32,10 @@ export function copyToBuffer(
     dimensions,
   );
 }
-//import.meta.url.split("/").slice(0, -1).join("/") + "/output.png",
+
 export async function createPng(
   buffer: GPUBuffer,
   dimensions: Dimensions,
-  outputPath: string = "/users",
 ): Promise<void> {
   await buffer.mapAsync(1);
   const inputBuffer = new Uint8Array(buffer.getMappedRange());
@@ -45,15 +50,17 @@ export async function createPng(
     outputBuffer.set(slice, i * unpadded);
   }
 
-  const image = png.encode(outputBuffer, dimensions.width, dimensions.height, {
-    stripAlpha: true,
-    color: 2,
-  });
-  // simple encapsulation = every notebook = a folder in this repo - every cell = a file... probably good enough for v1
-  const currentProcessPath = Deno.cwd();
-  const currentFilePath = import.meta.url;
-
-  Deno.writeFileSync(outputPath, image);
+  const image = png.encode(
+    outputBuffer,
+    dimensions.width,
+    dimensions.height,
+    {
+      stripAlpha: true,
+      color: 2,
+    },
+  );
+  //const image = new Uint8Array(outputBuffer);
+  Deno.writeFileSync("./output.png", image);
 
   buffer.unmap();
 }
@@ -90,20 +97,8 @@ export function createBufferInit(
 
 // deno-fmt-ignore
 export const OPENGL_TO_WGPU_MATRIX = gmath.Matrix4.from(
-  1.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  1.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.5,
-  0.0,
-  0.0,
-  0.0,
-  0.5,
-  1.0,
+  1.0, 0.0, 0.0, 0.0,
+  0.0, 1.0, 0.0, 0.0,
+  0.0, 0.0, 0.5, 0.0,
+  0.0, 0.0, 0.5, 1.0,
 );

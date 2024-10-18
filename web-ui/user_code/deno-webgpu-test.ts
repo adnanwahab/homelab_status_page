@@ -1,260 +1,247 @@
+//https://raw.githubusercontent.com/denoland/webgpu-examples/refs/heads/main/cube/mod.ts
 
+import * as gmath from "./gmath/mod.ts";
 import { Framework } from "../framework.ts";
 import { createBufferInit, OPENGL_TO_WGPU_MATRIX } from "../utils.ts";
 
-function vertex(pos: [number, number, number], tc: [number, number]): number[] {
-  return [...pos, 1, ...tc];
-}
+Deno.chdir("user_code");
 
-function createVertices(): {
-  vertexData: Float32Array;
-  indexData: Uint16Array;
-} {
-  const vertexData = new Float32Array([
-    // top (0, 0, 1)
-    ...vertex([-1, -1, 1], [0, 0]),
-    ...vertex([1, -1, 1], [1, 0]),
-    ...vertex([1, 1, 1], [1, 1]),
-    ...vertex([-1, 1, 1], [0, 1]),
-    // bottom (0, 0, -1)
-    ...vertex([-1, 1, -1], [1, 0]),
-    ...vertex([1, 1, -1], [0, 0]),
-    ...vertex([1, -1, -1], [0, 1]),
-    ...vertex([-1, -1, -1], [1, 1]),
-    // right (1, 0, 0)
-    ...vertex([1, -1, -1], [0, 0]),
-    ...vertex([1, 1, -1], [1, 0]),
-    ...vertex([1, 1, 1], [1, 1]),
-    ...vertex([1, -1, 1], [0, 1]),
-    // left (-1, 0, 0)
-    ...vertex([-1, -1, 1], [1, 0]),
-    ...vertex([-1, 1, 1], [0, 0]),
-    ...vertex([-1, 1, -1], [0, 1]),
-    ...vertex([-1, -1, -1], [1, 1]),
-    // front (0, 1, 0)
-    ...vertex([1, 1, -1], [1, 0]),
-    ...vertex([-1, 1, -1], [0, 0]),
-    ...vertex([-1, 1, 1], [0, 1]),
-    ...vertex([1, 1, 1], [1, 1]),
-    // back (0, -1, 0)
-    ...vertex([1, -1, 1], [0, 0]),
-    ...vertex([-1, -1, 1], [1, 0]),
-    ...vertex([-1, -1, -1], [1, 1]),
-    ...vertex([1, -1, -1], [0, 1]),
-  ]);
 
-  // deno-fmt-ignore
-  const indexData = new Uint16Array([
-    0, 1, 2, 2, 3, 0, // top
-    4, 5, 6, 6, 7, 4, // bottom
-    8, 9, 10, 10, 11, 8, // right
-    12, 13, 14, 14, 15, 12, // left
-    16, 17, 18, 18, 19, 16, // front
-    20, 21, 22, 22, 23, 20, // back
-  ]);
+class Boids extends Framework {
+  particleCount: number;
+  particlesPerGroup: number;
 
-  return { vertexData, indexData };
-}
+  computePipeline!: GPUComputePipeline;
+  particleBindGroups: GPUBindGroup[] = [];
+  renderPipeline!: GPURenderPipeline;
+  particleBuffers: GPUBuffer[] = [];
+  verticesBuffer!: GPUBuffer;
 
-function createTexels(size: number): Uint8Array {
-  const texels = new Uint8Array(size * size);
-  for (let i = 0; i < size * size; i++) {
-    const cx = 3 * (i % size) / (size - 1) - 2;
-    const cy = 2 * Math.floor(i / size) / (size - 1) - 1;
-    let count = 0;
-    let x = cx;
-    let y = cy;
-    while (count < 0xFF && x * x + y * y < 4) {
-      const oldX = x;
-      x = x * x - y * y + cx;
-      y = 2.0 * oldX * y + cy;
-      count += 1;
-    }
-    texels[i] = count;
+  frameNum = 0;
+
+  constructor(options: {
+    particleCount: number;
+    particlesPerGroup: number;
+    dimensions: Dimensions;
+  }, device: GPUDevice) {
+    super(options.dimensions, device);
+
+    this.particleCount = options.particleCount;
+    this.particlesPerGroup = options.particlesPerGroup;
   }
-  return texels;
-}
-
-function generateMatrix(aspectRatio: number): Float32Array {
-  const mxProjection = new gmath.PerspectiveFov(
-    new gmath.Deg(45),
-    aspectRatio,
-    1,
-    1000,
-  ).toPerspective().toMatrix4();
-  const mxView = gmath.Matrix4.lookAtRh(
-    new gmath.Vector3(1.5, -5, 3),
-    new gmath.Vector3(0, 0, 0),
-    gmath.Vector3.forward(),
-  );
-  return OPENGL_TO_WGPU_MATRIX.mul(mxProjection.mul(mxView)).toFloat32Array();
-}
-
-class Cube extends Framework {
-  pipeline!: GPURenderPipeline;
-  bindGroup!: GPUBindGroup;
-  indexBuffer!: GPUBuffer;
-  vertexBuffer!: GPUBuffer;
-  indexCount!: number;
 
   // deno-lint-ignore require-await
   async init() {
-    const { vertexData, indexData } = createVertices();
-    this.indexCount = indexData.length;
-
-    this.vertexBuffer = createBufferInit(this.device, {
-      label: "Vertex Buffer",
-      usage: GPUBufferUsage.VERTEX,
-      contents: vertexData.buffer,
+    const computeShader = this.device.createShaderModule({
+      code: Deno.readTextFileSync(new URL("./compute.wgsl", import.meta.url)),
     });
 
-    this.indexBuffer = createBufferInit(this.device, {
-      label: "Index Buffer",
-      usage: GPUBufferUsage.INDEX,
-      contents: indexData.buffer,
+    const drawShader = this.device.createShaderModule({
+      code: Deno.readTextFileSync(new URL("./draw.wgsl", import.meta.url)),
     });
 
-    const bindGroupLayout = this.device.createBindGroupLayout({
-      entries: [
-        {
-          binding: 0,
-          visibility: GPUShaderStage.VERTEX,
-          buffer: {
-            minBindingSize: 64,
-          },
-        },
-        {
-          binding: 1,
-          visibility: GPUShaderStage.FRAGMENT,
-          texture: {
-            sampleType: "uint",
-          },
-        },
-      ],
-    });
+    const simParamData = new Float32Array([
+      0.04, // deltaT
+      0.1, // rule1Distance
+      0.025, // rule2Distance
+      0.025, // rule3Distance
+      0.02, // rule1Scale
+      0.05, // rule2Scale
+      0.005, // rule3Scale
+    ]);
 
-    const pipelineLayout = this.device.createPipelineLayout({
-      bindGroupLayouts: [bindGroupLayout],
-    });
-
-    const size = 256;
-    const texels = createTexels(size);
-    const textureExtent = {
-      width: size,
-      height: size,
-    };
-
-    const texture = this.device.createTexture({
-      size: textureExtent,
-      format: "r8uint",
-      usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
-    });
-    const textureView = texture.createView();
-    this.device.queue.writeTexture(
-      {
-        texture,
-      },
-      texels,
-      {
-        bytesPerRow: size,
-      },
-      textureExtent,
-    );
-
-    const mxTotal = generateMatrix(
-      this.dimensions.width / this.dimensions.height,
-    );
-    const uniformBuffer = createBufferInit(this.device, {
-      label: "Uniform Buffer",
+    const simParamBuffer = createBufferInit(this.device, {
+      label: "Simulation Parameter Buffer",
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
-      contents: mxTotal.buffer,
+      contents: simParamData.buffer,
     });
 
-    this.bindGroup = this.device.createBindGroup({
-      layout: bindGroupLayout,
+    const computeBindGroupLayout = this.device.createBindGroupLayout({
       entries: [
         {
           binding: 0,
-          resource: {
-            buffer: uniformBuffer,
+          visibility: GPUShaderStage.COMPUTE,
+          buffer: {
+            minBindingSize: simParamData.length * 4,
           },
         },
         {
           binding: 1,
-          resource: textureView,
+          visibility: GPUShaderStage.COMPUTE,
+          buffer: {
+            type: "read-only-storage",
+            minBindingSize: this.particleCount * 16,
+          },
+        },
+        {
+          binding: 2,
+          visibility: GPUShaderStage.COMPUTE,
+          buffer: {
+            type: "storage",
+            minBindingSize: this.particleCount * 16,
+          },
         },
       ],
     });
-
-    const shader = this.device.createShaderModule({
-      code: Deno.readTextFileSync(new URL("./shader.wgsl", import.meta.url)),
+    const computePipelineLayout = this.device.createPipelineLayout({
+      label: "compute",
+      bindGroupLayouts: [computeBindGroupLayout],
     });
-    const vertexBuffers: GPUVertexBufferLayout[] = [
-      {
-        arrayStride: 6 * 4,
-        attributes: [
+    const renderPipelineLayout = this.device.createPipelineLayout({
+      label: "render",
+      bindGroupLayouts: [],
+    });
+    this.renderPipeline = this.device.createRenderPipeline({
+      layout: renderPipelineLayout,
+      vertex: {
+        module: drawShader,
+        entryPoint: "main_vs",
+        buffers: [
           {
-            format: "float32x4",
-            offset: 0,
-            shaderLocation: 0,
+            arrayStride: 4 * 4,
+            stepMode: "instance",
+            attributes: [
+              {
+                format: "float32x2",
+                offset: 0,
+                shaderLocation: 0,
+              },
+              {
+                format: "float32x2",
+                offset: 8,
+                shaderLocation: 1,
+              },
+            ],
           },
           {
-            format: "float32x2",
-            offset: 4 * 4,
-            shaderLocation: 1,
+            arrayStride: 2 * 4,
+            attributes: [
+              {
+                format: "float32x2",
+                offset: 0,
+                shaderLocation: 2,
+              },
+            ],
           },
         ],
       },
-    ];
-
-    this.pipeline = this.device.createRenderPipeline({
-      layout: pipelineLayout,
-      vertex: {
-        module: shader,
-        entryPoint: "vs_main",
-        buffers: vertexBuffers,
-      },
       fragment: {
-        module: shader,
-        entryPoint: "fs_main",
+        module: drawShader,
+        entryPoint: "main_fs",
         targets: [
           {
             format: "rgba8unorm-srgb",
           },
         ],
       },
-      primitive: {
-        cullMode: "back",
+    });
+    this.computePipeline = this.device.createComputePipeline({
+      label: "Compute pipeline",
+      layout: computePipelineLayout,
+      compute: {
+        module: computeShader,
+        entryPoint: "main",
       },
     });
+    const vertexBufferData = new Float32Array([
+      -0.01,
+      -0.02,
+      0.01,
+      -0.02,
+      0.00,
+      0.02,
+    ]);
+    this.verticesBuffer = createBufferInit(this.device, {
+      label: "Vertex Buffer",
+      usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
+      contents: vertexBufferData.buffer,
+    });
+
+    const initialParticleData = new Float32Array(4 * this.particleCount);
+    for (let i = 0; i < initialParticleData.length; i += 4) {
+      initialParticleData[i] = Math.random() * 2 - 1; // posx
+      initialParticleData[i + 1] = Math.random() * 2 - 1; // posy
+      initialParticleData[i + 2] = (Math.random() * 2 - 1) * 0.1; // velx
+      initialParticleData[i + 3] = (Math.random() * 2 - 1) * 0.1; // vely
+    }
+
+    for (let i = 0; i < 2; i++) {
+      this.particleBuffers.push(createBufferInit(this.device, {
+        label: "Particle Buffer " + i,
+        usage: GPUBufferUsage.VERTEX | GPUBufferUsage.STORAGE |
+          GPUBufferUsage.COPY_DST,
+        contents: initialParticleData.buffer,
+      }));
+    }
+
+    for (let i = 0; i < 2; i++) {
+      this.particleBindGroups.push(this.device.createBindGroup({
+        layout: computeBindGroupLayout,
+        entries: [
+          {
+            binding: 0,
+            resource: {
+              buffer: simParamBuffer,
+            },
+          },
+          {
+            binding: 1,
+            resource: {
+              buffer: this.particleBuffers[i],
+            },
+          },
+          {
+            binding: 2,
+            resource: {
+              buffer: this.particleBuffers[(i + 1) % 2],
+            },
+          },
+        ],
+      }));
+    }
   }
 
   render(encoder: GPUCommandEncoder, view: GPUTextureView) {
+    encoder.pushDebugGroup("compute boid movement");
+    const computePass = encoder.beginComputePass();
+    computePass.setPipeline(this.computePipeline);
+    computePass.setBindGroup(0, this.particleBindGroups[this.frameNum % 2]);
+    computePass.dispatchWorkgroups(
+      Math.ceil(this.particleCount / this.particlesPerGroup),
+    );
+    computePass.end();
+    encoder.popDebugGroup();
+
+    encoder.pushDebugGroup("render boids");
     const renderPass = encoder.beginRenderPass({
       colorAttachments: [
         {
           view: view,
           storeOp: "store",
-          loadOp: "clear",
-          clearValue: [0.1, 0.2, 0.3, 1],
+          loadOp: "load",
         },
       ],
     });
-
-    renderPass.pushDebugGroup("Prepare data for draw.");
-    renderPass.setPipeline(this.pipeline);
-    renderPass.setBindGroup(0, this.bindGroup);
-    renderPass.setIndexBuffer(this.indexBuffer, "uint16");
-    renderPass.setVertexBuffer(0, this.vertexBuffer);
-    renderPass.popDebugGroup();
-    renderPass.insertDebugMarker("Draw!");
-    renderPass.drawIndexed(this.indexCount, 1);
+    renderPass.setPipeline(this.renderPipeline);
+    renderPass.setVertexBuffer(
+      0,
+      this.particleBuffers[(this.frameNum + 1) % 2],
+    );
+    renderPass.setVertexBuffer(1, this.verticesBuffer);
+    renderPass.draw(3, this.particleCount);
     renderPass.end();
+    encoder.popDebugGroup();
+
+    this.frameNum += 1;
   }
 }
 
-const cube = new Cube({
-  width: 1600,
-  height: 1200,
-}, await Cube.getDevice());
-await cube.renderPng();
+const boids = new Boids({
+  particleCount: 1500, // This should match NUM_PARTICLES in the compute shader.
+  particlesPerGroup: 64,
+  dimensions: {
+    width: 1600,
+    height: 1200,
+  },
+}, await Boids.getDevice());
+await boids.renderPng();
