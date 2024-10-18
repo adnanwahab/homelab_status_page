@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 // Since we cannot import at this point, the import statement for d3 is omitted.
@@ -180,21 +180,22 @@ export default function Example() {
   const [startGradient, setStartGradient] = useState(0)
   const [endGradient, setEndGradient] = useState(1)
 
-  
-
-
-
+  // Move these inside the component to ensure they update on re-render
   const from_color = d3.rgb(makeGradient(startGradient)).hex()
-  //`#ff80b5`
-  const to_color = d3.rgb(makeGradient(endGradient)).hex()//`#9089fc`
+  const to_color = d3.rgb(makeGradient(endGradient)).hex()
 
-  let gradient = `relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] 
+  // Use a state variable for the gradient string
+  const [gradientClass, setGradientClass] = useState('')
+
+  // Update the gradient class when colors change
+  useEffect(() => {
+    const newGradientClass = `relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] 
       -translate-x-1/2 bg-gradient-to-tr 
-  from-[${from_color}] to-[${to_color}] 
-  opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]`;
+      from-[${from_color}] to-[${to_color}] 
+      opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]`;
+    setGradientClass(newGradientClass);
+  }, [from_color, to_color]);
 
-  //gradient = ''
-  
   const handleOnChange = (e) => {
     setSuggestion(e.target.value)
 
@@ -355,7 +356,7 @@ export default function Example() {
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
-            className={gradient}
+            className={gradientClass}
           />
         </div>
       </div>
