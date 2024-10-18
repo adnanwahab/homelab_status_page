@@ -1,6 +1,17 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+// Since we cannot import at this point, the import statement for d3 is omitted.
+//
+
+import * as d3Chromatic from 'https://unpkg.com/d3-scale-chromatic@3.0.0/dist/d3-scale-chromatic.min.js';
+import * as d3 from "https://cdn.skypack.dev/d3@7";
+import { interpolateTurbo } from "https://cdn.skypack.dev/d3-scale-chromatic@3";
+
+//let https://underscorejs.org/underscore-esm.js
+
+const makeGradient = (t) => interpolateTurbo(t)
+
 
 const navigation = [
   // { name: 'Product', href: '#' },
@@ -39,7 +50,8 @@ const navigation = [
 // https://tailwindui.com/components/application-ui/navigation/command-palettes - probably best one 
 
 // https://tailwindui.com/components/application-ui/forms/form-layouts
-function Suggestions_for_Improvement() {
+function Suggestions_for_Improvement(props) {
+
     const [selected, setSelected] = useState(moods[5])
   
     return (
@@ -64,6 +76,7 @@ function Suggestions_for_Improvement() {
                 placeholder="Add your comment..."
                 className="block w-full resize-none border-0 border-b border-transparent p-0 pb-2 text-gray-900 placeholder:text-gray-400 focus:border-indigo-600 focus:ring-0 sm:text-sm sm:leading-6"
                 defaultValue={''}
+                onChange={props.onChange}
               />
             </div>
             <div className="flex justify-between pt-2">
@@ -163,7 +176,34 @@ const Thanks = () => {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [suggestion, setSuggestion] = useState("")
+  const [startGradient, setStartGradient] = useState(0)
+  const [endGradient, setEndGradient] = useState(1)
 
+  
+
+
+
+  const from_color = d3.rgb(makeGradient(startGradient)).hex()
+  //`#ff80b5`
+  const to_color = d3.rgb(makeGradient(endGradient)).hex()//`#9089fc`
+
+  let gradient = `relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] 
+      -translate-x-1/2 bg-gradient-to-tr 
+  from-[${from_color}] to-[${to_color}] 
+  opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]`;
+
+  //gradient = ''
+  
+  const handleOnChange = (e) => {
+    setSuggestion(e.target.value)
+
+    let start = Math.random()
+    let end = Math.random()
+    setStartGradient(start)
+    setEndGradient(end)
+    console.log(from_color, to_color)
+  }
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -290,7 +330,7 @@ export default function Example() {
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
               fugiat veniam occaecat fugiat aliqua.
             </p> */}
-            <div className="flex items-center justify-center gap-x-6">
+            <div className="flex items-center justify-end gap-x-6">
               {/* <a
                 href="#"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -300,7 +340,7 @@ export default function Example() {
               {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
               </a> */}
-              <Suggestions_for_Improvement />
+              <Suggestions_for_Improvement onChange={handleOnChange}/>
             </div>
           </div> 
 
@@ -315,7 +355,7 @@ export default function Example() {
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            className={gradient}
           />
         </div>
       </div>
