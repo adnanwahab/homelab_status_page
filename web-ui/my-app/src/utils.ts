@@ -403,7 +403,3 @@ async function send_email() {
   //   console.log('sending email',     await send_email())
 
   // }
-
-//console.log('done', await send_email())
-
-  //oct 24 - wizards mostly bottom of the argument triangle -rest were - having fun making cool stuff.
