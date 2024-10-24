@@ -25,6 +25,17 @@ elif [ "$COMMAND" = "replit" ]; then
 elif [ "$COMMAND" = "bootstrap" ]; then
     echo "Running bootstrap..."
     bash ~/homelab_status_page/scripts/_bootstrap.sh
+
+elif [ "$COMMAND" = "claude" ]; then
+    echo "Running bootstrap..."
+    bash ~/homelab_status_page/scripts/claude.js
+
+elif [ "$COMMAND" = "anthropic" ]; then
+    echo "Running bootstrap..."
+
+elif [ "$COMMAND" = "test" ]; then
+    echo "Running bootstrap..."
+    bash ~/homelab_status_page/scriptts/test.js
 elif [ "$COMMAND" = "restart-blog" ]; then
     echo "Running restart-blog..."
     #bash ~/homelab_status_page/scripts/_bootstrap.sh

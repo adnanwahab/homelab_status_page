@@ -15,8 +15,7 @@ import { WebhookReceiver } from 'livekit-server-sdk';
 import { LiveKitClient } from 'livekit-server-sdk';
 import * as utils from './utils.js'
 import { serveStatic } from 'hono/bun'
-console.log('serving static')
-app.use('/static/*', serveStatic({ root: './src' }))
+
 
 import { $ } from "bun"
 
@@ -246,7 +245,7 @@ const blog = `<div class="bg-slate-900 font-white">
             <div class="container mx-auto px-4">
               <section class="mb-6">
                 <h2 id="memory-updated" class="text-3xl font-bold mb-4">
-                  <a id="memory-updated" href="https://robotics-odyssey.com"> i dedicated my life to turning bret's dreams into reality.</a>
+                  <a id="memory-updated" href="https://robotics-odysey.com"> i dedicated my life to turning bret's dreams into reality.</a>
                 </h2>
                 <ul class="list-none pl-0 space-y-2">
                   <li>
@@ -332,38 +331,7 @@ const blog = `<div class="bg-slate-900 font-white">
   
   export { blog }
   
-  // I’ve devoted my _life to shortening the distance between now and dynamicland.org
-    //because in 2014, bret victor - implement research papers 
-    // then i picked one, link imees, and did it , and got to meet him at openvisconf and that improved my life. 
   
-    // no matter how hard i  tried i could never out think bret 
-  
-  //   5 years - learned to convert model to text .
-  
-  // 2 years ago - text to text translation became super fast and accurate.
-  
-  // thats cool - text is now more usefful... kinda
-  
-  // but.... whats most useful is text to pictures to reality.
-  
-  // text->reality === ?!?!?!?!?!? probaboiltiy hhard to contain .
-  
-  // read magic ink + ladder of abstraction.
-  
-  // {/\* bostock VR ghost in the shell \*/}
-  
-  // realtalk
-  
-  // he said 
-  
-  // my goal = break down every construct needed to help make seeing space and dynamciland in every home by 2026.
-  
-  // bret said this was cool https://worrydream.com/LadderOfAbstraction/
-  // bret said magic ink was cool 
-  //but then he said -> computer could not solve the real rpobelm. they are nice. they do augment human intelligence. but thet create bubbles where veryone is in their own singple player gmae/
-  //dynamic land fixes that. it is alan kay's how. 
-  //by working towardsa  brighter future that everyone wants - it loweres your masculinity - no one could handle that. mean girls need to stop or lohengramm will jake the yeerks.
-
 
 
 
@@ -372,8 +340,6 @@ const blog = `<div class="bg-slate-900 font-white">
 
 
 async function send_email() {
-  // const _ = 're_gPBiq268_5gRCCNH2bLAwyaXQ6qJ6qLfJs';
-  // const resend = new Resend(_);
 
   const html = `
   <div>
@@ -399,7 +365,82 @@ async function send_email() {
     });
     return result
 }
-  // if (process.argv.includes('send_email')) {
-  //   console.log('sending email',     await send_email())
+ 
 
-  // }
+  import ollama from 'ollama'
+
+console.log(process.cwd())
+
+  async function magic_llama(msg)  {
+
+    const result = await ollama.chat({
+      model: 'llama3.1',
+      prompt: msg,
+     })
+     return result
+  }
+
+  export { magic_llama }
+
+  async function generate_blog() {
+    const modules = [
+      'assembly-disassembly.md  kinematics-dynamics.md  preventative-maintenance.md',
+      'camera-calibration.md', 'object-detection.md', 'vision-transformers.md',
+      'attention-mechanisms.md', 'llms-vs-classical.md', 'agri-logistics.md', 'cat-food.md', 'house-garden.md', 'Science-Math-Magic.md',
+      'simulation-and-ui.md', 'real-world-applications.md', 'robotics-odyssey.md', 'llama-tools.md', 'blag.md'
+    ]
+
+
+    const result = await Promise.all(modules.map(async (module) => { 
+        const response = await magic_llama(`generate a blog post about the topic ${module}`)
+        return response.message || response.content || response.response || JSON.stringify(response)
+      }))
+console.log(result)
+      //fs.writeFileSync('./src/llama-tools/blog.md', result.join('\n\n'))
+  }
+
+
+
+
+  async function generateJetsonDocs() {
+    const topics = [
+      "Initial setup and hardware requirements",
+      "Installing JetPack SDK",
+      "Setting up CUDA and cuDNN",
+      "Power modes and thermal management",
+      "Common troubleshooting steps"
+    ];
+  
+    const systemPrompt = `You are a technical documentation expert. Create clear, step-by-step documentation for Jetson Orin installation. 
+    Include command examples, prerequisites, and troubleshooting tips. Format the output in markdown.`;
+  
+    const docs = await Promise.all(topics.map(async (topic) => {
+      const result = await ollama.chat({
+        model: 'llama3.1',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: `Generate documentation section for: ${topic}` }
+        ]
+      });
+  console.log(result);
+      return {
+        topic,
+        content: result.message.content,
+      };
+    }));
+  
+    // Combine all sections into a single markdown document
+    const fullDoc = docs.map(section => `
+  ## ${section.topic}
+  
+  ${section.content}
+  `).join('\n\n');
+  
+    // Write to file
+    fs.writeFileSync('./jetson-orin-guide.md', fullDoc);
+    return fullDoc;
+  }
+  
+  export { generateJetsonDocs }
+
+  export { generate_blog }

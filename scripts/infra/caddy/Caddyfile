@@ -12,10 +12,6 @@ files.hashirama.blog {
 	route /status_page {
 		respond "status page"
 	}
-	limits {
-		body 100mb
-	}
-	# //Cache-Control "public, max-age=31536000, immutable"
 }
 
 hashirama.blog {

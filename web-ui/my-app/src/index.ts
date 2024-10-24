@@ -13,7 +13,7 @@ import { jwt } from 'hono/jwt';
 import { cors } from 'hono/cors';
 import * as utils from './utils.js'
 const app = new Hono()
-
+import Sister_schools from './odyssey/sisterschools.tsx'
 app.use(logger())
 app.onError((err, c) => {
   console.error(err); // Log the error for debugging
@@ -33,6 +33,8 @@ app.all('/odyssey*', (c) => {
   const is_html = odyssey()
   return c.html(utils.Layout(is_html))
 })
+//app.use('/static/*', serveStatic({ root: './src' }))
+
 
 app.all('/iframe/*', (c) => {
   let basename = c.req.path.split('/').pop()
@@ -51,6 +53,17 @@ app.all('/iframe/*', (c) => {
   if (basename == 'replay_analyzer.html') {
     html = fs.readFileSync('./src/llama-tools/replay_analyzer.html', 'utf8')
   }
+  return c.html(html)
+})
+
+
+app.all('/view_all', (c) => {
+  let html = fs.readFileSync('./src/llama-tools/livekit_view_all.html', 'utf8')
+  return c.html(html)
+})
+
+app.all('/share', (c) => {
+  let html = fs.readFileSync('./src/llama-tools/livekit_share.html', 'utf8')
   return c.html(html)
 })
 
