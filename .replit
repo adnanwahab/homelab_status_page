@@ -1,0 +1,9 @@
+entrypoint = "web-ui/my-app/src/index.ts"
+
+[nix]
+channel = "stable-24_05"
+
+
+[deployment]
+run = ["bun", "run", "web-ui/my-app/src/index.ts"]
+deploymentTarget = "cloudrun"

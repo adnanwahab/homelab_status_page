@@ -1,0 +1,147 @@
+web-ui/my-app/src/llama-tools/livekit_audio.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Capture with LiveKit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1 class="text-4xl font-bold mb-4">Audio Capture with LiveKit</h1>
+    <button id="startButton">Start Capture</button>
+    <button id="stopButton" disabled>Stop Capture</button>
+    <audio id="audioElm" controls></audio>
+    <script type="module">
+           import {
+          Room,
+          RemoteParticipant,
+          RoomEvent,
+        } from "https://unpkg.com/livekit-client@latest/dist/livekit-client.esm.mjs?module";
+        const LiveKit = {
+            Room,
+            RemoteParticipant,
+            RoomEvent,
+        }
+  
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+console.log('startButton', startButton)
+        let room;
+
+        async function postLivekitConnect() {
+          const response = await fetch('/livekit_connect', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ identity: 'screenshare-view-all' }),
+          });
+  
+          if (!response.ok) {
+            console.error('Failed to connect to Livekit:', response.statusText);
+            return;
+          }
+  
+          const data = await response.json();
+          //console.log('Connected to Livekit:', data);
+          return data
+        }
+        const liveKit_data = await postLivekitConnect();
+        room = new LiveKit.Room()
+        room
+  .on(RoomEvent.TrackSubscribed, handleTrackSubscribed)
+  .on(RoomEvent.TrackUnsubscribed, handleTrackUnsubscribed)
+  .on(RoomEvent.ActiveSpeakersChanged, handleActiveSpeakerChange)
+  .on(RoomEvent.Disconnected, handleDisconnect)
+  .on(RoomEvent.LocalTrackUnpublished, handleLocalTrackUnpublished);
+
+// connect to room
+await room.prepareConnection(liveKit_data.wsUrl, liveKit_data.token);
+await room.connect(liveKit_data.wsUrl, liveKit_data.token);
+console.log('connected to room', room.name);
+ 
+// publish local camera and mic tracks
+await room.localParticipant.enableCameraAndMicrophone();
+
+room    .on(RoomEvent.LocalTrackPublished, (pub) => {
+  console.log('local track published', pub);
+})
+
+
+startButton.addEventListener('click', () => {
+  const micPub = participant.getTrackPublication(Track.Source.Microphone);
+  audioELm.onloadeddata = () => {
+        if (participant.joinedAt && participant.joinedAt.getTime() < startTime) {
+          const fromJoin = Date.now() - startTime;
+          appendLog(`RemoteAudioTrack ${micPub?.trackSid} played ${fromJoin}ms from start`);
+        }
+      };
+  micPub?.audioTrack?.attach(audioElm);
+
+
+//visual proof
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
+function handleTrackSubscribed(
+  track,
+  publication,
+  participant,
+) {
+  if (track.kind === Track.Kind.Video || track.kind === Track.Kind.Audio) {
+    // attach it to a new HTMLVideoElement or HTMLAudioElement
+    const element = track.attach();
+    parentElement.appendChild(element);
+  }
+}
+
+function handleTrackUnsubscribed(
+  track,
+  publication,
+  participant,
+) {
+  // remove tracks from all attached elements
+  track.detach();
+}
+
+function handleLocalTrackUnpublished(
+  publication,
+  participant,
+) {
+  // when local tracks are ended, update UI to remove them from rendering
+  publication.track.detach();
+}
+
+function handleActiveSpeakerChange(speakers) {
+  // show UI indicators when participant is speaking
+}
+
+function handleDisconnect() {
+  console.log('disconnected from room');
+}
+    </script>
+</body>
+</html>

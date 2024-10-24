@@ -1,0 +1,10 @@
+{ "imports": {
+    "blag": "https://github.com/huggingface/lerobot",
+    "low_cost_robotic_manipulation": "https://github.com/AlexanderKoch-Koch/low_cost_robot/blob/main/teleoperate_real_robot.py",
+    "trossen": "https://docs.trossenrobotics.com/"
+  },
+
+  "tasks": {
+    "run": "deno run -A run.ts"
+  }
+}

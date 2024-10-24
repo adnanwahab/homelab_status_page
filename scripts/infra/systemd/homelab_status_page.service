@@ -1,0 +1,23 @@
+[Unit]
+Description=Homelab Status Page
+After=network.target
+
+[Service]
+Type=simple
+User=adnan
+WorkingDirectory=/home/adnan/homelab_status_page/web-ui
+ExecStart=/home/adnan/.bun/bin/bun run /home/adnan/homelab_status_page/web-ui/js/course_handler.tsx
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/adnan/homelab_status_page/web-ui/log/homelab-status-page.log
+StandardError=append:/home/adnan/homelab_status_page/web-ui/log/homelab-status-page.error.log
+SyslogIdentifier=homelab-status-page
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+#/home/adnan/.bun/bin/bun run ./web-ui/js/course_handler.tsx

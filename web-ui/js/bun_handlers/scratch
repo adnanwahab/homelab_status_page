@@ -1,0 +1,59 @@
+{
+
+"scripts": {
+
+"style": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+
+"format": "npx prettier views/\*\*/\*.html --write",
+
+"format-js": "standard 'static/\*\*/\*.js' --fix",
+
+"format-js-gpt": "python paralel\_LLM.py",
+
+"beautify": "bunx js-beautify static/3\_3\_journey/https\:/threejs-journey.com/bundles/public/HeroExperience-367a3eca.js > static/3\_3\_journey/https\:/threejs-journey.com/bundles/public/HeroExperience-367a3eca.js-2.js",
+
+"cog": "bun run js/cognition\_engine\_parser.js",
+
+"dev": "bun run vite",
+
+"build": "bun run vite build",
+
+"pprof": "go tool trace trace.out",
+
+"hardware\_helper": "bun run js/hardware/hardware-company-helper.js",
+
+"tailscale\_server": "sudo tailscale serve 3000",
+
+"download\_notebooks": "python infra/scripts/download\_notebooks.py",
+
+"flow\_helper": "bun run js/helpers/flow-helper.tsx",
+
+"course\_gen": "bash infra/scripts/course\_gen.sh",
+
+"ffmpeg\_frames": "ffmpeg -i input\_video.mp4 -vf \\"fps=1\\" output\_frame\_%04d.png",
+
+"tmp\_build": "vite build && wrangler pages deploy dist/",
+
+"course": "bash infra/scripts/course\_gen.sh",
+
+"obs": "cd course\_content && bun run dev",
+
+"docs:dev": "vitepress dev",
+
+"docs:build": "vitepress build",
+
+"docs:preview": "vitepress preview"
+
+},
+
+"devDependencies": {
+
+
+},
+
+"dependencies": {
+
+
+}
+
+}

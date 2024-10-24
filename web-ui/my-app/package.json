@@ -1,0 +1,15 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "deploy": "wrangler deploy",
+    "build": "echo 'hi'",
+    "send_email": "bun run src/utils.ts send_email"
+  },
+  "dependencies": {
+    "hono": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

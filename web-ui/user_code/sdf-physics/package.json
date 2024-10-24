@@ -1,0 +1,34 @@
+{
+  "name": "webgpu-experiments",
+  "version": "1.0.0",
+  "description": "WebGPU experiments",
+  "private": true,
+  "scripts": {
+    "build:html": "ts-node ./src/build-html.ts",
+    "build:js": "esbuild --bundle ./src/demos/* --outdir=dist/",
+    "build": "npm run build:html && npm run build:js",
+    "gh-pages": "npm run build && git branch -D gh-pages && git checkout --orphan gh-pages && mv dist/* . && rm -rf node_modules/ src/ package.json package-lock.json README.md tsconfig.json LOG.md && git add . && git commit -m '.' && git push --force -u origin gh-pages && git checkout master",
+    "watch:js": "esbuild --sourcemap --bundle ./src/demos/* --outdir=dist/ --watch --servedir=dist",
+    "watch": "npm run build:html && npm run watch:js",
+    "chrome": "google-chrome --use-vulkan --enable-unsafe-webgpu "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikolalysenko/webgpu-experiments.git"
+  },
+  "author": "Mikola Lysenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikolalysenko/webgpu-experiments/issues"
+  },
+  "homepage": "https://github.com/mikolalysenko/webgpu-experiments#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@webgpu/types": "^0.1.24",
+    "esbuild": "^0.17.0",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "gl-matrix": "^3.4.3"
+  }
+}

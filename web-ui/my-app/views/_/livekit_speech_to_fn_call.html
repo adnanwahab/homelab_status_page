@@ -1,0 +1,275 @@
+<head>
+
+  <!-- Required Meta Tags -->
+  <!-- bret victor + alan kay + robots = 4 god things in zeld botw + majora - you = hero of time -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://threejs.org/build/three.webgpu.js",
+        "three/tsl": "https://threejs.org/build/three.webgpu.js",
+        "three/addons/": "https://threejs.org/examples/jsm/"
+      }
+    }
+  </script>
+  <!-- figure out how to not use import maps for threejs  bc dhh doesnt -->
+  <meta
+    property="og:title"
+    content="Robotics Odyssey - Reimagining Robotics: Merging Systems Thinking and Dynamic Media"
+  />
+  <meta
+    property="og:description"
+    content="Explore a new approach to robotics that transcends conventional thinking, inspired by the principles of Alan Kay and Bret Victor. Discover how interconnected systems, dynamic media, and human-centric design can tackle the immense challenges of our time."
+  />
+  <meta property="og:url" content="https://robtics-odyssey.com" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:image"
+    content="https://hashirama.blog/static/images/blog/sicp.png"
+  />
+  <!-- less association  -->
+  <!-- Optional Meta Tags -->
+  <link rel="canonical" href="https://robtics-odyssey.com" />
+
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Robotics-Odyssey" />
+  <meta itemprop="url" content="https://robtics-odyssey.com" />
+  <meta name="twitter:title" content="Robotics-Odyssey" />
+  <meta name="twitter:url" content="https://robtics-odyssey.com" />
+  <meta
+    name="twitter:card"
+    content="Reimagining Robotics: Merging Systems Thinking and Dynamic Media"
+  />
+  <meta
+    name="description"
+    content="Explore a new approach to robotics that transcends conventional thinking, inspired by the principles of Alan Kay and Bret Victor. Discover how interconnected systems, dynamic media, and human-centric design can tackle the immense challenges of our time."
+  />
+  <!--   <script type="text/javascript">
+          (function(c,l,a,r,i,t,y){
+              c[a] = c[a] || function(){ (c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "YOUR_PROJECT_ID");
+      </script> -->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Robotics Odyssey</title>
+  <!-- <meta name="description" content="Inventing future of robotics UI" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <!-- https://threejs-journey.com/assets/favicons/apple-touch-icon.png -->
+  <!-- konoha + robot + sicp + alan + wory -->
+  <link rel="icon" href="/static/images/blog/favicon.svg" />
+  <link
+    rel="sitemap"
+    type="application/xml"
+    title="Sitemap"
+    href="/sitemap.xml"
+  />
+  <meta name="description" content="ass" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="language" content="English" />
+  <link href="/static/css/output.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- combine all these in one js file  -->
+
+  <!-- <script src="/static/js/htmx.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+ -->
+  <!-- improt frontend - einfra  -->
+</head>
+
+  <body>
+    <button class="bg-blue-500" id="startButton">Start Webcam and LiveKit</button>
+    <video id="localVideo" autoplay muted></video>
+    <script src="https://unpkg.com/@livekit/client@latest/dist/livekit-client.min.js"></script>
+
+    <script type="module">
+      import {
+        Room,
+        LocalVideoTrack,
+        LocalAudioTrack,
+        RoomEvent,
+      } from "https://unpkg.com/livekit-client@latest/dist/livekit-client.esm.mjs?module";
+
+      const identity = 'livekit_speech_to_fn_call'
+      async function postLivekitConnect() {
+        const response = await fetch('/livekit_connect', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ identity }),
+        });
+
+        if (!response.ok) {
+          console.error('Failed to connect to Livekit:', response.statusText);
+          return;
+        }
+
+        const data = await response.json();
+        //console.log('Connected to Livekit:', data);
+        return data
+      }
+
+      const liveKit_data = await postLivekitConnect();
+
+
+
+      async function startWebcam() {
+        const videoElement = document.getElementById("localVideo");
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: { facingMode: { ideal: "environment" } },
+          });
+          videoElement.srcObject = stream;
+          console.log("Media stream created:", stream);
+          return stream;
+        } catch (err) {
+          console.error("Error accessing media devices.", err);
+          throw err; // Rethrow error to handle it in the calling function
+        }
+      }
+
+      async function startLiveKit() {
+        const url = liveKit_data.wsUrl;
+
+        let roomOptions = {};
+        let connectOptions = {};
+        let shouldPublish = true;
+
+        let roomParams = {
+          // url: string,
+          // string,
+          // roomOptions,
+          // connectOptions,
+          // shouldPublish,
+        };
+
+        const room = new Room();
+        await room.connect(url, liveKit_data.token);
+
+        // Get the webcam stream
+        const stream = await startWebcam();
+        if (!stream) {
+          console.error("No stream available.");
+          return;
+        }
+
+        room
+          .on(RoomEvent.ParticipantConnected, (participant) => {
+            console.log(`Participant connected: ${participant.identity}`);
+          })
+          .on(RoomEvent.ParticipantDisconnected, (participant) => {
+            console.log(`Participant disconnected: ${participant.identity}`);
+          })
+          .on(RoomEvent.TrackPublished, (publication, participant) => {
+            console.log(
+              `Track published by ${participant.identity}: ${publication.trackSid}`,
+            );
+          })
+          .on(RoomEvent.TrackUnpublished, (publication, participant) => {
+            console.log(
+              `Track unpublished by ${participant.identity}: ${publication.trackSid}`,
+            );
+          })
+          .on(RoomEvent.ActiveSpeakersChanged, (speakers) => {
+            console.log("Active speakers changed:", speakers);
+          })
+          .on(RoomEvent.RoomDisconnected, (reason) => {
+            console.log(`Room disconnected: ${reason}`);
+          })
+          .on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
+            console.log(
+              `Track subscribed by ${participant.identity}: ${track.sid}`,
+            );
+          })
+          .on(
+            RoomEvent.TrackUnsubscribed,
+            (track, publication, participant) => {
+              console.log(
+                `Track unsubscribed by ${participant.identity}: ${track.sid}`,
+              );
+            },
+          )
+          .on(RoomEvent.DataReceived, (payload, participant) => {
+            console.log(
+              `Data received from ${participant.identity}: ${payload}`,
+            );
+          })
+          .on(RoomEvent.ConnectionQualityChanged, (quality, participant) => {
+            console.log(
+              `Connection quality changed for ${participant.identity}: ${quality}`,
+            );
+          });
+
+        const videoTrack = stream.getVideoTracks()[0];
+        const audioTrack = stream.getAudioTracks()[0];
+
+        if (!videoTrack) {
+          console.error("Video or audio track not found in stream.");
+          return;
+        }
+
+        const localVideoTrack = new LocalVideoTrack(videoTrack);
+        const localAudioTrack = new LocalAudioTrack(audioTrack);
+
+        // Publish both video and audio tracks
+        await room.localParticipant.publishTrack(localVideoTrack);
+        await room.localParticipant.publishTrack(localAudioTrack);
+
+        console.log("Tracks published to the room");
+      }
+
+      document.body.addEventListener("click", () => {
+        startLiveKit();
+      });
+
+
+// const socket = new WebSocket('ws://hashirama.blog/ws/');
+
+// socket.addEventListener('open', () => {
+//   socket.send(JSON.stringify(data));
+// });
+
+// socket.addEventListener('message', (event) => {
+//   console.log('Message from server ', event.data);
+// });
+
+async function sendDataToServer(data) {
+  try {
+    const response = await fetch('/save-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send data to server');
+    }
+
+    console.log('Data successfully sent to server');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+{
+	email adnan.f.wahab@gmail.com
+}
+
+files.hashirama.blog {
+	root * /home/adnan/derp
+	file_server browse
+	header Access-Control-Allow-Origin *
+	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+	header Access-Control-Allow-Headers "Content-Type"
+
+	route /status_page {
+		respond "status page"
+	}
+	limits {
+		body 100mb
+	}
+	# //Cache-Control "public, max-age=31536000, immutable"
+}
+
+hashirama.blog {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+		resolvers 1.1.1.1
+	}
+	route /status_page {
+		respond "status page"
+	}
+
+	route /ws/* {
+		reverse_proxy localhost:3333 {
+			header_up Connection {>Connection}
+			header_up Upgrade {>Upgrade}
+		}
+	}
+
+	route /* {
+		reverse_proxy localhost:3000
+	}
+
+	# Add logging for this site
+	log {
+		output file /home/adnan/derp/log/caddy/hashirama.blog.log {
+			roll_size 10MiB
+			roll_keep 5
+			roll_gzip
+		}
+	}
+
+	header Access-Control-Allow-Origin *
+	header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+	header Access-Control-Allow-Headers "Content-Type"
+}
+
+# put all of bret victors pages on one tv sccreen -> macos finder 3d css carosuel
